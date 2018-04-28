@@ -147,5 +147,25 @@ class MX_Controller
 			$this->session->set_userdata($key,$val);
 		}
 	}
-	
+
+    public function is_ajax()
+    {
+        return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest");
+    }
+
+    public function is_ajax_post()
+    {
+        return $this->is_ajax() &&  $this->is_post_request();
+    }
+
+    public function is_post_request()
+    {
+        return $_SERVER['REQUEST_METHOD'] === 'POST';
+    }
+
+    public function is_get_request()
+    {
+        return $_SERVER['REQUEST_METHOD'] === 'GET';
+    }
+
 }
