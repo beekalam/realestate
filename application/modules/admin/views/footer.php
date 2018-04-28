@@ -14,10 +14,10 @@
             <div class="quick-nav-overlay"></div>
             <!-- END QUICK NAV -->
             <!--[if lt IE 9]>
-<script src="<?php echo base_url() ?>/assets/global/plugins/respond.min.js"></script>
-<script src="<?php echo base_url() ?>/assets/global/plugins/excanvas.min.js"></script> 
-<script src="<?php echo base_url() ?>/assets/global/plugins/ie8.fix.min.js"></script> 
-<![endif]-->
+                <script src="<?php echo base_url() ?>/assets/global/plugins/respond.min.js"></script>
+                <script src="<?php echo base_url() ?>/assets/global/plugins/excanvas.min.js"></script>
+                <script src="<?php echo base_url() ?>/assets/global/plugins/ie8.fix.min.js"></script>
+            <![endif]-->
             <!-- BEGIN CORE PLUGINS -->
           
             <script src="<?php echo base_url() ?>assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>

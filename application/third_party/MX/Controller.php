@@ -58,6 +58,8 @@ class MX_Controller
 		
 		/* autoload module items */
 		$this->load->_autoloader($this->autoload);
+        $res = $this->Settings_model->get_settings_data();
+        $this->settings = $res;
 	}
 	
 
@@ -70,29 +72,7 @@ class MX_Controller
 	public function __get($class){
 		return CI::$APP->$class;
 	}
-    public function adminView($view,$data=array()){
-        if($this->session->has_userdata('msg')) {
-            $msg = $this->session->userdata('msg');
-            $this->session->unset_userdata('msg');
-            $msg_type = "success";
 
-            if($msg and strpos($msg,"|") != false)
-            {
-                list($type,$message) = explode("|", $msg);
-                $msg_type = $type;
-                $msg = $message;
-            }
-            $data['msg'] = $msg;
-            $data['msg_type'] = $msg_type;
-        }
-
-        $data['footer'] =  "By<a href='#'> FANACMP </a>" . "@". date('Y');
-
-        $this->load->view("header",$data);
-        $this->load->view($view,$data);
-        $this->load->view("footer",$data);
-
-    }
 	public function view($view,$data=array()) {
 		if($this->session->has_userdata('msg'))
 		{
@@ -122,21 +102,10 @@ class MX_Controller
 		$data["page_title"] = $this->page_title;
 		$data["settings"] = $this->settings;
 
-		if($this->render_header) {
-            if(isset($_SESSION["lang"]) && $_SESSION["lang"] == "en")
-                $this->load->view("en_header",$data);
-            else
-                $this->load->view('fa_header', $data);
-        }
-
+        $this->load->view("header",$data);
 		$this->load->view($view,$data);
+        $this->load->view('footer', $data);
 
-		if($this->render_footer) {
-            if(isset($_SESSION["lang"]) && $_SESSION["lang"] == "en")
-                $this->load->view("en_footer",$data);
-            else
-                $this->load->view('fa_footer', $data);
-        }
 	}
 
 	public function set_title($page_title){
