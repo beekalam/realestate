@@ -39,8 +39,9 @@ class Admin extends MX_Controller {
     }
 
     public function add_property(){
-        $property_type = $_GET['pt'];
-        $deal_type = $_GET['dt'];
+        $property_type = $_REQUEST['pt'];
+        $deal_type = $_REQUEST['dt'];
+//        pre($_REQUEST);
         $this->load->helper(array('form','url'));
         $this->load->library('PropertyLib',array("property_type"=>$property_type,"deal_type"=>$deal_type));
         if($this->is_get_request()) {
@@ -54,7 +55,6 @@ class Admin extends MX_Controller {
             return;
         }else{
             $this->propertylib->init_from_post();
-            $this->propertylib->build_insert_array();
 
             if($this->propertylib->save()){
                 die("success");

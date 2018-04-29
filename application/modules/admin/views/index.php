@@ -129,8 +129,8 @@
                         <th>نام</th>
                         <th>تلفن</th>
                         <th>موبایل</th>
-                        <th></th>
-                        <th></th>
+                        <th>نوع</th>
+                        <th>سند</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -180,7 +180,8 @@
                     {"data":"owner_name"},
                     {"data":"owner_tel"},
                     {"data":"owner_mobile"},
-                    {"data":"owner_tel"}
+                    {"data":"property_type"},
+                    {"data":"sanad_type"}
                 ],
                 "columnDefs":[
                     {className:"persian-number",targets:[1,2]},
@@ -194,8 +195,33 @@
                             }
                             return ret;
                         }
+                    },
+                    {
+                        "targets": 3,
+                        "data":"property_type",
+                        "render":function(data,type,row,meta){
+                            if(data == 'apartment'){
+                                return "آپارتمان";
+                            }else if(data == "land"){
+                                return "زمین";
+                            }
+                            return "";
+                        }
+                    },
+                    {
+                        "targets": 4,
+                        "data":"sanad_type",
+                        "render":function(data,type,row,meta){
+                            if(data == "melki"){
+                                return  "ملکی";
+                            }else if(data == "oghaf"){
+                                return "اوقاف";
+                            }
+                            return data;
+                        }
                     }
                 ]
+
             });
         });
     </script>

@@ -5,7 +5,15 @@
         <div class="caption">
             <i class="fa fa-plus"></i>
             <span class="caption-subject bold uppercase">
-              مشتری جدید
+                <?php
+                    if($pt == 'apartment'){
+                        echo 'آپارتمان';
+                    }else if($pt == 'land'){
+                        echo 'زمین';
+                    }else{
+                        echo '';
+                    }
+                ?>
             </span>
         </div>
     </div>
@@ -321,9 +329,9 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">نوع سند</label>
                         <div class="col-md-9">
-                            <select name="sanad_type" id="sanad_type">
-                                <option value="ملکی">ملکی</option>
-                                <option value="اوقاف">اوقاف</option>
+                            <select name="sanad_type" id="sanad_type" class="form-control input-sm">
+                                <option value="melki">ملکی</option>
+                                <option value="oghaf">اوقاف</option>
                             </select>
                         </div>
                     </div>
@@ -415,8 +423,6 @@
                     </div>
                 <?php endif; ?>
 
-
-
                 <input type="hidden" name="property_type" value="<?php echo $pt; ?>" />
                 <input type="hidden" name="deal_type" value="<?php echo $dt; ?>" />
             </div>
@@ -460,8 +466,8 @@
         $("#owner_tel").val(random_tel());
         $("#owner_mobile").val(random_mobile());
         $("#zone").val(random_name());
-        $("#street").val(random_name());
-        $("#alley").val(random_name());
+        $("#street").val(random_street());
+        $("#alley").val(random_alley());
         $("#parking_count").val(rand(1,6));
         $("#anbari_count").val(rand(1,6));
         $("#room_count").val(rand(1,6));
@@ -477,9 +483,9 @@
         $("#num_stories").val(rand(1,10));
         $("#area").val(rand(100,250));
         $("#anbari_count").val(rand(1,2));
-        $("#").val(50,100);
         $("#anbari_area").val(50,100);
         $("#anbari_area").val(50,100);
+
     }
 
     $(document).ready(function()

@@ -118,7 +118,8 @@ class PropertyLib
     }
 
     public function is_valid(){
-        return $this->ci->form_validation->run();
+//        return $this->ci->form_validation->run();
+        return true;
     }
 
     public function property_types(){
@@ -137,8 +138,8 @@ class PropertyLib
         if(is_null($this->anbari) || empty($this->anbari)){
             $this->anbari = "no";
         }
-        $property_type = 'apartment';
-        return array(
+
+        $ret = array(
             "property_name"  =>"",
             "property_description"=>"",
             "owner_name"    => $this->owner_name,
@@ -152,11 +153,34 @@ class PropertyLib
             "parking_count" => $this->parking_count,
             "anbari"        => $this->anbari,
             "room_count"    => $this->room_count,
-            "anbari_count"  => $this->anbari_count
+            "anbari_count"  => $this->anbari_count,
+            "property_type" => $this->property_type,
         );
+        $keys = array();
+        if($this->property_type == 'apartment') {
+            $keys = array_merge($keys,
+                array("parking_area", "area", "anbari_area",
+                "room_count", "age", "num_stories", "unit_per_story",
+                'pardakht_method', 'price_per_square_meter', 'price_total',
+                'sanad_type'));
+        }
+        if($this->deal_type == 'rahn'){
+            $keys = array_merge($keys,array("rahn_preconditions","rahn_amount"));
+        }else if($this->deal_type == 'rent'){
+            $keys = array_merge($keys,array("rent_amount","rent_preconditions"));
+        }
+
+        foreach($keys as $k){
+            $ret[$k] = $this->{$k};
+        }
+        pr($ret);
+        return $ret;
     }
 
     public function save(){
+        $res = $this->build_insert_array();
+
+
         $res = $this->ci->db->insert("properties",$this->build_insert_array());
         return $res;
     }
