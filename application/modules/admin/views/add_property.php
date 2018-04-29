@@ -379,8 +379,8 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">پروانه</label>
                         <div class="col-md-9">
-                            <input type="text" id="parvane" name="parvane" class="form-control input-sm" placeholder="پروانه"
-                                   value="<?php echo set_value('parvane'); ?>">
+                            <input type="checkbox" id="parvane" name="parvane" class="form-control input-sm"
+                                   value="yes" value="<?php echo set_checkbox('parvane'); ?>">
                         </div>
                     </div>
                 </div>
@@ -485,7 +485,9 @@
         $("#anbari_count").val(rand(1,2));
         $("#anbari_area").val(50,100);
         $("#anbari_area").val(50,100);
-
+        $("#parvane_description").val("parvane description");
+        $("#renovation_age").val(rand(1,10));
+        $("#zabete").val("m5");
     }
 
     $(document).ready(function()

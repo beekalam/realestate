@@ -204,6 +204,8 @@
                                 return "آپارتمان";
                             }else if(data == "land"){
                                 return "زمین";
+                            }else if(data == "store"){
+                                return "مغازه";
                             }
                             return "";
                         }
