@@ -13,19 +13,16 @@
     </div>
     <div class="portlet-body">
         <div class="row">
-            <table class="table table-responsive" id="tbl">
-                <thead>
-                <!-- <th>نام</th> -->
-                <th>تعداد مسافران</th>
-                <th>مبدا</th>
-                <th>مقصد</th>
-                <th>مشخصات مسافران</th>
-                <th>مشخصات پرواز</th>
-                </thead>
-                <tbody>
+            <a href='<?php echo base_url("/admin/add_client"); ?>'>add client</a>
+            <br/>
+            <a href='<?php echo base_url("/admin/add_property?pt='apartment'"); ?>'>add property - apartment</a>
 
-                </tbody>
-            </table>
+            <br/>
+            <a href='<?php echo base_url("/admin/add_property?pt='store'"); ?>'>add property - store</a>
+
+            <br/>
+            <a href='<?php echo base_url("/admin/add_property?pt='land'"); ?>'>add property - land</a>
+
         </div>
     </div>
 </div>

@@ -28,12 +28,39 @@ class Admin extends MX_Controller {
             return;
         }else{
             $this->clientlib->init_from_post();
-//            var_dump($this->clientlib->build_vm());
-            die($this->clientlib->save());
+            if($this->clientlib->save()){
+                die("success");
+            }else{
+                die("error");
+            }
         }
 
 //	    $this->view("add_client",array("footer"=>"footer text"));
     }
 
+    public function add_property(){
+        $property_type = $_GET['pt'];
+        $this->load->helper(array('form','url'));
+        $this->load->library('PropertyLib',array("property_type"=>$property_type));
+        if($this->is_get_request()) {
+            $this->view("add_property",array());
+            return;
+        }
+
+        //post request validation
+        if($this->propertylib->is_valid() == false){
+            $this->view('add_property',array());
+            return;
+        }else{
+            $this->propertylib->init_from_post();
+            $this->propertylib->build_insert_array();
+
+            if($this->propertylib->save()){
+                die("success");
+            }else{
+                die("error");
+            }
+        }
+    }
 
 }

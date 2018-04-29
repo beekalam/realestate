@@ -67,4 +67,8 @@ class ClientLib
         return $res;
     }
 
+    public function find_by_id($id){
+        $res = $this->ci->db->get_where(array("id"=>$id),"clients")->result_array();
+    }
+
 }
