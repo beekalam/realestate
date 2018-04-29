@@ -465,15 +465,15 @@
         $("#owner_family").val(random_family());
         $("#owner_tel").val(random_tel());
         $("#owner_mobile").val(random_mobile());
-        $("#zone").val(random_name());
+        $("#zone").val(random_city_zone());
         $("#street").val(random_street());
         $("#alley").val(random_alley());
         $("#parking_count").val(rand(1,6));
         $("#anbari_count").val(rand(1,6));
         $("#room_count").val(rand(1,6));
         $("#age").val(rand(1,10));
-        $("#rent_preconditions").val('rent precondition');
-        $("#rahn_preconditions").val("rahn precodition");
+        $("#rent_preconditions").val('شرایط اجاره');
+        $("#rahn_preconditions").val("شرایط رهن");
         $("#rahn_amount").val(rand(100000000,500000000));
         $("#rent_amount").val(rand(500000,900000));
         $("#price_total").val(rand(100000000,500000000));
@@ -485,7 +485,7 @@
         $("#anbari_count").val(rand(1,2));
         $("#anbari_area").val(50,100);
         $("#anbari_area").val(50,100);
-        $("#parvane_description").val("parvane description");
+        $("#parvane_description").val("توضیحات پروانه");
         $("#renovation_age").val(rand(1,10));
         $("#zabete").val("m5");
     }
