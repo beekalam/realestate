@@ -62,7 +62,8 @@
         <link rel="shortcut icon" href="favicon.ico" />
         <link href="<?php echo base_url() ?>assets/mansouri.css" rel="stylesheet" type="text/css" />
         <script src="<?php echo base_url() ?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-        </head>
+
+    </head>
     <!-- END HEAD -->
 
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">

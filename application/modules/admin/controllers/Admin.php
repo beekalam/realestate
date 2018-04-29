@@ -40,16 +40,17 @@ class Admin extends MX_Controller {
 
     public function add_property(){
         $property_type = $_GET['pt'];
+        $deal_type = $_GET['dt'];
         $this->load->helper(array('form','url'));
-        $this->load->library('PropertyLib',array("property_type"=>$property_type));
+        $this->load->library('PropertyLib',array("property_type"=>$property_type,"deal_type"=>$deal_type));
         if($this->is_get_request()) {
-            $this->view("add_property",array());
+            $this->view("add_property",array("pt"=>$property_type,"dt"=>$deal_type));
             return;
         }
 
         //post request validation
         if($this->propertylib->is_valid() == false){
-            $this->view('add_property',array());
+            $this->view('add_property',array("pt"=>$property_type,"dt"=>$deal_type));
             return;
         }else{
             $this->propertylib->init_from_post();
@@ -61,6 +62,19 @@ class Admin extends MX_Controller {
                 die("error");
             }
         }
+    }
+
+    public function properties(){
+        $start = $this->input->post("start");
+        $len = $this->input->post("len");
+
+        $length = count($this->db->get("properties")->result());
+        $data = $this->db->get("properties",$len,$start)->result_array();
+
+        ejson(array("data" => $data,
+                    "recordsTotal" => count($data),
+                    "draw" => $this->input->post("draw"),
+                    "recordsFiltered"=>$length));
     }
 
 }

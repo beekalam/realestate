@@ -41,6 +41,11 @@ class PropertyLib
     private $aghab_neshini;   //عقب نشینی
     private $parvane;
     private $parvane_description;
+    private $deal_type;
+    private $area;
+    private $renovation_age;   //سن بازسازی
+    private $sell_conditions; //شرایط فروش
+    private $renovated; //بازی سازی شده
 
     public function __construct($params = array())
     {
@@ -49,6 +54,7 @@ class PropertyLib
         $this->ci->load->database();
         $this->ci->load->helper("lib_date");
         $this->property_type = $params["property_type"];
+        $this->deal_type = $params["deal_type"];
     }
 
     public function init_from_post(){
@@ -89,6 +95,10 @@ class PropertyLib
         $this->aghab_neshini        = $p->post('aghab_neshini');
         $this->parvane              = $p->post('parvane');
         $this->parvane_description  = $p->post('parvane_description');
+        $this->area                 = $p->post('area');
+        $this->renovation_age       = $p->post('renovation_age');
+        $this->sell_conditions      = $p->post('sell_conditions');
+        $this->renovated            = $p->post('renovated');
     }
 
     public function set_validation_rules(){
