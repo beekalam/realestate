@@ -173,7 +173,6 @@ class PropertyLib
         foreach($keys as $k){
             $ret[$k] = $this->{$k};
         }
-        pr($ret);
         return $ret;
     }
 

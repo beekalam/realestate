@@ -77,4 +77,23 @@ class Admin extends MX_Controller {
                     "recordsFiltered"=>$length));
     }
 
+    public function clients()
+    {
+        $this->view("clients",array("footer"=>"footer text"));
+    }
+
+    public function clients_list()
+    {
+        $start = $this->input->post("start");
+        $len = $this->input->post("len");
+
+        $length = count($this->db->get("clients")->result());
+        $data = $this->db->get("clients",$len,$start)->result_array();
+
+        ejson(array("data" => $data,
+            "recordsTotal" => count($data),
+            "draw" => $this->input->post("draw"),
+            "recordsFiltered"=>$length));
+    }
+
 }

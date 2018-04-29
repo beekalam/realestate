@@ -209,9 +209,9 @@
                            <?php //if(isset($_SESSION['isadmin']) && $_SESSION['isadmin']): ?>
                            <?php if(check_perm('view_settings')): ?>
                                <li class="nav-item start" id="m-settings">
-                                        <a href="<?php echo base_url('admin/settings'); ?>" class="nav-link ">
+                                        <a href="<?php echo base_url('admin/clients'); ?>" class="nav-link ">
                                             <i class="icon-picture"></i>
-                                            <span class="title">تنظیمات</span>
+                                            <span class="title">مشتری ها</span>
                                             <span class="selected"></span>
                                         </a>
                                </li>

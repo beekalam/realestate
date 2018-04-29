@@ -56,7 +56,7 @@
                 <div class="glyph">
                     <div>
                         <a href='<?php echo base_url("/admin/add_client"); ?>'>
-                            <img src="<?php echo base_url("assets/real-estate-icons-2/svg/024-building-2.svg"); ?>"/>
+                            <img src="<?php echo base_url("assets/svg/customer.svg"); ?>"/>
                             افزودن مشتری
                         </a>
                     </div>
@@ -70,7 +70,7 @@
                 <div class="glyph">
                     <div>
                         <a href='<?php echo base_url("/admin/add_property?pt=apartment&dt=none'"); ?>'>
-                            <img src="<?php echo base_url("assets/real-estate-icons-2/svg/024-building-2.svg"); ?>"/>
+                            <img src="<?php echo base_url("assets/svg/024-building-2.svg"); ?>"/>
                             آپارتمان و پیش فروش
                         </a>
                     </div>
@@ -83,7 +83,7 @@
                 <div class="glyph">
                     <div>
                         <a href='<?php echo base_url("/admin/add_property?pt=store&dt=none"); ?>'>
-                            <img src="<?php echo base_url("assets/real-estate-icons-2/svg/024-building-2.svg"); ?>"/>
+                            <img src="<?php echo base_url("assets/svg/shop.svg"); ?>"/>
                             مغازه
                         </a>
                     </div>
@@ -97,7 +97,7 @@
                 <div class="glyph">
                     <div>
                         <a href='<?php echo base_url("/admin/add_property?pt=land&dt=none"); ?>'>
-                            <img src="<?php echo base_url("assets/real-estate-icons-2/svg/024-building-2.svg"); ?>"/>
+                            <img src="<?php echo base_url("assets/svg/031-house-1.svg"); ?>"/>
                             زمین
                         </a>
                     </div>
