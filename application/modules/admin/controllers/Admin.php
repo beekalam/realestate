@@ -55,9 +55,9 @@ class Admin extends MX_Controller {
             return;
         }else{
             $this->propertylib->init_from_post();
-
             if($this->propertylib->save()){
-                die("success");
+                $this->success_msg();
+                redirect("admin/index");
             }else{
                 die("error");
             }
