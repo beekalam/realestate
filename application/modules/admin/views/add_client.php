@@ -1,4 +1,6 @@
+
 <div class="page-bar"> </div>
+
 <div class="portlet box green">
     <div class="portlet-title">
 
@@ -22,7 +24,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">نام</label>
                         <div class="col-md-9">
-                            <input type="text" id="first_name" name="first_name" class="form-control input-sm" placeholder="نام"
+                            <input type="text" id="first_name" name="first_name" class="form-control input-sm" placeholder="نام" lang="fa"
                                    value="<?php echo set_value('first_name'); ?>">
                         </div>
                     </div>
@@ -32,7 +34,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">نام خانوادگی</label>
                         <div class="col-md-9">
-                            <input type="text" id="last_name" name="last_name" class="form-control input-sm" placeholder="نام خانوادگی"
+                            <input type="text" id="last_name" name="last_name" class="form-control input-sm" placeholder="نام خانوادگی" lang="fa"
                                    value="<?php echo set_value('last_name') ?>">
                         </div>
                     </div>
@@ -42,7 +44,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">شماره موبایل</label>
                         <div class="col-md-9">
-                            <input type="text" id="mobile" name="mobile" class="form-control input-sm" placeholder="شماره موبایل"
+                            <input type="text" id="mobile" name="mobile" class="form-control input-sm persian-number" placeholder="شماره موبایل" lang="fa"
                                    value="<?php echo set_value('mobile'); ?>" >
                         </div>
                     </div>
@@ -52,7 +54,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">تلفن ثابت</label>
                         <div class="col-md-9">
-                            <input type="text" id="tel" name="tel" class="form-control input-sm" placeholder="تلفن ثابت"
+                            <input type="text" id="tel" name="tel" class="form-control input-sm persian-number" placeholder="تلفن ثابت" lang="fa"
                                    value="<?php echo set_value('tel'); ?>">
                         </div>
                     </div>
@@ -62,7 +64,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">تاریخ مراجعه</label>
                         <div class="col-md-9">
-                            <input type="text" id="date_submit" name="date_submit" class="form-control input-sm" placeholder="date_submit"
+                            <input type="text" id="date_submit" name="date_submit" class="form-control input-sm persian-number" placeholder="date_submit"
                                    value="<?php echo set_value('date_submit'); ?>">
                         </div>
                     </div>
@@ -78,7 +80,16 @@
                     </div>
                 </div>
 
+                <div class="form-body col-xs-6">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">توضیحات</label>
+                        <div class="col-md-9">
+                            <textarea rows="4" cols="50" class="form-control input-sm" id="description" name="description" lang="fa"><?php echo set_value('description'); ?></textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <script>
                 $(document).ready(function()
                 {

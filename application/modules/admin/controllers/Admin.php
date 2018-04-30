@@ -29,9 +29,10 @@ class Admin extends MX_Controller {
         }else{
             $this->clientlib->init_from_post();
             if($this->clientlib->save()){
-                die("success");
+                $this->success_msg();
+                redirect("admin/index");
             }else{
-                die("error");
+                $this->err_msg();
             }
         }
 
@@ -96,4 +97,14 @@ class Admin extends MX_Controller {
             "recordsFiltered"=>$length));
     }
 
+    public function find_client_modal()
+    {
+      $this->load->view("find_client_modal");
+    }
+
+    public function find_client(){
+        $search  = $this->get("POST.search");
+        $res = $this->db->get_where("clients",array("first_name"=>$search))->result_array();
+        echo json_encode($res);
+    }
 }

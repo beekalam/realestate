@@ -62,6 +62,10 @@
         <link rel="shortcut icon" href="favicon.ico" />
         <link href="<?php echo base_url() ?>assets/mansouri.css" rel="stylesheet" type="text/css" />
         <script src="<?php echo base_url() ?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url() ?>assets/js/handlebars-v4.0.11.js" type="text/javascript"></script>
+        <script src="<?php echo base_url() ?>assets/js/loadin-overlay.js" type="text/javascript"></script>
+        <script src="<?php echo base_url() ?>assets/js/mansouri.js" type="text/javascript"></script>
+        <script src="<?php echo base_url() ?>assets/js/kblayout.js" type="text/javascript"></script>
 
     </head>
     <!-- END HEAD -->

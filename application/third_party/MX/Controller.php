@@ -102,9 +102,13 @@ class MX_Controller
 		$data["page_title"] = $this->page_title;
 		$data["settings"] = $this->settings;
 
-        $this->load->view("header",$data);
+		if($this->render_header)
+            $this->load->view("header",$data);
+
 		$this->load->view($view,$data);
-        $this->load->view('footer', $data);
+
+		if($this->render_footer);
+            $this->load->view('footer', $data);
 
 	}
 

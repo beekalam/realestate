@@ -48,7 +48,6 @@ class ClientLib
     }
 
     public function build_insert_array(){
-        $this->description = "test";
         $date_submit_en = convert_jalali_to_gregorian($this->date_submit);
         return array(
             "first_name"    =>  $this->first_name,
@@ -57,8 +56,8 @@ class ClientLib
             "mobile"        =>  $this->mobile,
             "date_submit"   =>  $date_submit_en,
             "time_submit"   =>  $this->time_submit,
-            "description"   =>  $this->description,
             "date_submit_fa" => $this->date_submit,
+            "description"   =>  $this->description,
         );
     }
 
@@ -70,5 +69,6 @@ class ClientLib
     public function find_by_id($id){
         $res = $this->ci->db->get_where(array("id"=>$id),"clients")->result_array();
     }
+
 
 }

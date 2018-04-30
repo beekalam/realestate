@@ -29,9 +29,12 @@
                 <div class="form-body col-xs-6">
                     <div class="form-group">
                         <label class="col-md-3 control-label">نام</label>
-                        <div class="col-md-9">
+                        <div class="col-md-7">
                             <input type="text" id="owner_name" name="owner_name" class="form-control input-sm" placeholder="نام"
                                    value="<?php echo set_value('owner_name'); ?>">
+                        </div>
+                        <div class="col-md-2">
+                            <div class="btn btn-default" onclick="loadModal('test')">جستجو</div>
                         </div>
                     </div>
                 </div>
@@ -435,8 +438,38 @@
     </div>
 </div>
 
+<div class="modal fade" id="bootstrap-modal" role="dialog">
+
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Bootstrap Dynamic Modal Content</h4>
+            </div>
+            <div class="modal-body">
+                <div id="demo-modal">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script>
+    function loadModal(modal)
+    {
+        $('#demo-modal').load('<?php echo base_url("admin/find_client_modal"); ?>', function()
+        {
+            $('#bootstrap-modal').modal({show : true});
+        });
+    }
+
     $(document).ready(function()
     {
         $("#date_submit").datepicker(
