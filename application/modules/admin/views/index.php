@@ -131,10 +131,10 @@
                         <th>موبایل</th>
                         <th>نوع</th>
                         <th>سند</th>
+                        <th>actions</th>
                     </tr>
                     </thead>
                     <tbody>
-
                     </tbody>
                 </table>
             </div>
@@ -147,10 +147,11 @@
                 "ordering": false,
                 "searching": false,
 //                "paging": true,
-                "info": false,
-//                scroller: {
-//                    loadingIndicator: true
-//                },
+//                "info": false,
+                scrollY:300,
+                scroller: {
+                    loadingIndicator: true
+                },
                 serverSide: true,
                 "language": {
                     "sEmptyTable": "هیچ داده ای در جدول وجود ندارد",
@@ -175,13 +176,16 @@
                         "sSortDescending": ": فعال سازی نمایش به صورت نزولی"
                     }
                 },
-                ajax:"<?php echo base_url('/admin/properties'); ?>",
+                ajax:{
+                    "url":"<?php echo base_url('/admin/properties'); ?>"
+                },
                 "columns":[
                     {"data":"owner_name"},
                     {"data":"owner_tel"},
                     {"data":"owner_mobile"},
                     {"data":"property_type"},
-                    {"data":"sanad_type"}
+                    {"data":"sanad_type"},
+                    {"data":"id"}
                 ],
                 "columnDefs":[
                     {className:"persian-number",targets:[1,2]},
@@ -220,6 +224,13 @@
                                 return "اوقاف";
                             }
                             return data;
+                        }
+                    },
+                    {
+                        "targets": 5,
+                        "data":"id",
+                        "render":function(data,type,row,meta){
+                            return "<a class='btn btn-default' href='"+ "<?php echo base_url("admin/edit_property?id="); ?>" + data +"'>view</a>";
                         }
                     }
                 ]

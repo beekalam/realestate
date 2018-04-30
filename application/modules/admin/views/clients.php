@@ -18,7 +18,7 @@
                     <th>موبایل</th>
                     <th>تلفن</th>
                     <th>date_submit_fa</th>
-<!--                    <th></th>-->
+                    <th></th>
 <!--                    <th></th>-->
 <!--                    <th>موبایل</th>-->
 <!--                    <th>نوع</th>-->
@@ -38,11 +38,11 @@
         $("#clients-table").DataTable({
             "ordering": false,
             "searching": false,
-            "paging": true,
-            "info": false,
-//            "scroller": {
-//                loadingIndicator: true
-//            },
+            "deferRender":true,
+            "scrollY":500,
+            "scroller": {
+                loadingIndicator: true
+            },
             serverSide: true,
             "language": {
                 "sEmptyTable": "هیچ داده ای در جدول وجود ندارد",
@@ -67,17 +67,26 @@
                     "sSortDescending": ": فعال سازی نمایش به صورت نزولی"
                 }
             },
-            ajax:"<?php echo base_url('/admin/clients_list'); ?>",
+            "ajax":{
+                "url":"<?php echo base_url('admin/clients_list'); ?>"
+            },
             "columns":[
                 {"data":"first_name"},
                 {"data":"last_name"},
                 {"data":"mobile"},
                 {"data":"tel"},
-                {"data":"date_submit_fa"}
+                {"data":"date_submit_fa"},
+                {"data":"id"}
             ],
             "columnDefs":[
                 {className:"persian-number",targets:[2,3,4]},
-
+                {
+                    "targets": 5,
+                    "data":"property_type",
+                    "render":function(data,type,row,meta){
+                        return "<a href='"+ "<?php echo base_url("admin/edit_client?id="); ?>" + data +"'>view</a>";
+                    }
+                },
             ]
 
         });

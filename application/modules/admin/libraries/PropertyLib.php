@@ -4,6 +4,7 @@
 class PropertyLib
 {
     protected $ci;
+    private $id = 0;
     private $property_name;
     private $property_description;
     private $price_min;
@@ -55,6 +56,7 @@ class PropertyLib
         $this->ci->load->helper("lib_date");
         $this->property_type = $params["property_type"];
         $this->deal_type = $params["deal_type"];
+        $this->set_validation_rules();
     }
 
     public function init_from_post(){
@@ -99,6 +101,12 @@ class PropertyLib
         $this->renovation_age       = $p->post('renovation_age');
         $this->sell_conditions      = $p->post('sell_conditions');
         $this->renovated            = $p->post('renovated');
+        if(isset($_POST["id"]))
+            $this->id = $p->post("id");
+        if(isset($_POST["deal_type"]))
+            $this->deal_type = $p->post("deal_type");
+        if(isset($_POST["property_type"]))
+            $this->property_type = $p->post("property_type");
     }
 
     public function set_validation_rules(){
@@ -118,8 +126,7 @@ class PropertyLib
     }
 
     public function is_valid(){
-//        return $this->ci->form_validation->run();
-        return true;
+        return $this->ci->form_validation->run();
     }
 
     public function property_types(){
@@ -177,10 +184,80 @@ class PropertyLib
     }
 
     public function save(){
+//        for($i=1; $i < 100; $i++){
+//            $res = $this->build_insert_array();
+//            $res["owner_name"] .= strval($i);
+//            $res["owner_family"] .= strval($i);
+//            $res = $this->ci->db->insert("properties",$this->build_insert_array());
+//        }
         $res = $this->build_insert_array();
 
-
         $res = $this->ci->db->insert("properties",$this->build_insert_array());
+        return $res;
+    }
+
+    public function init_from_db($rec){
+        $this->property_name        = $rec['property_name'];
+        $this->property_description = $rec['property_description'];
+        $this->price_min            = $rec['price_min'];
+        $this->price_max            = $rec['price_max'];
+        $this->room_count           = $rec['room_count'];
+        $this->parking              = $rec['parking'];
+        $this->owner_name           = $rec['owner_name'];
+        $this->owner_family         = $rec['owner_family'];
+        $this->owner_tel            = $rec['owner_tel'];
+        $this->owner_mobile         = $rec['owner_mobile'];
+        $this->zone                 = $rec['zone'];
+        $this->street               = $rec['street'];
+        $this->alley                = $rec['alley'];
+        $this->parking_area         = $rec['parking_area'];
+        $this->parking_count        = $rec['parking_count'];
+        $this->anbari               = $rec['anbari'];
+        $this->anbari_count         = $rec['anbari_count'];
+        $this->property_type        = $rec['property_type'];
+        $this->date_on_market       = $rec['date_on_market'];
+        $this->age                  = $rec['age'];
+        $this->num_stories          = $rec['num_stories'];
+        $this->unit_per_story       = $rec['unit_per_story'];
+        $this->anbari_area          = $rec['anbari_area'];
+        $this->rent_amount          = $rec['rent_amount'];
+        $this->rent_preconditions   = $rec['rent_preconditions'];
+        $this->rahn_amount          = $rec['rahn_amount'];
+        $this->rahn_preconditions   = $rec['rahn_preconditions'];
+        $this->pardakht_method      = $rec['pardakht_method'];
+        $this->price_per_square_meter = $rec['price_per_square_meter'];
+        $this->price_total          = $rec['price_total'];
+        $this->sanad_type           = $rec['sanad_type'];
+        $this->zabete               = $rec['zabete'];
+        $this->karbari              = $rec['karbari'];
+        $this->aghab_neshini        = $rec['aghab_neshini'];
+        $this->parvane              = $rec['parvane'];
+        $this->parvane_description  = $rec['parvane_description'];
+        $this->area                 = $rec['area'];
+        $this->renovation_age       = $rec['renovation_age'];
+        $this->sell_conditions      = $rec['sell_conditions'];
+        $this->renovated            = $rec['renovated'];
+        $this->property_type        = $rec["property_type"];
+        $this->deal_type            = $rec["deal_type"];
+    }
+
+    public function find_by_id($id){
+        $res =  $this->ci->db->get_where("properties",array("id"=>$id))->result_array();
+        $this->init_from_db($res[0]);
+        return $res[0];
+    }
+
+    public function get_property_type(){
+        return $this->property_type;
+    }
+
+    public function get_deal_type(){
+        return $this->deal_type;
+    }
+
+    public function update(){
+        $this->ci->db->where('id',$this->id);
+        $res = $this->ci->db->update('properties',$this->build_insert_array());
         return $res;
     }
 
