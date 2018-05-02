@@ -1347,3 +1347,8 @@ function is_null_or_empty(){
 
     return false;
 }
+
+function percent($a,$b){
+    if($b==0) return null;
+    return ($a/$b) * 100;
+}

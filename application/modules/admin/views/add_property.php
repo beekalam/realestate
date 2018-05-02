@@ -463,7 +463,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
-                <h4 class="modal-title">جستجوی مشتری</h4>
+                <h4 class="modal-title persian-font">جستجوی مشتری</h4>
             </div>
             <div class="modal-body">
                 <div id="demo-modal">
@@ -472,7 +472,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default"
-                        data-dismiss="modal">Close</button>
+                        data-dismiss="modal">بستن</button>
             </div>
         </div>
     </div>

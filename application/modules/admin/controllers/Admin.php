@@ -1,17 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin extends MX_Controller {
-	
+
 	function __construct(){
 		parent::__construct();
 		$this->load->model("Settings_model");
 		$this->load->helper("utils");
-//		$this->checkAuth();
+//		pre($_SESSION);
+		$this->checkAuth();
 	}
 
 	public function index() {
 	    pc("in index");
-        $this->view("index",array("footer"=>"footer text"));
+        $this->load->library('PropertyLib');
+        $data = $this->propertylib->property_stats();
+//        pre($data);
+        $this->view("index",$data);
 	}
 
 	public function add_client(){
@@ -153,9 +157,9 @@ class Admin extends MX_Controller {
         $data   = $this->db->get("clients",$length,$start)->result();
         pc("start:$start, length:$length, total:$total,dataLength:".count($data));
         ejson(array("data" => $data,
-            "recordsTotal" => $total,
-            "draw" => $this->input->get("draw"),
-            "recordsFiltered"=> $total));
+                    "recordsTotal" => $total,
+                    "draw" => $this->input->get("draw"),
+                    "recordsFiltered"=> $total));
     }
 
     public function find_client_modal()
@@ -165,7 +169,11 @@ class Admin extends MX_Controller {
 
     public function find_client(){
         $this->load->library('ClientLib');
-        $res = $this->clientlib->search();
+        $res = $this->clientlib->search(["limit"=>10]);
         echo json_encode($res);
+    }
+
+    public function users(){
+        $this->view("clients",array("footer"=>"footer text"));
     }
 }

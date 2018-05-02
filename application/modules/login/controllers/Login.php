@@ -24,13 +24,14 @@ class Login extends MX_Controller {
 		if($this->input->post()){
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
-			$row 	  = $this->Users_model->get_user($username,$password);
-			
+//			$row 	  = $this->Users_model->get_user($username,$password);
+			$row = $this->db->get_where('users',array("user_name"=>$username,"password"=>$password))->result_array();
 			// pc("username: " . $username);
 			// pc("password: " . $password);
 			if(count($row)!=0){
+			    $row = $row[0];
 				$this->session->set_userdata('login_in',true);
-				if($row["is_admin"]=="1")
+				if($row["super_admin"]=="yes")
 					$this->session->set_userdata('isadmin',true);
 				else
 					$this->session->set_userdata('isadmin',false);
@@ -41,18 +42,18 @@ class Login extends MX_Controller {
 
 				
 				// $this->session->set_userdata("perms",$perms);
-				$perms = $this->Users_model->get_user_permissions($row["role_id"]);
+//				$perms = $this->Users_model->get_user_permissions($row["role_id"]);
 				
-				$this->session->set_userdata("perms",$perms);
+//				$this->session->set_userdata("perms",$perms);
 				
 				// $this->session->set_userdata("profile_img",
 				// 		val($row["img"],base_url()."/assets/layouts/layout2/img/avatar.png"));
 
 				$this->session->set_userdata("profile_img",base_url()."/assets/layouts/layout2/img/avatar.png");
-				if($row["is_admin"]=="1"){
-                    redirect('admin');
+				if($row["super_admin"]=="yes"){
+                    redirect('admin/index');
                 }else{
-				    redirect("front/profile");
+				    redirect("admin/index");
                 }
 			}else{
 				redirect('login');
@@ -73,6 +74,6 @@ class Login extends MX_Controller {
 		if($is_admin)
 		    redirect('login');
 		else
-		    redirect('front/index');
+		    redirect('login/index');
 	}
 }

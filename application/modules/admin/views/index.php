@@ -1,6 +1,61 @@
 <script src="<?php echo base_url('assets/js/mansouri.js'); ?>"></script>
 
 <div class="row">
+    <div class="col-xs-12">
+        <div class="row">
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat2 ">
+                    <div class="display">
+                        <div class="number">
+                            <h3 class="font-green-sharp">
+                                <span class="persian-number" data-counter="counterup" data-value="<?php echo $property_count; ?>">
+                                    <?php echo $property_count; ?>
+                                </span>
+                                <small class="font-green-sharp"></small>
+                            </h3>
+                            <small>تعداد ملک های ثبت شده</small>
+                        </div>
+                        <div class="icon">
+                            <i class="icon-pie-chart"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <?php foreach($property_stats as $s): ?>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat2">
+                    <div class="display">
+                        <div class="number">
+                            <h3 class="font-green-sharp">
+                                <span data-counter="counterup" class="persian-number" data-value="<?php echo $s["num"]; ?>"><?php echo $s["num"]; ?></span>
+                                <small class="font-green-sharp"></small>
+                            </h3>
+                            <small><?php echo $s["fa_description"]; ?></small>
+                        </div>
+                        <div class="icon">
+                            <i class="icon-pie-chart"></i>
+                        </div>
+                        <div class="progress-info">
+                            <div class="progress">
+                                    <span style="width: 76%;" class="progress-bar progress-bar-success green-sharp">
+                                        <span class="sr-only">76% progress</span>
+                                    </span>
+                            </div>
+                            <div class="status">
+                                <div class="status-title">  </div>
+                                <div class="status-number persian-number"> <?php echo percent($s["num"],$property_count); ?> %</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+
+        </div>
+    </div>
+    <div class="col-xs-12">
     <div class="portlet box blue-hoki">
         <div class="portlet-title">
             <div class="caption">
@@ -23,94 +78,67 @@
                         text-align: center;
                         vertical-align: top;
                         background: #FFF;
+                        border:solid 3px;
+                        border-radius:5px !important;
+                    }
+                    .glyph .glyph-content{
+                        background:yellow;
+                    }
+                    .glyph img{
+                        margin:24px;
+                    }
+                    .glyph div{
+                        background: black;
+                        color: yellow;
+                        border-top: solid 3px;
                     }
 
-                    .glyph .glyph-icon {
-                        padding: 10px;
-                        display: block;
-                        font-family: "Flaticon";
-                        font-size: 64px;
-                        line-height: 1;
-                    }
-
-                    .class-name {
-                        font-size: 0.65em;
-                        background-color: #222;
-                        color: #fff;
-                        border-radius: 4px 4px 0 0;
-                        padding: 0.5em;
-                        color: #FFFF99;
-                        font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-                    }
-
-                    .author-name {
-                        font-size: 0.6em;
-                        background-color: #fcfcfd;
-                        border: 1px solid #DEDEE4;
-                        border-top: 0;
-                        border-radius: 0 0 4px 4px;
-                        padding: 0.5em;
-                    }
                 </style>
 
                 <div class="glyph">
-                    <div>
+                    <div class="glyph-content">
                         <a href='<?php echo base_url("/admin/add_client"); ?>'>
                             <img src="<?php echo base_url("assets/svg/customer.svg"); ?>"/>
-                            افزودن مشتری
+                            <div>افزودن مشتری</div>
                         </a>
                     </div>
-                    <!--                <div class="class-name"></div>-->
-                    <!--                <div class="author-name">-->
-                    <!---->
-                    <!--                </div>-->
                 </div>
 
 
                 <div class="glyph">
-                    <div>
+                    <div class="glyph-content">
                         <a href='<?php echo base_url("/admin/add_property?pt=apartment&dt=none'"); ?>'>
                             <img src="<?php echo base_url("assets/svg/024-building-2.svg"); ?>"/>
-                            آپارتمان و پیش فروش
+                           <div> آپارتمان و پیش فروش</div>
                         </a>
                     </div>
-                    <!--                <div class="class-name"></div>-->
-                    <!--                <div class="author-name">-->
-                    <!---->
-                    <!--                </div>-->
                 </div>
 
                 <div class="glyph">
-                    <div>
+                    <div class="glyph-content">
                         <a href='<?php echo base_url("/admin/add_property?pt=store&dt=none"); ?>'>
                             <img src="<?php echo base_url("assets/svg/shop.svg"); ?>"/>
-                            مغازه
+                            <div> مغازه</div>
                         </a>
                     </div>
-                    <!--                <div class="class-name"></div>-->
-                    <!--                <div class="author-name">-->
-                    <!---->
-                    <!--                </div>-->
                 </div>
 
 
                 <div class="glyph">
-                    <div>
+                    <div class="glyph-content">
                         <a href='<?php echo base_url("/admin/add_property?pt=land&dt=none"); ?>'>
                             <img src="<?php echo base_url("assets/svg/031-house-1.svg"); ?>"/>
-                            زمین
+                            <div>  زمین</div>
                         </a>
                     </div>
-                    <!--                <div class="class-name"></div>-->
-                    <!--                <div class="author-name">-->
-                    <!---->
-                    <!--                </div>-->
                 </div>
 
             </div>
         </div>
     </div>
+    </div>
 
+    <div class="col-xs-12">
     <div class="portlet box blue-hoki">
         <div class="portlet-title">
             <div class="caption">
@@ -131,7 +159,7 @@
                         <th>موبایل</th>
                         <th>نوع</th>
                         <th>سند</th>
-                        <th>actions</th>
+                        <th>عملیات</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -139,6 +167,7 @@
                 </table>
             </div>
         </div>
+    </div>
     </div>
 
     <script>
@@ -230,7 +259,7 @@
                         "targets": 5,
                         "data":"id",
                         "render":function(data,type,row,meta){
-                            return "<a class='btn btn-default' href='"+ "<?php echo base_url("admin/edit_property?id="); ?>" + data +"'>view</a>";
+                            return "<a class='btn btn-default' href='"+ "<?php echo base_url("admin/edit_property?id="); ?>" + data +"'> مشاهده </a>";
                         }
                     }
                 ]

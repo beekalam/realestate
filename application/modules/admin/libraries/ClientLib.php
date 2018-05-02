@@ -27,16 +27,16 @@ class ClientLib
 
     public function  init_from_post(){
         $p =  &$this->ci->input;
-        $this->first_name  = $p->post('first_name');
-        $this->last_name   = $p->post('last_name');
-        $this->tel         = $p->post('tel');
-        $this->mobile      = $p->post('mobile');
-        $this->date_submit = $p->post('date_submit');
-        $this->time_submit = $p->post('time_submit');
-        $this->description = $p->post('description');
+        $this->first_name   = $p->post('first_name');
+        $this->last_name    = $p->post('last_name');
+        $this->tel          = $this->en_num($p->post('tel'));
+        $this->mobile       = $this->en_num($p->post('mobile'));
+        $this->date_submit  = $p->post('date_submit');
+        $this->time_submit  = $p->post('time_submit');
+        $this->description  = $p->post('description');
         $this->budget       = $p->post('budget');
         $this->budget       = $p->post('budget');
-        $this->exchange       = $p->post('exchange');
+        $this->exchange     = $p->post('exchange');
         $this->exchange_description = $p->post("exchange_description");
         if(isset($_POST["id"]))
             $this->id = $p->post("id");
@@ -94,12 +94,19 @@ class ClientLib
         return $res;
     }
 
+    public function en_num($input){
+        $en_num = array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9",".",".","."); //".",".","." dirty code
+        $fa_num = array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹",",","٫",".");
+        return str_replace($fa_num,$en_num,$input);
+    }
+
     public function save(){
         for($i=0;$i < 100;$i++){
 //            $res = $this->ci->db->insert("clients",$this->build_insert_array());
         }
+        $data = $this->build_insert_array();
 
-        $res = $this->ci->db->insert("clients",$this->build_insert_array());
+        $res = $this->ci->db->insert("clients",$data);
         return $res;
     }
 
@@ -115,27 +122,33 @@ class ClientLib
         return $res;
     }
 
-    public function search() {
+    public function search($params=[]) {
         $this->init_from_post();
         $db = $this->ci->db;
         $q = "like";
         if($this->first_name) {
             $db->{$q}('first_name', $this->first_name);
-            $q="or_like";
+//            $q="or_like";
         }
         if($this->last_name){
             $db->{$q}('last_name',$this->last_name);
-            $q="or_like";
+//            $q="or_like";
         }
         if($this->tel) {
             $db->{$q}('tel', $this->tel);
-            $q = "or_like";
+//            $q = "or_like";
         }
         if($this->mobile) {
             $db->{$q}('mobile', $this->mobile);
-            $q = "or_like";
+//            $q = "or_like";
         }
-        $res = $db->get("clients")->result_array();
+//        die("in search");
+        if(isset($params["limit"])){
+            $res = $db->get("clients",$params['limit'],0)->result_array();
+        }else{
+            die("in else");
+            $res = $db->get("clients")->result_array();
+        }
         return $res;
     }
 

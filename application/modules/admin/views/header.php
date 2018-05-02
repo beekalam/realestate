@@ -175,41 +175,41 @@
                                         <span class="selected"></span>
                                     </a>
                            </li>
-                           <li class="nav-item" id="">
-                                <a href="javascript:;" class="nav-link nav-toggle">
-                                    <i class="icon-users"></i>
-                                    <span class="title">مدیریت بلیطها</span>
-                                    <span class="arrow"></span>
-                                </a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item" id="m-flights">
-                                        <a href="<?php echo base_url('admin/flights'); ?>" class="nav-link ">
-                                            <span class="title">برنامه پروازها</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item active open" id="m-path-info">
-                                       <a href="<?php echo base_url('admin/path_info'); ?>" class="nav-link ">
-                                        <span class="title">مسیر پروازها</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" id="m-airports">
-                                        <a href="<?php echo base_url('admin/airports'); ?>" class="nav-link ">
-                                            <span class="title">فرودگاه</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" id="m-airlines">
-                                        <a href="<?php echo base_url('admin/airlines') ?>" class="nav-link ">
-                                            <span class="title">شرکت های هواپیمایی</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item" id="m-flight-class">
-                                        <a href="<?php echo base_url('admin/flight_class') ?>" class="nav-link ">
-                                            <span class="title">کلاس های پروازی</span>
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </li>
+<!--                           <li class="nav-item" id="">-->
+<!--                                <a href="javascript:;" class="nav-link nav-toggle">-->
+<!--                                    <i class="icon-users"></i>-->
+<!--                                    <span class="title">مدیریت بلیطها</span>-->
+<!--                                    <span class="arrow"></span>-->
+<!--                                </a>-->
+<!--                                <ul class="sub-menu">-->
+<!--                                    <li class="nav-item" id="m-flights">-->
+<!--                                        <a href="--><?php //echo base_url('admin/flights'); ?><!--" class="nav-link ">-->
+<!--                                            <span class="title">برنامه پروازها</span>-->
+<!--                                        </a>-->
+<!--                                    </li>-->
+<!--                                    <li class="nav-item active open" id="m-path-info">-->
+<!--                                       <a href="--><?php //echo base_url('admin/path_info'); ?><!--" class="nav-link ">-->
+<!--                                        <span class="title">مسیر پروازها</span>-->
+<!--                                        </a>-->
+<!--                                    </li>-->
+<!--                                    <li class="nav-item" id="m-airports">-->
+<!--                                        <a href="--><?php //echo base_url('admin/airports'); ?><!--" class="nav-link ">-->
+<!--                                            <span class="title">فرودگاه</span>-->
+<!--                                        </a>-->
+<!--                                    </li>-->
+<!--                                    <li class="nav-item" id="m-airlines">-->
+<!--                                        <a href="--><?php //echo base_url('admin/airlines') ?><!--" class="nav-link ">-->
+<!--                                            <span class="title">شرکت های هواپیمایی</span>-->
+<!--                                        </a>-->
+<!--                                    </li>-->
+<!--                                    <li class="nav-item" id="m-flight-class">-->
+<!--                                        <a href="--><?php //echo base_url('admin/flight_class') ?><!--" class="nav-link ">-->
+<!--                                            <span class="title">کلاس های پروازی</span>-->
+<!--                                        </a>-->
+<!--                                    </li>-->
+<!---->
+<!--                                </ul>-->
+<!--                            </li>-->
                            <?php //if(isset($_SESSION['isadmin']) && $_SESSION['isadmin']): ?>
                            <?php if(check_perm('view_settings')): ?>
                                <li class="nav-item start" id="m-settings">
@@ -233,7 +233,7 @@
 
                             <?php if(check_perm('view_users')): ?>
                                 <li class="nav-item start" id="m-manage-users">
-                                        <a href="<?php echo base_url('users/users'); ?>" class="nav-link ">
+                                        <a href="<?php echo base_url('admin/users'); ?>" class="nav-link ">
                                             <i class="icon-user"></i>
                                             <span class="title">مدیریت کاربران</span>
                                             <span class="selected"></span>

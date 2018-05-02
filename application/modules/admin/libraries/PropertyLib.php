@@ -47,6 +47,7 @@ class PropertyLib
     private $renovation_age;   //سن بازسازی
     private $sell_conditions; //شرایط فروش
     private $renovated; //بازی سازی شده
+    private $user_id;
 
     public function __construct($params = array())
     {
@@ -190,9 +191,11 @@ class PropertyLib
 //            $res["owner_family"] .= strval($i);
 //            $res = $this->ci->db->insert("properties",$this->build_insert_array());
 //        }
-        $res = $this->build_insert_array();
-
-        $res = $this->ci->db->insert("properties",$this->build_insert_array());
+        $data = $this->build_insert_array();
+        $data["user_id"] = $_SESSION["userid"];
+//        pr($_SESSION);
+//        pre($data);
+        $res = $this->ci->db->insert("properties",$data);
         return $res;
     }
 
@@ -239,6 +242,8 @@ class PropertyLib
         $this->renovated            = $rec['renovated'];
         $this->property_type        = $rec["property_type"];
         $this->deal_type            = $rec["deal_type"];
+        if(isset($rec["user_id"]))
+            $this->user_id = $rec["user_id"];
     }
 
     public function find_by_id($id){
@@ -261,4 +266,23 @@ class PropertyLib
         return $res;
     }
 
+    public function property_stats(){
+        $res = $this->ci->db->query("select property_type,count(*) as num from properties GROUP BY property_type")->result_array();
+
+        foreach($res as &$row){
+            if($row["property_type"] == "land"){
+                $row["fa_property_type"] = "زمین";
+                $row["fa_description"] = "زمین ثبت شده";
+            }else if($row["property_type"]=="store"){
+                $row["fa_property_type"] = "مغاز";
+                $row["fa_description"] = "مغازه ثبت شده";
+            }else if($row["property_type"] == "apartment"){
+                $row["fa_property_type"] = "آپارتمان و پیش فروش";
+                $row["fa_description"] = "آپارتمان و پیش فروش ثبت شده";
+            }
+        }
+        $ret["property_stats"] = $res;
+        $ret["property_count"] = $this->ci->db->count_all("properties");
+        return $ret;
+    }
 }
