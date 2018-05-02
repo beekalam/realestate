@@ -96,11 +96,13 @@ class MX_Controller
 		// if(file_exists(APPPATH.'views/header.php'))
 		// 	pre("file_exists");
 		//pre(file_get_contents(APPPATH.'views/header.php'));
+        $data["isadmin"] =  $_SESSION["isadmin"];
 		$data["theme"]  = $this->get('SESSION.theme') OR "default";
 		$data["render_section_main"] = $this->render_section_main;
 		$data["body_class"] = $this->body_class;
 		$data["page_title"] = $this->page_title;
 		$data["settings"] = $this->settings;
+        $data = array_merge($data,$this->data);
 
 		if($this->render_header)
             $this->load->view("header",$data);
@@ -172,4 +174,62 @@ class MX_Controller
         return $_SERVER['REQUEST_METHOD'] === 'GET';
     }
 
+    protected  function set_data($k,$v){
+	    if($k){
+	        $this->data[$k] = $v;
+        }
+        return $this;
+    }
+
+    protected  function pr(){
+        pr($this->data);
+        return $this;
+    }
+
+    protected  function pre(){
+        pre($this->data);
+    }
+
+    protected function perm_list(){
+
+        $perms = array(
+            'add_customer' => false,
+            'view_users' => false,
+            'change_user_password' => false
+        );
+        return $perms;
+    }
+
+    protected  function perm_descriptions(){
+
+        $perms_descriptions = array(
+            'add_customer' => 'افزودن مشتری',
+            'view_users' => 'مشاهده کاربران',
+            'change_user_password' => 'تغییر پسورد کاربران'
+        );
+        return $perms_descriptions;
+    }
+    public function update_role() {
+//        pre($_POST);
+        $p = $this->perm_list();
+
+        foreach($p as $k=>&$v){
+            $v = false;
+            if(isset($_POST[$k]) && $_POST[$k] == true) {
+                $v=true;
+            }
+        }
+
+        $this->db->set("permissions",json_encode($p));
+        $this->db->where('id',$_POST['role_id']);
+        $res = $this->db->update('roles');
+        if($res){
+            $this->session->set_flashdata('msg','عملیات با موفقیت انجام شد');
+            redirect('admin/roles/');
+        }
+    }
+
+    public function is_admin() {
+        return $_SESSION["isadmin"];
+    }
 }

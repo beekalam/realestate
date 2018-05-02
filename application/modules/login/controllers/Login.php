@@ -25,7 +25,7 @@ class Login extends MX_Controller {
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 //			$row 	  = $this->Users_model->get_user($username,$password);
-			$row = $this->db->get_where('users',array("user_name"=>$username,"password"=>$password))->result_array();
+			$row = $this->db->get_where('users',array("user_name"=>$username,"password"=>sha1($password)))->result_array();
 			// pc("username: " . $username);
 			// pc("password: " . $password);
 			if(count($row)!=0){

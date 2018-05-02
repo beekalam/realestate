@@ -212,7 +212,7 @@
 <!--                            </li>-->
                            <?php //if(isset($_SESSION['isadmin']) && $_SESSION['isadmin']): ?>
                            <?php if(check_perm('view_settings')): ?>
-                               <li class="nav-item start" id="m-settings">
+                               <li class="nav-item start" id="m-clients">
                                         <a href="<?php echo base_url('admin/clients'); ?>" class="nav-link ">
                                             <i class="icon-picture"></i>
                                             <span class="title">مشتری ها</span>
@@ -221,15 +221,15 @@
                                </li>
                             <?php endif; ?>
 
-                            <?php if(check_perm('view_sales')): ?>
-                                <li class="nav-item start" id="m-reports">
-                                        <a href="<?php echo base_url('customers/sales'); ?>" class="nav-link ">
-                                            <i class="icon-wallet"></i>
-                                            <span class="title">فروش</span>
-                                            <span class="selected"></span>
-                                        </a>
-                               </li>
-                            <?php endif; ?>
+<!--                            --><?php //if(check_perm('view_sales')): ?>
+<!--                                <li class="nav-item start" id="m-reports">-->
+<!--                                        <a href="--><?php //echo base_url('customers/sales'); ?><!--" class="nav-link ">-->
+<!--                                            <i class="icon-wallet"></i>-->
+<!--                                            <span class="title">فروش</span>-->
+<!--                                            <span class="selected"></span>-->
+<!--                                        </a>-->
+<!--                               </li>-->
+<!--                            --><?php //endif; ?>
 
                             <?php if(check_perm('view_users')): ?>
                                 <li class="nav-item start" id="m-manage-users">

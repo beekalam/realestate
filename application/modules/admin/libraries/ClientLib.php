@@ -3,6 +3,7 @@
 
 class ClientLib
 {
+    protected $ci;
     private $id = 0;
     private $first_name;
     private $last_name;
@@ -14,7 +15,7 @@ class ClientLib
     private $budget;
     private $exchange; //معاوضه
     private $exchange_description; //توضیحات معاوضه
-    protected $ci;
+
 
     public function __construct()
     {
