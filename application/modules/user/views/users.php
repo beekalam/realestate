@@ -11,7 +11,7 @@
                     <a href="javascript:;" class="btn btn-default btn-sm btn-circle" id="new-user">
                         <i class="fa fa-plus"></i> کاربر جدید </a>
                     <?php if($isadmin): ?>
-                        <a href="<?php echo base_url('admin/roles') ?>"
+                        <a href="<?php echo base_url('user/roles') ?>"
                            class="btn btn-default btn-sm btn-circle">
                             <i class="fa fa-plus"></i> مدیریت رولها </a>
                     <?php endif; ?>
@@ -65,7 +65,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form method="POST" action="<?php echo base_url('admin/change_password') ?>"
+                                <form method="POST" action="<?php echo base_url('user/change_password') ?>"
                                       id="">
 
                                     <div class="form-group">
@@ -97,7 +97,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form method="POST" action="<?php echo base_url('admin/new_user') ?>"
+                                <form method="POST" action="<?php echo base_url('user/new_user') ?>"
                                       id="">
 
                                     <div class="form-group">
@@ -159,7 +159,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form method="POST" action="<?php echo base_url('admin/change_role') ?>"
+                                <form method="POST" action="<?php echo base_url('user/change_role') ?>"
                                       id=""d>
 
                                     <div class="form-group">
@@ -243,7 +243,7 @@
                                 },
                                 function () {
                                     $.ajax({
-                                        url: '<?php echo base_url('admin/delete_user'); ?>',
+                                        url: '<?php echo base_url('user/delete_user'); ?>',
                                         async: 'false',
                                         cache: 'false',
                                         type: 'POST',
@@ -254,7 +254,7 @@
                                                 var msg = data["error"] || "خطا در حذف";
                                                 swal("", msg , "warning")
                                             } else {
-                                                window.location="<?php echo base_url('admin/users') ?>"
+                                                window.location="<?php echo base_url('user/users') ?>"
                                             }
                                         }
                                     }); //$.ajax

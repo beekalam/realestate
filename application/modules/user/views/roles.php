@@ -35,7 +35,7 @@
                         echo "<td>";
                         echo "<button class='btn btn-sm btn-danger' data-id='{$value["id"]}' data-toggle='modal' data-target='#{$value["id"]}'>" . "ویرایش" . "</button>";
                         echo "<form method='POST' action='" .
-                            base_url('admin/delete_role') .
+                            base_url('user/delete_role') .
                             "' style='display:inline;'>";
                         echo "<input type='hidden' name='role_id' value='" . $value["id"] . "'/>";
                         echo "<input type='submit' class='btn btn-sm btn-danger' data-id='" . $value["id"] . "' value='حذف'>";
@@ -59,7 +59,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form method="POST" action="<?php echo base_url('admin/change_password') ?>"
+                                <form method="POST" action="<?php echo base_url('user/change_password') ?>"
                                       id="">
 
                                     <div class="form-group">
@@ -94,7 +94,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="POST" action="<?php echo base_url('admin/update_role') ?>" id="">
+                                    <form method="POST" action="<?php echo base_url('user/update_role') ?>" id="">
 
                                         <div class="form-group">
                                             <div class="row">
@@ -140,7 +140,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form method="POST" action="<?php echo base_url('admin/add_role') ?>"
+                                <form method="POST" action="<?php echo base_url('user/add_role') ?>"
                                       id="">
 
                                     <div class="form-group">
@@ -214,7 +214,7 @@
                         // },
                         // function () {
                         //      $.ajax({
-                        //         url: '<?php echo base_url('admin/delete_user'); ?>',
+                        //         url: '<?php echo base_url('user/delete_user'); ?>',
                         //         async: 'false',
                         //         cache: 'false',
                         //         type: 'POST',
@@ -225,7 +225,7 @@
                         //                 var msg = data["error"] || "خطا در حذف";
                         //                 swal("", msg , "warning")
                         //             } else {
-                        //             	window.location="<?php echo base_url('admin/users') ?>"
+                        //             	window.location="<?php echo base_url('user/users') ?>"
                         //             }
                         //         }
                         //     }); //$.ajax

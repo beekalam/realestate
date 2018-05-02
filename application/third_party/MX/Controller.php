@@ -209,25 +209,7 @@ class MX_Controller
         );
         return $perms_descriptions;
     }
-    public function update_role() {
-//        pre($_POST);
-        $p = $this->perm_list();
 
-        foreach($p as $k=>&$v){
-            $v = false;
-            if(isset($_POST[$k]) && $_POST[$k] == true) {
-                $v=true;
-            }
-        }
-
-        $this->db->set("permissions",json_encode($p));
-        $this->db->where('id',$_POST['role_id']);
-        $res = $this->db->update('roles');
-        if($res){
-            $this->session->set_flashdata('msg','عملیات با موفقیت انجام شد');
-            redirect('admin/roles/');
-        }
-    }
 
     public function is_admin() {
         return $_SESSION["isadmin"];
