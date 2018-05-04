@@ -84,7 +84,9 @@
                     "targets": 5,
                     "data":"property_type",
                     "render":function(data,type,row,meta){
-                        return "<a href='"+ "<?php echo base_url("admin/edit_client?id="); ?>" + data +"'>view</a>";
+                        return "<a class='btn' href='"+
+                            "<?php echo base_url("admin/edit_client?id="); ?>" + data +
+                            "'>مشاهده</a>";
                     }
                 },
             ]
