@@ -170,36 +170,36 @@
                     </div>
 
                     <?php if (can('rent_apartment')): ?>
-                    <div class="glyph">
-                        <div class="glyph-content">
-                            <a href='<?php echo base_url("/admin/add_property?pt=apartment&dt=none'"); ?>'>
-                                <img src="<?php echo base_url("assets/svg/024-building-2.svg"); ?>"/>
-                                <div> آپارتمان و پیش فروش</div>
-                            </a>
+                        <div class="glyph">
+                            <div class="glyph-content">
+                                <a href='<?php echo base_url("/admin/add_property?pt=apartment&dt=none'"); ?>'>
+                                    <img src="<?php echo base_url("assets/svg/024-building-2.svg"); ?>"/>
+                                    <div> آپارتمان و پیش فروش</div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
                     <?php endif; ?>
 
                     <?php if (can('sell_store')): ?>
-                    <div class="glyph">
-                        <div class="glyph-content">
-                            <a href='<?php echo base_url("/admin/add_property?pt=store&dt=none"); ?>'>
-                                <img src="<?php echo base_url("assets/svg/shop.svg"); ?>"/>
-                                <div> مغازه</div>
-                            </a>
+                        <div class="glyph">
+                            <div class="glyph-content">
+                                <a href='<?php echo base_url("/admin/add_property?pt=store&dt=none"); ?>'>
+                                    <img src="<?php echo base_url("assets/svg/shop.svg"); ?>"/>
+                                    <div> مغازه</div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
                     <?php endif; ?>
 
                     <?php if (can('sell_apartment')): ?>
-                    <div class="glyph">
-                        <div class="glyph-content">
-                            <a href='<?php echo base_url("/admin/add_property?pt=land&dt=none"); ?>'>
-                                <img src="<?php echo base_url("assets/svg/031-house-1.svg"); ?>"/>
-                                <div> زمین</div>
-                            </a>
+                        <div class="glyph">
+                            <div class="glyph-content">
+                                <a href='<?php echo base_url("/admin/add_property?pt=land&dt=none"); ?>'>
+                                    <img src="<?php echo base_url("assets/svg/031-house-1.svg"); ?>"/>
+                                    <div> زمین</div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
                     <?php endif; ?>
 
 
