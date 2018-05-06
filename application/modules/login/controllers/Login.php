@@ -40,7 +40,17 @@ class Login extends MX_Controller {
 				$this->session->set_userdata('userid', $row["id"] );
 				$this->session->set_userdata("username",$row["username"]);
 
-				
+				//get user perms
+                if($row['super_admin'] != 'yes') {
+                    $perms = $this->db->get_where('roles', array('id' => $row['role_id']))->result_array();
+                    if (count($perms) != 0) {
+                        $perms = $perms[0];
+                        $perms = object_to_array(json_decode($perms["permissions"]));
+                        $this->session->set_userdata('perms',$perms);
+                    }
+                }
+//                pre($_SESSION);
+
 				// $this->session->set_userdata("perms",$perms);
 //				$perms = $this->Users_model->get_user_permissions($row["role_id"]);
 				
@@ -62,6 +72,7 @@ class Login extends MX_Controller {
 
 		//handle get request
 		$data['footer'] =  "By<a href='#'> FANACMP </a>" . "@". date('Y');
+		$data['login_title'] = "سامانه مدیریت املاک";
 		$this->load->view('login',$data);
 	}
 

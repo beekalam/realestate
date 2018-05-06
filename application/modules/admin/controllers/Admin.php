@@ -11,12 +11,13 @@ class Admin extends MX_Controller {
 	}
 
 	public function index() {
-	    pc("in index");
+//	    pc("in index");
         $this->load->library('PropertyLib');
         $data = $this->propertylib->property_stats();
-        $data["active_menu"] = "m-dashboard";
-//        pre($data);
-        $this->view("index",$data);
+        $this->set_data("active_menu","m-dashboard")
+            ->view('index',$data);
+
+//        $this->view("index",$data);
 	}
 
 	public function add_client(){
@@ -24,6 +25,7 @@ class Admin extends MX_Controller {
         $this->load->helper(array('form','url'));
         $data["post_back"] = base_url("admin/add_client");
         if($this->is_get_request()) {
+            $data["active_menu"] = "m-add-client";
             $this->view("add_client",$data);
             return;
         }
@@ -143,6 +145,11 @@ class Admin extends MX_Controller {
             "recordsFiltered"=> $total));
     }
 
+    public function property_list()
+    {
+        $this->set_data("active_menu","m-property-list")
+             ->view("properties");
+    }
     public function clients(){
         $this->view("clients",["active_menu"=>"m-clients"]);
     }
@@ -172,5 +179,6 @@ class Admin extends MX_Controller {
         $res = $this->clientlib->search(["limit"=>10]);
         echo json_encode($res);
     }
+
 
 }

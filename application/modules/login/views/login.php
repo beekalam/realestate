@@ -52,7 +52,9 @@
             <!-- BEGIN LOGIN FORM -->
             <form class="login-form" action="<?php echo base_url('login') ?>" method="post">
                 <h3 class="form-title font-green" 
-                        style="font-family:Byekan;text-shadow: 3px 4px 2px rgba(215, 132, 150, 0.5);">گردشگران</h3>
+                        style="font-family:Byekan;text-shadow: 3px 4px 2px rgba(215, 132, 150, 0.5);">
+                    <?php echo isset($login_title) ? $login_title : 'ورود'; ?>
+                </h3>
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
                     <span> نام کاربری یا گذر واژه وارد ندشه است. </span>

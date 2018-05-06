@@ -102,6 +102,7 @@ class MX_Controller
 		$data["body_class"] = $this->body_class;
 		$data["page_title"] = $this->page_title;
 		$data["settings"] = $this->settings;
+
         $data = array_merge($data,$this->data);
 
 		if($this->render_header)
@@ -195,7 +196,12 @@ class MX_Controller
         $perms = array(
             'add_customer' => false,
             'view_users' => false,
-            'change_user_password' => false
+            'change_user_password' => false,
+            'rent_apartment' => false,
+            'rent_store' => false,
+            'sell_apartment' => false,
+            'sell_store' => false,
+            'sell_land' => false
         );
         return $perms;
     }
@@ -205,11 +211,19 @@ class MX_Controller
         $perms_descriptions = array(
             'add_customer' => 'افزودن مشتری',
             'view_users' => 'مشاهده کاربران',
-            'change_user_password' => 'تغییر پسورد کاربران'
+            'change_user_password' => 'تغییر پسورد کاربران',
+            'rent_apartment' => 'اجاره آپارتمان',
+            'rent_store' => 'اجاره مغازه',
+            'sell_apartment' => 'فروش آپارتمان',
+            'sell_store' => 'اجاره مغازه',
+            'sell_land' => 'اجاره زمین'
         );
         return $perms_descriptions;
     }
 
+    protected function test_function(){
+        die("in test function");
+    }
 
     public function is_admin() {
         return $_SESSION["isadmin"];

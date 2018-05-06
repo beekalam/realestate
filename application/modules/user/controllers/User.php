@@ -12,8 +12,13 @@ class User extends MX_Controller {
     }
 
     public function users(){
+
+        $users = $this->db
+                      ->query("select users.*,roles.name as role_name from users join roles on users.role_id = roles.id")
+                      ->result_array();
+//        pre($users);
         $this->set_data("active_menu","m-manage-users")
-            ->set_data('users',$this->db->get('users')->result_array())
+            ->set_data('users',$users)
             ->set_data('roles',$this->db->get('roles')->result_array())
             ->view('users',[]);
     }

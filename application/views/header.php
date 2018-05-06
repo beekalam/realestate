@@ -240,6 +240,17 @@
                 <!--                                </ul>-->
                 <!--                            </li>-->
                 <?php //if(isset($_SESSION['isadmin']) && $_SESSION['isadmin']): ?>
+
+                <?php if (check_perm('view_settings')): ?>
+                    <li class="nav-item start" id="m-property-list">
+                        <a href="<?php echo base_url('admin/property_list'); ?>" class="nav-link ">
+                            <i class="icon-picture"></i>
+                            <span class="title">لیست املاک</span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
                 <?php if (check_perm('view_settings')): ?>
                     <li class="nav-item start" id="m-clients">
                         <a href="<?php echo base_url('admin/clients'); ?>" class="nav-link ">
@@ -262,7 +273,7 @@
                 <!--                            --><?php //endif; ?>
 
                 <?php if (check_perm('view_users')): ?>
-                    <li class="nav-item start" id="m-manage-users">
+                    <li class="nav-item start" id="m-add-client">
                         <a href="<?php echo base_url('admin/add_client'); ?>" class="nav-link ">
                             <i class="icon-user"></i>
                             <span class="title">افزودن مشتری</span>
@@ -273,7 +284,7 @@
 
 
                 <?php if(check_perm('view_users')): ?>
-                    <li class="nav-item start" id="m-manage-users">
+                    <li class="nav-item start" id="m-add-apartment">
                         <a href="<?php echo base_url('admin/add_property?pt=apartment&dt=none'); ?>" class="nav-link ">
                             <i class="fa fa-building"></i>
                             <span class="title">آپارتمان و پیش فروش</span>

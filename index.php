@@ -325,5 +325,48 @@ function pc($in){
 	global $handler;
 	$handler->debug($in);
 }
+/////////////////////////////////////////////////////////////////////
+
+function perm_list(){
+
+    $perms = array(
+        'add_customer' => false,
+        'view_users' => false,
+        'change_user_password' => false,
+        'rent_apartment' => false,
+        'rent_store' => false,
+        'sell_apartment' => false,
+        'sell_store' => false,
+        'sell_land' => false
+    );
+    return $perms;
+}
+
+function perm_descriptions(){
+
+    $perms_descriptions = array(
+        'add_customer' => 'افزودن مشتری',
+        'view_users' => 'مشاهده کاربران',
+        'change_user_password' => 'تغییر پسورد کاربران',
+        'rent_apartment' => 'اجاره آپارتمان',
+        'rent_store' => 'اجاره مغازه',
+        'sell_apartment' => 'فروش آپارتمان',
+        'sell_store' => 'اجاره مغازه',
+        'sell_land' => 'اجاره زمین'
+    );
+    return $perms_descriptions;
+}
+function can($name){
+    if(!in_array($name,array_keys(perm_list())))
+        die("invalid perm name");
+
+    if(isset($_SESSION["isadmin"]) && $_SESSION["isadmin"] == true)
+        return true;
+
+    return isset($_SESSION['perms']) &&
+           isset($_SESSION['perms'][$name]) &&
+           $_SESSION['perms'][$name] == true;
+}
+/////////////////////////////////////////////////////////////////////
 require_once BASEPATH.'core/CodeIgniter.php';
 

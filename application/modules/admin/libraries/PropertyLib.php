@@ -48,7 +48,8 @@ class PropertyLib
     private $sell_conditions; //شرایط فروش
     private $renovated; //بازی سازی شده
     private $user_id;
-
+    private $for_rent;
+    private $for_rahn;
     public function __construct($params = array())
     {
         $this->ci = & get_instance();
@@ -102,6 +103,8 @@ class PropertyLib
         $this->renovation_age       = $p->post('renovation_age');
         $this->sell_conditions      = $p->post('sell_conditions');
         $this->renovated            = $p->post('renovated');
+        $this->for_rahn             = isset($_POST['for_rahn']) ? $p->post('for_rahn') : 'no';
+        $this->for_rent             = isset($_POST['for_rent']) ? $p->post('for_rent') : 'no';
         if(isset($_POST["id"]))
             $this->id = $p->post("id");
         if(isset($_POST["deal_type"]))
@@ -163,6 +166,8 @@ class PropertyLib
             "room_count"    => $this->room_count,
             "anbari_count"  => $this->anbari_count,
             "property_type" => $this->property_type,
+            "for_rent"      => $this->for_rent,
+            "for_rahn"      => $this->for_rahn
         );
         $keys = array();
         if($this->property_type == 'apartment') {
@@ -172,9 +177,11 @@ class PropertyLib
                 'pardakht_method', 'price_per_square_meter', 'price_total',
                 'sanad_type'));
         }
-        if($this->deal_type == 'rahn'){
+
+        if($this->deal_type == 'rahn' || $this->for_rahn == 'yes'){
             $keys = array_merge($keys,array("rahn_preconditions","rahn_amount"));
-        }else if($this->deal_type == 'rent'){
+        }
+        if($this->deal_type == 'rent' || $this->for_rent == 'yes'){
             $keys = array_merge($keys,array("rent_amount","rent_preconditions"));
         }
 
@@ -193,7 +200,6 @@ class PropertyLib
 //        }
         $data = $this->build_insert_array();
         $data["user_id"] = $_SESSION["userid"];
-//        pr($_SESSION);
 //        pre($data);
         $res = $this->ci->db->insert("properties",$data);
         return $res;
@@ -242,6 +248,8 @@ class PropertyLib
         $this->renovated            = $rec['renovated'];
         $this->property_type        = $rec["property_type"];
         $this->deal_type            = $rec["deal_type"];
+        $this->for_rahn             = $rec['for_rahn'];
+        $this->for_rent             = $rec['for_rent'];
         if(isset($rec["user_id"]))
             $this->user_id = $rec["user_id"];
     }
