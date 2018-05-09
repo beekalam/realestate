@@ -1,3 +1,11 @@
+<style>
+    .cpanel {
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+</style>
+
 <div class="page-bar"></div>
 <div class="portlet box green">
     <div class="portlet-title">
@@ -27,7 +35,7 @@
             <div class="row">
                 <!--  owner info-->
                 <div class="col-xs-12">
-                    <div class="panel panel-primary">
+                    <div class="panel panel-primary cpanel">
                         <div class="panel-heading">مشخصات مالک</div>
                         <div class="panel-body">
                             <div class="row">
@@ -119,7 +127,7 @@
                 <!--                </fieldset>-->
                 <!-- property info-->
                 <div class="col-xs-12">
-                    <div class="panel panel-primary">
+                    <div class="panel panel-primary cpanel">
                         <div class="panel-heading">مشخصات ملک</div>
                         <div class="panel-body">
                             <div class="row">
@@ -394,111 +402,192 @@
                                                 </div>
                                             </div>
                                         <?php endif; ?>
+
+                                        <?php if ($pt == "apartment"): ?>
+                                            <div class="form-body col-xs-6">
+                                                <div class="form-group">
+                                                    <!--                                                    <label class="col-md-3 control-label">بازسازی شده</label>-->
+                                                    <!--                                                    <div class="col-md-9">-->
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" id="elevator" name="elevator"
+                                                               class="custom-control-input"
+                                                                <?php if (isset($elevator) && $elevator==1) echo 'checked="checked"'; ?>
+                                                               value="<?php echo set_checkbox('elevator'); ?>">
+                                                        <label class="custom-control-label"
+                                                               for="elevator">آسانسور</label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="package" id="package"
+                                                            <?php if (isset($package) && $package==1) echo 'checked="checked"'; ?>
+                                                               value="<?php echo set_checkbox('elevator'); ?>"
+                                                               class="custom-control-input">
+                                                        <label class="custom-control-label" for="package">پکیج</label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="iphone" id="iphone"
+                                                               class="custom-control-input">
+                                                        <label class="custom-control-label" for="iphone">آیفون</label>
+                                                    </div>
+
+
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="shomine" id="shomine"
+                                                               class="custom-control-input">
+                                                        <label class="custom-control-label" for="shomine">شومینه</label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="checkbox" id="parde"
+                                                               class="custom-control-input">
+                                                        <label class="custom-control-label" for="parde">پرده</label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="noorpardazi" id="noorpardazi"
+                                                               class="custom-control-input">
+                                                        <label class="custom-control-label" for="noorpardazi">نور
+                                                            پردازی</label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="komod_divari" id="komod_divari"
+                                                               class="custom-control-input">
+                                                        <label class="custom-control-label" for="komod_divari">کمد
+                                                            دیواری</label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="sona" id="sona"
+                                                               class="custom-control-input">
+                                                        <label class="custom-control-label" for="sona">سونا</label>
+                                                    </div>
+
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" name="jakozi" id="jakozi"
+                                                               class="custom-control-input">
+                                                        <label class="custom-control-label" for="jakozi">جکوزی</label>
+                                                    </div>
+
+                                                    <!--                                                    </div>-->
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <!-- rent -->
-                <div class="col-xs-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">اجاره</div>
-                        <div class="panel-body">
-                            <div class="row">
+                <?php if ($pt == 'apartment' || $pt == 'store'): ?>
+                    <div class="col-xs-6">
+                        <div class="panel panel-primary cpanel">
+                            <div class="panel-heading">اجاره</div>
+                            <div class="panel-body">
+                                <div class="row">
 
-                                <?php if (($pt == 'apartment' || $pt == 'store') && $dt != 'sale'): ?>
-                                    <div class="form-body col-xs-6">
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label"> اجاره</label>
-                                            <div class="col-md-9">
-                                                <input type="checkbox" id="for_rent" name="for_rent"
-                                                       class="form-control input-sm"
-                                                       value="yes"
-                                                       value="<?php if (isset($for_rent) && $for_rent == 'yes') echo 'checked="checked"'; else echo set_checkbox('for_rent'); ?>">
+                                    <?php if (($pt == 'apartment' || $pt == 'store') && $dt != 'sale'): ?>
+                                        <div class="form-body col-xs-6">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label"> اجاره</label>
+                                                <div class="col-md-9">
+                                                    <input type="checkbox" id="for_rent" name="for_rent"
+                                                           class="form-control input-sm"
+                                                           value="yes"
+                                                           value="<?php if (isset($for_rent) && $for_rent == 'yes') echo 'checked="checked"'; else echo set_checkbox('for_rent'); ?>">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php endif; ?>
+                                    <?php endif; ?>
 
-                                <?php if (($pt == 'apartment' || $pt == 'store') && $dt != 'sale'): ?>
-                                    <div class="form-body col-xs-6">
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">مبلغ اجاره</label>
-                                            <div class="col-md-9">
-                                                <input type="text" id="rent_amount" name="rent_amount"
-                                                       class="form-control input-sm" placeholder="مبلغ اجاره"
-                                                       value="<?php echo $rent_amount ?? set_value('rent_amount'); ?>">
+                                    <?php if (($pt == 'apartment' || $pt == 'store') && $dt != 'sale'): ?>
+                                        <div class="form-body col-xs-6">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">مبلغ اجاره</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" id="rent_amount" name="rent_amount"
+                                                           class="form-control input-sm" placeholder="مبلغ اجاره"
+                                                           value="<?php echo $rent_amount ?? set_value('rent_amount'); ?>">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php endif; ?>
+                                    <?php endif; ?>
 
-                                <?php if (($pt == 'apartment' || $pt == 'store') && $dt != 'sale'): ?>
-                                    <div class="form-body col-xs-6">
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">شرایط اجاره</label>
-                                            <div class="col-md-9">
-                                                <input type="text" id="rent_preconditions" name="rent_preconditions"
-                                                       class="form-control input-sm" placeholder="شرایط اجاره"
-                                                       value="<?php echo $rent_preconditions ?? set_value('rent_preconditions'); ?>">
+                                    <?php if (($pt == 'apartment' || $pt == 'store') && $dt != 'sale'): ?>
+                                        <div class="form-body col-xs-6">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">شرایط اجاره</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" id="rent_preconditions" name="rent_preconditions"
+                                                           class="form-control input-sm" placeholder="شرایط اجاره"
+                                                           value="<?php echo $rent_preconditions ?? set_value('rent_preconditions'); ?>">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php endif; ?>
+                                    <?php endif; ?>
 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">رهن</div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <?php if (($pt == 'apartment' || $pt == 'store') && $dt != 'sale'): ?>
-                                    <div class="form-body col-xs-6">
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label"> رهن</label>
-                                            <div class="col-md-9">
-                                                <input type="checkbox" id="for_rahn" name="for_rahn"
-                                                       class="form-control input-sm"
-                                                       value="yes"
-                                                       value="<?php if (isset($for_rahn) && $for_rahn == 'yes') echo 'checked="checked"'; else echo set_checkbox('for_rahn'); ?>">
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php endif; ?>
+                <?php endif; ?>
 
-                                <?php if (($pt == 'apartment' || $pt == 'store') && $dt != 'sale'): ?>
-                                    <div class="form-body col-xs-6">
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">مبلغ رهن</label>
-                                            <div class="col-md-9">
-                                                <input type="text" id="rahn_amount" name="rahn_amount"
-                                                       class="form-control input-sm"
-                                                       placeholder="مبلغ رهن"
-                                                       value="<?php echo $rahn_amount ?? set_value('rahn_amount'); ?>">
+                <!--                rahn-->
+                <?php if ($pt == 'apartment' || $pt == 'store'): ?>
+                    <div class="col-xs-6">
+                        <div class="panel panel-primary cpanel">
+                            <div class="panel-heading">رهن</div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <?php if (($pt == 'apartment' || $pt == 'store') && $dt != 'sale'): ?>
+                                        <div class="form-body col-xs-6">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label"> رهن</label>
+                                                <div class="col-md-9">
+                                                    <input type="checkbox" id="for_rahn" name="for_rahn"
+                                                           class="form-control input-sm"
+                                                           value="yes"
+                                                           value="<?php if (isset($for_rahn) && $for_rahn == 'yes') echo 'checked="checked"'; else echo set_checkbox('for_rahn'); ?>">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (($pt == 'apartment' || $pt == 'store') && $dt != 'sale'): ?>
-                                    <div class="form-body col-xs-6">
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">شرایط رهن</label>
-                                            <div class="col-md-9">
-                                                <input type="text" id="rahn_preconditions" name="rahn_preconditions"
-                                                       class="form-control input-sm" placeholder="شرایط رهن"
-                                                       value="<?php echo $rahn_preconditions ?? set_value('rahn_preconditions'); ?>">
+                                    <?php endif; ?>
+
+                                    <?php if (($pt == 'apartment' || $pt == 'store') && $dt != 'sale'): ?>
+                                        <div class="form-body col-xs-6">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">مبلغ رهن</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" id="rahn_amount" name="rahn_amount"
+                                                           class="form-control input-sm"
+                                                           placeholder="مبلغ رهن"
+                                                           value="<?php echo $rahn_amount ?? set_value('rahn_amount'); ?>">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php endif; ?>
+                                    <?php endif; ?>
+                                    <?php if (($pt == 'apartment' || $pt == 'store') && $dt != 'sale'): ?>
+                                        <div class="form-body col-xs-6">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">شرایط رهن</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" id="rahn_preconditions" name="rahn_preconditions"
+                                                           class="form-control input-sm" placeholder="شرایط رهن"
+                                                           value="<?php echo $rahn_preconditions ?? set_value('rahn_preconditions'); ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
+
                 <!-- sale -->
                 <div class="col-xs-12">
                     <div class="panel panel-primary">
@@ -562,6 +651,7 @@
                         </div>
                     </div>
                 </div>
+
                 <input type="hidden" name="property_type" value="<?php echo $pt; ?>"/>
                 <input type="hidden" name="deal_type" value="<?php echo $dt; ?>"/>
             </div>
@@ -618,6 +708,12 @@
     }
 
     $(document).ready(function () {
+
+        $("#rent_amount").inputmask({alias: 'numeric', groupSeparator: ',', autoGroup: true});
+        $("#rahn_amount").inputmask({alias: 'numeric', groupSeparator: ",", autoGroup: true});
+        $("#price_per_square_meter").inputmask({alias: 'numeric', groupSeparator: ",", autoGroup: true});
+        $("#price_total").inputmask({alias: 'numeric', groupSeparator: ",", autoGroup: true});
+
         $("#date_submit").datepicker(
             {
                 isRTL: true,

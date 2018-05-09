@@ -228,4 +228,33 @@ class MX_Controller
     public function is_admin() {
         return $_SESSION["isadmin"];
     }
+
+    protected function addjs($js_path){
+        $this->data['js_files'][] = $js_path;
+        return $this;
+    }
+
+    protected function addcss($css_path){
+        $this->data['css_files'][] = $css_path;
+        return $this;
+    }
+
+    protected function addcomponent($name){
+        $map=[
+            "inputmask"=>[
+                "js"=>[base_url('assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js')]
+            ]
+        ];
+        if($map[$name] && $map[$name]["js"]){
+            foreach($map[$name]["js"] as $p){
+                $this->addjs($p);
+            }
+        }
+        if($map[$name] && $map[$name]["css"]){
+            foreach($map[$name]["css"] as $p){
+                $this->addcss($p);
+            }
+        }
+        return $this;
+    }
 }

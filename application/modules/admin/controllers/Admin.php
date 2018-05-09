@@ -20,16 +20,23 @@ class Admin extends MX_Controller {
 //        $this->view("index",$data);
 	}
 
+    public function test_function()
+    {
+        $q = "select properties.* from properties inner join on properties.property_feature_id on property_features.id";
+        $res= $this->db->query($q)->result_array();
+        pre($res);
+        die("...............");
+	}
 	public function add_client(){
+	    $this->addcomponent("inputmask")->set_data("active_menu","m-add-client");
         $this->load->library('ClientLib');
         $this->load->helper(array('form','url'));
         $data["post_back"] = base_url("admin/add_client");
         if($this->is_get_request()) {
-            $data["active_menu"] = "m-add-client";
             $this->view("add_client",$data);
             return;
         }
-        pc("in admin");
+
         //post request validation
         if($this->clientlib->is_valid() == false){
             $this->view('add_client',$data);
@@ -47,6 +54,9 @@ class Admin extends MX_Controller {
 
     public function edit_client()
     {
+        $this->addcomponent("inputmask")
+             ->set_data("active_menu","m-add-client")
+             ->set_data("form_title","تغییر مشخصات");
         $this->load->library('ClientLib');
         $this->load->helper(array('form','url'));
         $id =$this->get("GET.id");
@@ -72,11 +82,13 @@ class Admin extends MX_Controller {
     }
 
     public function edit_property(){
+	    $this->addcomponent('inputmask');
         $this->load->library('PropertyLib',array("property_type"=>'',"deal_type"=>''));
         $this->load->helper(array('form','url'));
         $id = $this->get("GET.id");
         if($this->is_get_request()){
             $res = $this->propertylib->find_by_id($id);
+//            pre($res);
             $res["post_back"] = base_url("admin/edit_property");
             $res["pt"] = $this->propertylib->get_property_type();
             $res["dt"] = $this->propertylib->get_deal_type();
@@ -102,6 +114,7 @@ class Admin extends MX_Controller {
     }
 
     public function add_property(){
+        $this->addcomponent("inputmask");
         $property_type = $_REQUEST['pt'];
         $deal_type = $_REQUEST['dt'];
 //        pre($_REQUEST);
@@ -119,6 +132,7 @@ class Admin extends MX_Controller {
                             "post_back"=>base_url("admin/add_property?pt=$property_type&dt=$deal_type")));
             return;
         }else{
+//                    pre($_POST);
             $this->propertylib->init_from_post();
             if($this->propertylib->save()){
                 $this->success_msg();

@@ -3,6 +3,7 @@
 
 ?>
 <script src="<?php echo base_url('assets/js/mansouri.js'); ?>"></script>
+
 <style>
     .glyph {
         display: inline-block;
@@ -19,13 +20,23 @@
         background: yellow;
     }
 
+    .glyph .glyph-content-sale{
+        background: peachpuff;
+    }
+
     .glyph img {
         margin: 24px;
     }
 
-    .glyph div {
+    .glyph .footer {
         background: black;
         color: yellow;
+        border-top: solid 3px;
+    }
+
+    .glyph .footer-sale{
+        background: black;
+        color: peachpuff;
         border-top: solid 3px;
     }
 
@@ -164,7 +175,7 @@
                         <div class="glyph-content">
                             <a href='<?php echo base_url("/admin/add_client"); ?>'>
                                 <img src="<?php echo base_url("assets/svg/customer.svg"); ?>"/>
-                                <div>افزودن مشتری</div>
+                                <div class="footer">افزودن مشتری</div>
                             </a>
                         </div>
                     </div>
@@ -174,7 +185,7 @@
                             <div class="glyph-content">
                                 <a href='<?php echo base_url("/admin/add_property?pt=apartment&dt=none'"); ?>'>
                                     <img src="<?php echo base_url("assets/svg/024-building-2.svg"); ?>"/>
-                                    <div> آپارتمان و پیش فروش</div>
+                                    <div class="footer"> آپارتمان و پیش فروش</div>
                                 </a>
                             </div>
                         </div>
@@ -185,7 +196,7 @@
                             <div class="glyph-content">
                                 <a href='<?php echo base_url("/admin/add_property?pt=store&dt=none"); ?>'>
                                     <img src="<?php echo base_url("assets/svg/shop.svg"); ?>"/>
-                                    <div> مغازه</div>
+                                    <div class="footer"> مغازه</div>
                                 </a>
                             </div>
                         </div>
@@ -196,7 +207,7 @@
                             <div class="glyph-content">
                                 <a href='<?php echo base_url("/admin/add_property?pt=land&dt=none"); ?>'>
                                     <img src="<?php echo base_url("assets/svg/031-house-1.svg"); ?>"/>
-                                    <div> زمین</div>
+                                    <div class="footer"> زمین</div>
                                 </a>
                             </div>
                         </div>
@@ -224,10 +235,10 @@
 
                     <?php if (can('add_customer')): ?>
                         <div class="glyph">
-                            <div class="glyph-content">
+                            <div class="glyph-content-sale">
                                 <a href='<?php echo base_url("/admin/add_client"); ?>'>
                                     <img src="<?php echo base_url("assets/svg/customer.svg"); ?>"/>
-                                    <div>افزودن مشتری</div>
+                                    <div class="footer-sale">افزودن مشتری</div>
                                 </a>
                             </div>
                         </div>
@@ -235,10 +246,10 @@
 
                     <?php if (can('sell_apartment')): ?>
                         <div class="glyph">
-                            <div class="glyph-content">
+                            <div class="glyph-content-sale">
                                 <a href='<?php echo base_url("/admin/add_property?pt=apartment&dt=sale'"); ?>'>
                                     <img src="<?php echo base_url("assets/svg/024-building-2.svg"); ?>"/>
-                                    <div> آپارتمان و پیش فروش</div>
+                                    <div class="footer-sale"> آپارتمان و پیش فروش</div>
                                 </a>
                             </div>
                         </div>
@@ -246,10 +257,10 @@
 
                     <?php if (can('sell_store')): ?>
                         <div class="glyph">
-                            <div class="glyph-content">
+                            <div class="glyph-content-sale">
                                 <a href='<?php echo base_url("/admin/add_property?pt=store&dt=none"); ?>'>
                                     <img src="<?php echo base_url("assets/svg/shop.svg"); ?>"/>
-                                    <div> مغازه</div>
+                                    <div class="footer-sale"> مغازه</div>
                                 </a>
                             </div>
                         </div>
@@ -257,10 +268,10 @@
 
                     <?php if (can('sell_land')): ?>
                         <div class="glyph">
-                            <div class="glyph-content">
+                            <div class="glyph-content-sale">
                                 <a href='<?php echo base_url("/admin/add_property?pt=land&dt=none"); ?>'>
                                     <img src="<?php echo base_url("assets/svg/031-house-1.svg"); ?>"/>
-                                    <div> زمین</div>
+                                    <div class="footer-sale"> زمین</div>
                                 </a>
                             </div>
                         </div>

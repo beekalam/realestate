@@ -104,6 +104,17 @@
                     });
                 </script>
             <?php endif; ?>
+            <?php
+                echo "<!-- -->";
+                foreach( (isset($js_files) ? $js_files:[]) as $js) {
+                    echo  "<script src='{$js}'></script >";
+                }
+
+                foreach( (isset($css_files) ? $css_files:[]) as $css){
+                    echo "<link href='{$css}' rel='stylesheet'/>";
+                }
+            ?>
+
    </body>
 
 </html>

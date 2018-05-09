@@ -15,7 +15,7 @@ class ClientLib
     private $budget;
     private $exchange; //معاوضه
     private $exchange_description; //توضیحات معاوضه
-
+    private $prefered_location;
 
     public function __construct()
     {
@@ -26,12 +26,21 @@ class ClientLib
         $this->set_validation_rules();
     }
 
+    private function sanitize_inputs(){
+        $this->budget = str_replace(",","",$this->budget);
+        $this->budget = en_num($this->budget);
+
+        $this->date_submit = en_num($this->date_submit);
+        $this->tel = en_num($this->tel);
+        $this->mobile = en_num($this->mobile);
+
+    }
     public function  init_from_post(){
         $p =  &$this->ci->input;
         $this->first_name   = $p->post('first_name');
         $this->last_name    = $p->post('last_name');
-        $this->tel          = $this->en_num($p->post('tel'));
-        $this->mobile       = $this->en_num($p->post('mobile'));
+        $this->tel          = $p->post('tel');
+        $this->mobile       = $p->post('mobile');
         $this->date_submit  = $p->post('date_submit');
         $this->time_submit  = $p->post('time_submit');
         $this->description  = $p->post('description');
@@ -39,6 +48,8 @@ class ClientLib
         $this->budget       = $p->post('budget');
         $this->exchange     = $p->post('exchange');
         $this->exchange_description = $p->post("exchange_description");
+        $this->prefered_location = $p->post('prefered_location');
+        $this->sanitize_inputs();
         if(isset($_POST["id"]))
             $this->id = $p->post("id");
     }
@@ -56,6 +67,7 @@ class ClientLib
         $this->budget       = $rec["budget"];
         $this->exchange    = $rec['exchange'];
         $this->exchange_description = $rec['exchange_description'];
+        $this->prefered_location = $rec['prefered_location'];
     }
     
     public function set_validation_rules(){
@@ -67,6 +79,7 @@ class ClientLib
         $fv->set_rules('mobile','موبایل','required',$err);
         $fv->set_rules('date_submit','تاریخ مراجعه','required',$err);
         $fv->set_rules('time_submit','ساعت مراجعه','required',$err);
+        $fv->set_rules('prefered_location','منطقه مورد نظر','required',$err);
     }
 
     public function is_valid(){
@@ -83,7 +96,8 @@ class ClientLib
             "date_submit"   =>  $date_submit_en,
             "time_submit"   =>  $this->time_submit,
             "date_submit_fa" => $this->date_submit,
-            "description"   =>  $this->description,
+            "prefered_location" => $this->prefered_location,
+            "exchange"         => 'no'
         );
         if($this->budget){
             $res["budget"] = $this->budget;
@@ -95,11 +109,7 @@ class ClientLib
         return $res;
     }
 
-    public function en_num($input){
-        $en_num = array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9",".",".","."); //".",".","." dirty code
-        $fa_num = array("۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹",",","٫",".");
-        return str_replace($fa_num,$en_num,$input);
-    }
+
 
     public function save(){
         for($i=0;$i < 100;$i++){
