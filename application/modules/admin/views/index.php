@@ -20,7 +20,7 @@
         background: yellow;
     }
 
-    .glyph .glyph-content-sale{
+    .glyph .glyph-content-sale {
         background: peachpuff;
     }
 
@@ -34,7 +34,7 @@
         border-top: solid 3px;
     }
 
-    .glyph .footer-sale{
+    .glyph .footer-sale {
         background: black;
         color: peachpuff;
         border-top: solid 3px;
@@ -89,8 +89,8 @@
                                 </div>
                                 <div class="status">
                                     <div class="status-title"></div>
-                                    <div class="status-number persian-number"> <?php echo percent($s["num"], $property_count); ?>
-                                        %
+                                    <div class="status-number persian-number">
+                                        <?php echo percent($s["num"], $property_count, true); ?>
                                     </div>
                                 </div>
                             </div>

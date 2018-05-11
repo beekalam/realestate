@@ -1348,7 +1348,30 @@ function is_null_or_empty(){
     return false;
 }
 
-function percent($a,$b){
+function percent($a, $b, $asString = false, $fixedWidth = false)
+{
+    if ($asString && $b == 0) {
+        return '';
+    }
+
+    if ($b > 0) {
+        $percent = ($a / $b) * 100;
+    } else {
+        $percent = 100;
+    }
+
+    if ($asString) {
+        if ($fixedWidth) {
+            return sprintf('%6.2F%%', $percent);
+        }
+
+        return sprintf('%01.2F%%', $percent);
+    } else {
+        return $percent;
+    }
+}
+
+function percent2($a,$b){
     if($b==0) return null;
     return ($a/$b) * 100;
 }
