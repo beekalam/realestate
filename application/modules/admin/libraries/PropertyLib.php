@@ -131,16 +131,18 @@ class PropertyLib
         $this->for_rahn = isset($_POST['for_rahn']) ? $p->post('for_rahn') : 'no';
         $this->for_rent = isset($_POST['for_rent']) ? $p->post('for_rent') : 'no';
         //property features
-        pre($p->post('elevator'));
-        $this->elevator = $p->post('elevator') ? '1':'0';
-        $this->package = $p->post('package') ? '1':'0';
-        $this->iphone = $p->post('iphone') ? '1':'0';
-        $this->shomine = $p->post('shomine') ? '1':'0';
-        $this->parde = $p->post('parde') ? '1':'0';
-        $this->noor_pardazi = $p->post('noor_pardazi') ? '1':'0';
-        $this->komod_divari = $p->post('komod_divari')  ? '1':'0';
-        $this->sona = $p->post('sona') ? '1':'0';
-        $this->jakozi = $p->post('jakozi') ? '1':'0';
+//        pr("before pre");
+//        prpostifpost();
+//        preifpost($p->post('elevator')=='on');
+        $this->elevator = $p->post('elevator')=='on' ? '1':'0';
+        $this->package = $p->post('package')=='on' ? '1':'0';
+        $this->iphone = $p->post('iphone')=='on' ? '1':'0';
+        $this->shomine = $p->post('shomine')=='on' ? '1':'0';
+        $this->parde = $p->post('parde')=='on' ? '1':'0';
+        $this->noor_pardazi = $p->post('noor_pardazi')=='on' ? '1':'0';
+        $this->komod_divari = $p->post('komod_divari')=='on'  ? '1':'0';
+        $this->sona = $p->post('sona')=='on' ? '1':'0';
+        $this->jakozi = $p->post('jakozi')=='on' ? '1':'0';
 
         $this->sanitize_inputs();
         if (isset($_POST["id"])) {
@@ -261,6 +263,7 @@ class PropertyLib
         $db = $this->ci->db;
         $data = $this->build_insert_array();
         $data["user_id"] = $_SESSION["userid"];
+//        pre($this->build_features_array());
 
         $db->trans_start();
         //insert property
@@ -386,7 +389,8 @@ class PropertyLib
             if(!$res) $this->dbg('error updating:',$db->error());
 
 //            pr($this->fk_property_feature_id);
-            pre($this->build_features_array());
+            pr("in update");
+            pre("in update propertylib",$this->build_features_array());
             $db->where('property_feature_id',$this->fk_property_feature_id);
             $db->set($this->build_features_array());
             $res_featuers = $db->update('property_features');

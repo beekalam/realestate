@@ -116,10 +116,19 @@ function pr($in=null){
 function pre(){
     $arr = func_get_args();
     foreach($arr as $a){
+        echo "[".time()."] ";
         pr($a);
     }
     exit;
-    //exit;
+}
+
+function preifpost(){
+    $arr = func_get_args();
+    foreach($arr as $a){
+        echo "[".time()."] ";
+        pr($a);
+    }
+    exit;
 }
 
 function prpost()
@@ -127,6 +136,12 @@ function prpost()
          echo "<pre style='direction:ltr'>";
          echo print_r($_POST,true);
          echo "</pre>";   
+}
+function prpostifpost()
+{
+    echo "<pre style='direction:ltr'>";
+    echo print_r($_POST,true);
+    echo "</pre>";
 }
 function prget()
 {

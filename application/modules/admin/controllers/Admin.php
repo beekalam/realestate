@@ -6,6 +6,7 @@ class Admin extends MX_Controller {
 		parent::__construct();
 		$this->load->model("Settings_model");
 		$this->load->helper("utils");
+        $this->load->helper(array('form','url'));
 //		pre($_SESSION);
 		$this->checkAuth();
 	}
@@ -27,10 +28,10 @@ class Admin extends MX_Controller {
         pre($res);
         die("...............");
 	}
+
 	public function add_client(){
 	    $this->addcomponent("inputmask")->set_data("active_menu","m-add-client");
         $this->load->library('ClientLib');
-        $this->load->helper(array('form','url'));
         $data["post_back"] = base_url("admin/add_client");
         if($this->is_get_request()) {
             $this->view("add_client",$data);
@@ -58,7 +59,6 @@ class Admin extends MX_Controller {
              ->set_data("active_menu","m-add-client")
              ->set_data("form_title","تغییر مشخصات");
         $this->load->library('ClientLib');
-        $this->load->helper(array('form','url'));
         $id =$this->get("GET.id");
         if($this->is_get_request()) {
             $res = $this->clientlib->find_by_id($id);
@@ -84,7 +84,6 @@ class Admin extends MX_Controller {
     public function edit_property(){
 	    $this->addcomponent('inputmask');
         $this->load->library('PropertyLib',array("property_type"=>'',"deal_type"=>''));
-        $this->load->helper(array('form','url'));
         $id = $this->get("GET.id");
         if($this->is_get_request()){
             $res = $this->propertylib->find_by_id($id);
@@ -119,7 +118,7 @@ class Admin extends MX_Controller {
         $deal_type = $_REQUEST['dt'];
 //        pre($_REQUEST);
         $this->load->library('PropertyLib',array("property_type"=>$property_type,"deal_type"=>$deal_type));
-        $this->load->helper(array('form','url'));
+
         if($this->is_get_request()) {
             $this->view("add_property",array("pt"=>$property_type,"dt"=>$deal_type,
                              "post_back"=>base_url("admin/add_property?pt=$property_type&dt=$deal_type")));
@@ -164,6 +163,7 @@ class Admin extends MX_Controller {
         $this->set_data("active_menu","m-property-list")
              ->view("properties");
     }
+
     public function clients(){
         $this->view("clients",["active_menu"=>"m-clients"]);
     }
