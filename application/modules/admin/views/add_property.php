@@ -403,96 +403,280 @@
                                             </div>
                                         <?php endif; ?>
 
-                                        <?php if ($pt == "apartment"): ?>
-                                            <div class="form-body col-xs-6">
+                                        <?php if ($pt == "apartment" || $pt = "store"): ?>
+                                            <div class="form-body col-xs-12">
                                                 <div class="form-group">
                                                     <!--                                                    <label class="col-md-3 control-label">بازسازی شده</label>-->
                                                     <!--                                                    <div class="col-md-9">-->
-                                                    <div class="custom-control custom-checkbox col-xs-2">
-                                                        <input type="checkbox" id="elevator" name="elevator"
-                                                               class="custom-control-input"
-                                                               value="on"
-                                                            <?php if (isset($elevator) && $elevator == 1) echo 'checked="checked"'; ?>
-                                                               value="<?php set_checkbox('elevator'); ?>"
-                                                        <label class="custom-control-label"
-                                                               for="elevator">آسانسور</label>
-                                                    </div>
+                                                    <?php if ($pt == "apartment"): ?>
+                                                        <div class="custom-control custom-checkbox col-xs-2">
+                                                            <input type="checkbox" id="elevator" name="elevator"
+                                                                   class="custom-control-input"
+                                                                   value="on"
+                                                                <?php if (isset($elevator) && $elevator == 1) echo 'checked="checked"'; ?>
+                                                                   value="<?php set_checkbox('elevator'); ?>"
+                                                            <label class="custom-control-label"
+                                                                   for="elevator">آسانسور</label>
+                                                        </div>
 
-                                                    <div class="custom-control custom-checkbox col-xs-2">
-                                                        <input type="checkbox" name="package" id="package"
-                                                               value="on"
-                                                            <?php if (isset($package) && $package == 1) echo 'checked="checked"'; ?>
-                                                               value="<?php echo set_checkbox('package'); ?>"
-                                                               class="custom-control-input">
-                                                        <label class="custom-control-label" for="package">پکیج</label>
-                                                    </div>
+                                                        <div class="custom-control custom-checkbox col-xs-2">
+                                                            <input type="checkbox" name="package" id="package"
+                                                                   value="on"
+                                                                <?php if (isset($package) && $package == 1) echo 'checked="checked"'; ?>
+                                                                   value="<?php echo set_checkbox('package'); ?>"
+                                                                   class="custom-control-input">
+                                                            <label class="custom-control-label"
+                                                                   for="package">پکیج</label>
+                                                        </div>
 
-                                                    <div class="custom-control custom-checkbox col-xs-2">
-                                                        <input type="checkbox" name="iphone" id="iphone"
-                                                               value="on"
-                                                            <?php if (isset($iphone) && $iphone == 1) echo 'checked="checked"'; ?>
-                                                               value="<?php echo set_checkbox('iphone'); ?>"
-                                                               class="custom-control-input">
-                                                        <label class="custom-control-label" for="iphone">آیفون</label>
-                                                    </div>
+                                                        <div class="custom-control custom-checkbox col-xs-2">
+                                                            <input type="checkbox" name="iphone" id="iphone"
+                                                                   value="on"
+                                                                <?php if (isset($iphone) && $iphone == 1) echo 'checked="checked"'; ?>
+                                                                   value="<?php echo set_checkbox('iphone'); ?>"
+                                                                   class="custom-control-input">
+                                                            <label class="custom-control-label"
+                                                                   for="iphone">آیفون</label>
+                                                        </div>
+
+                                                        <div class="custom-control custom-checkbox col-xs-2">
+                                                            <input type="checkbox" name="shomine" id="shomine"
+                                                                   value="on"
+                                                                <?php if (isset($shomine) && $shomine == 1) echo 'checked="checked"'; ?>
+                                                                   value="<?php echo set_checkbox('shomine'); ?>"
+                                                                   class="custom-control-input">
+                                                            <label class="custom-control-label"
+                                                                   for="shomine">شومینه</label>
+                                                        </div>
+
+                                                        <div class="custom-control custom-checkbox col-xs-2">
+                                                            <input type="checkbox" name="parde" id="parde"
+                                                                   value="on"
+                                                                <?php if (isset($parde) && $parde == 1) echo 'checked="checked"'; ?>
+                                                                   value="<?php echo set_checkbox('parde'); ?>"
+                                                                   class="custom-control-input">
+                                                            <label class="custom-control-label" for="parde">پرده</label>
+                                                        </div>
+
+                                                        <div class="custom-control custom-checkbox col-xs-2">
+                                                            <input type="checkbox" name="noor_pardazi" id="noor_pardazi"
+                                                                   value="on"
+                                                                <?php if (isset($noor_pardazi) && $noor_pardazi == 1) echo 'checked="checked"'; ?>
+                                                                   value="<?php echo set_checkbox('noor_pardazi'); ?>"
+                                                                   class="custom-control-input">
+                                                            <label class="custom-control-label" for="noor_pardazi">نور
+                                                                پردازی</label>
+                                                        </div>
+
+                                                        <div class="custom-control custom-checkbox col-xs-2">
+                                                            <input type="checkbox" name="komod_divari" id="komod_divari"
+                                                                   value="on"
+                                                                <?php if (isset($komod_divari) && $komod_divari == 1) echo 'checked="checked"'; ?>
+                                                                   value="<?php echo set_checkbox('komod_divari'); ?>"
+                                                                   class="custom-control-input">
+                                                            <label class="custom-control-label"
+                                                                   for="komod_divari">کمد دیواری</label>
+                                                        </div>
+
+                                                        <div class="custom-control custom-checkbox col-xs-2">
+                                                            <input type="checkbox" name="sona" id="sona"
+                                                                   value="on"
+                                                                <?php if (isset($sona) && $sona == 1) echo 'checked="checked"'; ?>
+                                                                   value="<?php echo set_checkbox('sona'); ?>"
+                                                                   class="custom-control-input">
+                                                            <label class="custom-control-label" for="sona">سونا</label>
+                                                        </div>
+
+                                                        <div class="custom-control custom-checkbox col-xs-2">
+                                                            <input type="checkbox" name="jakozi" id="jakozi"
+                                                                   value="on"
+                                                                <?php if (isset($jakozi) && $jakozi == 1) echo 'checked="checked"'; ?>
+                                                                   value="<?php echo set_checkbox('jakozi'); ?>"
+                                                                   class="custom-control-input">
+                                                            <label class="custom-control-label"
+                                                                   for="jakozi">جکوزی</label>
+                                                        </div>
+                                                    <?php endif; ?>
+
+                                                    <?php if ($pt == "store"): ?>
+                                                        <div class="row">
+                                                            <div class="custom-control custom-checkbox col-xs-2">
+                                                                <input type="checkbox" id="electricity"
+                                                                       name="electricity"
+                                                                       class="custom-control-input"
+                                                                       value="on"
+                                                                    <?php if (isset($electricity) && $electricity == 1) echo 'checked="checked"'; ?>
+                                                                       value="<?php set_checkbox('electricity'); ?>"
+                                                                <label class="custom-control-label"
+                                                                       for="electricity">برق</label>
+                                                            </div>
+
+                                                            <div class="custom-control custom-checkbox col-xs-2">
+                                                                <input type="checkbox" id="water" name="water"
+                                                                       class="custom-control-input"
+                                                                       value="on"
+                                                                    <?php if (isset($water) && $water == 1) echo 'checked="checked"'; ?>
+                                                                       value="<?php set_checkbox('water'); ?>"
+                                                                <label class="custom-control-label"
+                                                                       for="water">آب</label>
+                                                            </div>
+
+                                                            <div class="custom-control custom-checkbox col-xs-2">
+                                                                <input type="checkbox" id="gas" name="gas"
+                                                                       class="custom-control-input"
+                                                                       value="on"
+                                                                    <?php if (isset($gas) && $gas == 1) echo 'checked="checked"'; ?>
+                                                                       value="<?php set_checkbox('gas'); ?>"
+                                                                <label class="custom-control-label"
+                                                                       for="gas">گاز</label>
+                                                            </div>
+
+                                                            <div class="custom-control custom-checkbox col-xs-2">
+                                                                <input type="checkbox" id="telephone" name="telephone"
+                                                                       class="custom-control-input"
+                                                                       value="on"
+                                                                    <?php if (isset($telephone) && $telephone == 1) echo 'checked="checked"'; ?>
+                                                                       value="<?php set_checkbox('telephone'); ?>"
+                                                                <label class="custom-control-label"
+                                                                       for="telephone">تلفن</label>
+                                                            </div>
+
+                                                            <div class="custom-control custom-checkbox col-xs-2">
+                                                                <input type="checkbox" id="decoration" name="decoration"
+                                                                       class="custom-control-input"
+                                                                       value="on"
+                                                                    <?php if (isset($decoration) && $decoration == 1) echo 'checked="checked"'; ?>
+                                                                       value="<?php set_checkbox('decoration'); ?>"
+                                                                <label class="custom-control-label"
+                                                                       for="decoration">دکوراسیون</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-body col-xs-6">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">متراژ
+                                                                        بالکن</label>
+                                                                    <div class="col-md-9">
+                                                                        <input type="text" id="metraj_balkon"
+                                                                               name="metraj_balkon"
+                                                                               class="form-control input-sm"
+                                                                               placeholder="متراژ بالکن"
+                                                                               value="<?php echo $metraj_balkon ?? set_value('metraj_balkon'); ?>">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-body col-xs-6">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">تعداد
+                                                                        دهنه</label>
+                                                                    <div class="col-md-9">
+                                                                        <input type="text" id="tedad_dahane"
+                                                                               name="tedad_dahane"
+                                                                               class="form-control input-sm"
+                                                                               placeholder="تعداد دهنه"
+                                                                               value="<?php echo $tedad_dahane ?? set_value('tedad_dahane'); ?>">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-body col-xs-6">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">عرض
+                                                                        دهنه</label>
+                                                                    <div class="col-md-9">
+                                                                        <input type="text" id="arze_dahane"
+                                                                               name="arze_dahane"
+                                                                               class="form-control input-sm"
+                                                                               placeholder="عرض دهنه"
+                                                                               value="<?php echo $arze_dahane ?? set_value('arze_dahane'); ?>">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-body col-xs-6">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">ارتفاع
+                                                                        تجاری</label>
+                                                                    <div class="col-md-9">
+                                                                        <input type="text" id="ertefa_tejari"
+                                                                               name="ertefa_tejari"
+                                                                               class="form-control input-sm"
+                                                                               placeholder="ارتفاع تجاری"
+                                                                               value="<?php echo $ertefa_tejari ?? set_value('ertefa_tejari'); ?>">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-body col-xs-6">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">تعداد خط
+                                                                        تلفن</label>
+                                                                    <div class="col-md-9">
+                                                                        <input type="text" id="telephone_line_count"
+                                                                               name="telephone_line_count"
+                                                                               class="form-control input-sm"
+                                                                               placeholder="تعداد خط تلفن"
+                                                                               value="<?php echo $telephone_line_count ?? set_value('telephone_line_count'); ?>">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
 
-                                                    <div class="custom-control custom-checkbox col-xs-2">
-                                                        <input type="checkbox" name="shomine" id="shomine"
-                                                               value="on"
-                                                            <?php if (isset($shomine) && $shomine == 1) echo 'checked="checked"'; ?>
-                                                               value="<?php echo set_checkbox('shomine'); ?>"
-                                                               class="custom-control-input">
-                                                        <label class="custom-control-label" for="shomine">شومینه</label>
-                                                    </div>
+                                                            <div class="form-body col-xs-6">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">گرمایش</label>
+                                                                    <div class="col-md-9">
+                                                                        <input type="text" id="garmayesh"
+                                                                               name="garmayesh"
+                                                                               class="form-control input-sm"
+                                                                               placeholder="گرمایش"
+                                                                               value="<?php echo $garmayesh ?? set_value('garmayesh'); ?>">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                                    <div class="custom-control custom-checkbox col-xs-2">
-                                                        <input type="checkbox" name="parde" id="parde"
-                                                               value="on"
-                                                            <?php if (isset($parde) && $parde == 1) echo 'checked="checked"'; ?>
-                                                               value="<?php echo set_checkbox('parde'); ?>"
-                                                               class="custom-control-input">
-                                                        <label class="custom-control-label" for="parde">پرده</label>
-                                                    </div>
+                                                            <div class="form-body col-xs-6">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">سرمایش</label>
+                                                                    <div class="col-md-9">
+                                                                        <input type="text" id="sarmayesh"
+                                                                               name="sarmayesh"
+                                                                               class="form-control input-sm"
+                                                                               placeholder="سرمایش"
+                                                                               value="<?php echo $sarmayesh ?? set_value('sarmayesh'); ?>">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                                    <div class="custom-control custom-checkbox col-xs-2">
-                                                        <input type="checkbox" name="noor_pardazi" id="noor_pardazi"
-                                                               value="on"
-                                                            <?php if (isset($noor_pardazi) && $noor_pardazi == 1) echo 'checked="checked"'; ?>
-                                                               value="<?php echo set_checkbox('noor_pardazi'); ?>"
-                                                               class="custom-control-input">
-                                                        <label class="custom-control-label" for="noor_pardazi">نور
-                                                            پردازی</label>
-                                                    </div>
+                                                            <div class="form-body col-xs-6">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">دیوار</label>
+                                                                    <div class="col-md-9">
+                                                                        <input type="text" id="divar"
+                                                                               name="divar"
+                                                                               class="form-control input-sm"
+                                                                               placeholder="دیوار"
+                                                                               value="<?php echo $divar ?? set_value('divar'); ?>">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                                    <div class="custom-control custom-checkbox col-xs-2">
-                                                        <input type="checkbox" name="komod_divari" id="komod_divari"
-                                                               value="on"
-                                                            <?php if (isset($komod_divari) && $komod_divari == 1) echo 'checked="checked"'; ?>
-                                                               value="<?php echo set_checkbox('komod_divari'); ?>"
-                                                               class="custom-control-input">
-                                                        <label class="custom-control-label"
-                                                               for="komod_divari">کمد دیواری</label>
-                                                    </div>
+                                                            <div class="form-body col-xs-6">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">کف</label>
+                                                                    <div class="col-md-9">
+                                                                        <input type="text" id="floor"
+                                                                               name="floor"
+                                                                               class="form-control input-sm"
+                                                                               placeholder="کف"
+                                                                               value="<?php echo $floor ?? set_value('floor'); ?>">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                                    <div class="custom-control custom-checkbox col-xs-2">
-                                                        <input type="checkbox" name="sona" id="sona"
-                                                               value="on"
-                                                            <?php if (isset($sona) && $sona == 1) echo 'checked="checked"'; ?>
-                                                               value="<?php echo set_checkbox('sona'); ?>"
-                                                               class="custom-control-input">
-                                                        <label class="custom-control-label" for="sona">سونا</label>
-                                                    </div>
-
-                                                    <div class="custom-control custom-checkbox col-xs-2">
-                                                        <input type="checkbox" name="jakozi" id="jakozi"
-                                                               value="on"
-                                                            <?php if (isset($jakozi) && $jakozi == 1) echo 'checked="checked"'; ?>
-                                                               value="<?php echo set_checkbox('jakozi'); ?>"
-                                                               class="custom-control-input">
-                                                        <label class="custom-control-label" for="jakozi">جکوزی</label>
-                                                    </div>
-
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <!--                                                    </div>-->
                                                 </div>
                                             </div>
@@ -765,25 +949,25 @@
         $("#zone").val(random_city_zone());
         $("#street").val(random_street());
         $("#alley").val(random_alley());
-        $("#parking_count").val(rand(1, 6));
-        $("#anbari_count").val(rand(1, 6));
-        $("#room_count").val(rand(1, 6));
-        $("#age").val(rand(1, 10));
+        $("#parking_count").val(random.rand(1, 6));
+        $("#anbari_count").val(random.rand(1, 6));
+        $("#room_count").val(random.rand(1, 6));
+        $("#age").val(random.rand(1, 10));
         $("#rent_preconditions").val('شرایط اجاره');
         $("#rahn_preconditions").val("شرایط رهن");
-        $("#rahn_amount").val(rand(100000000, 500000000));
-        $("#rent_amount").val(rand(500000, 900000));
-        $("#price_total").val(rand(100000000, 500000000));
-        $("#unit_per_story").val(rand(1, 6));
-        $("#price_per_square_meter").val(rand(100000, 200000));
-        $("#parking_area").val(rand(50, 60));
-        $("#num_stories").val(rand(1, 10));
-        $("#area").val(rand(100, 250));
-        $("#anbari_count").val(rand(1, 2));
+        $("#rahn_amount").val(random.rand(100000000, 500000000));
+        $("#rent_amount").val(random.rand(500000, 900000));
+        $("#price_total").val(random.rand(100000000, 500000000));
+        $("#unit_per_story").val(random.rand(1, 6));
+        $("#price_per_square_meter").val(random.rand(100000, 200000));
+        $("#parking_area").val(random.rand(50, 60));
+        $("#num_stories").val(random.rand(1, 10));
+        $("#area").val(random.rand(100, 250));
+        $("#anbari_count").val(random.rand(1, 2));
         $("#anbari_area").val(50, 100);
         $("#anbari_area").val(50, 100);
         $("#parvane_description").val("توضیحات پروانه");
-        $("#renovation_age").val(rand(1, 10));
+        $("#renovation_age").val(random.rand(1, 10));
         $("#zabete").val("m5");
     }
 

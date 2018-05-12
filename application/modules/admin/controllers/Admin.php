@@ -194,5 +194,11 @@ class Admin extends MX_Controller {
         echo json_encode($res);
     }
 
+    public function test()
+    {
+        echo 'test';
+
+
+    }
 
 }

@@ -1,6 +1,5 @@
 <?php
 
-
 class PropertyLib
 {
     protected $ci;
@@ -60,8 +59,24 @@ class PropertyLib
     private $komod_divari;
     private $sona;
     private $jakozi;
-    private $fk_property_feature_id=0;
-    private $dbg_str="";
+    private $fk_property_feature_id = 0;
+    private $dbg_str = "";
+    //store property features
+    private $electricity;
+    private $water;
+    private $gas;
+    private $telephone;
+    private $decoration;
+    private $metraj_balkon; //متراژ بالکن
+    private $tedad_dahane;  // تعداد دهنه
+    private $arze_dahane;  // عرض دهنه
+    private $ertefa_tejari; // ارتفاع تجاری
+
+    private $telephone_line_count;
+    private $garmayesh;
+    private $sarmayesh;
+    private $divar;
+    private $floor;
 
     public function __construct($params = array())
     {
@@ -69,6 +84,8 @@ class PropertyLib
         $this->ci->load->library('form_validation');
         $this->ci->load->database();
         $this->ci->load->helper("lib_date");
+        $this->ci->load->model("event/Events_model");
+
         $this->property_type = $params["property_type"];
         $this->deal_type = $params["deal_type"];
         $this->set_validation_rules();
@@ -134,20 +151,37 @@ class PropertyLib
 //        pr("before pre");
 //        prpostifpost();
 //        preifpost($p->post('elevator')=='on');
-        $this->elevator = $p->post('elevator')=='on' ? '1':'0';
-        $this->package = $p->post('package')=='on' ? '1':'0';
-        $this->iphone = $p->post('iphone')=='on' ? '1':'0';
-        $this->shomine = $p->post('shomine')=='on' ? '1':'0';
-        $this->parde = $p->post('parde')=='on' ? '1':'0';
-        $this->noor_pardazi = $p->post('noor_pardazi')=='on' ? '1':'0';
-        $this->komod_divari = $p->post('komod_divari')=='on'  ? '1':'0';
-        $this->sona = $p->post('sona')=='on' ? '1':'0';
-        $this->jakozi = $p->post('jakozi')=='on' ? '1':'0';
+        $this->elevator = $p->post('elevator') == 'on' ? '1' : '0';
+        $this->package = $p->post('package') == 'on' ? '1' : '0';
+        $this->iphone = $p->post('iphone') == 'on' ? '1' : '0';
+        $this->shomine = $p->post('shomine') == 'on' ? '1' : '0';
+        $this->parde = $p->post('parde') == 'on' ? '1' : '0';
+        $this->noor_pardazi = $p->post('noor_pardazi') == 'on' ? '1' : '0';
+        $this->komod_divari = $p->post('komod_divari') == 'on' ? '1' : '0';
+        $this->sona = $p->post('sona') == 'on' ? '1' : '0';
+        $this->jakozi = $p->post('jakozi') == 'on' ? '1' : '0';
+
+        // store property features
+        $this->electricity = $p->post('electricity') == 'on' ? '1' : '0';
+        $this->water = $p->post('water') == 'on' ? '1' : '0';
+        $this->gas = $p->post('gas') == 'on' ? '1' : '0';
+        $this->telephone = $p->post('telephone') == 'on' ? '1' : '0';
+        $this->decoration = $p->post('decoration') == 'on' ? '1' : '0';
+        $this->metraj_balkon = $p->post("metraj_balkon");
+        $this->tedad_dahane = $p->post("tedad_dahane");
+        $this->arze_dahane = $p->post("arze_dahane");
+        $this->ertefa_tejari = $p->post("ertefa_tejari");
+//
+        $this->telephone_line_count = $p->post('telephone_line_count');
+        $this->garmayesh = $p->post('garmayesh');
+        $this->sarmayesh = $p->post('sarmayesh');
+        $this->divar = $p->post('divar');
+        $this->floor = $p->post('floor');
 
         $this->sanitize_inputs();
         if (isset($_POST["id"])) {
             $this->id = $p->post("id");
-            $rec = $this->find_by_id($this->id,false);
+            $rec = $this->find_by_id($this->id, false);
             $this->fk_property_feature_id = $rec["fk_property_feature_id"];
 //            die($this->fk_property_feature_id);
         }
@@ -227,6 +261,7 @@ class PropertyLib
                     'sanad_type'));
         }
 
+
         if ($this->deal_type == 'rahn' || $this->for_rahn == 'yes') {
             $keys = array_merge($keys, array("rahn_preconditions", "rahn_amount"));
         }
@@ -253,6 +288,25 @@ class PropertyLib
             "sona" => $this->sona,
             "jakozi" => $this->jakozi
         );
+
+        if ($this->property_type == "store") {
+            $tmp = array(
+                "electricity" => $this->electricity,
+                "water" => $this->water,
+                "gas" => $this->gas,
+                "telephone" => $this->telephone,
+                "decoration" => $this->decoration,
+                "metraj_balkon" => $this->metraj_balkon,
+                "tedad_dahane" => $this->tedad_dahane,
+                "arze_dahane" => $this->arze_dahane,
+                "ertefa_tejari" => $this->ertefa_tejari,
+                "telephone_line_count" => $this->telephone_line_count,
+                "garmayesh" => $this->garmayesh,
+                "sarmayesh" => $this->sarmayesh,
+                "divar" => $this->divar,
+                "floor" => $this->floor);
+            $ret = array_merge($ret, $tmp);
+        }
 //        if($this->fk_property_feature_id!=0)
 //            $ret["property_feature_id"] = $this->fk_property_feature_id;
         return $ret;
@@ -269,17 +323,17 @@ class PropertyLib
         //insert property
         $res = $db->insert("properties", $data);
         if ($this->get_property_type() == "apartment" || $this->get_property_type() == "store") {
-            if (!$res) $this->dbg("db error:",$db->error());
+            if (!$res) $this->dbg("db error:", $db->error());
 
             // insert proprty features
             $property_id = $db->insert_id();
             $res_features = $db->insert('property_features', $this->build_features_array());
-            if ($res_features) $this->dbg("db error:",$db->error());
+            if ($res_features) $this->dbg("db error:", $db->error());
 
             //update
             $property_feature_id = $db->insert_id();
-            $db->set('fk_property_feature_id',$property_feature_id);
-            $db->where('id',$property_id);
+            $db->set('fk_property_feature_id', $property_feature_id);
+            $db->where('id', $property_id);
             $db->update('properties');
         }
         $db->trans_complete();
@@ -345,12 +399,28 @@ class PropertyLib
         $this->komod_divari = $rec['komod_divari'] ?? 0;
         $this->sona = $rec['sona'] ?? 0;
         $this->jakozi = $rec['jakozi'] ?? 0;
+        $this->electricity = $rec['electricity'] ?? 0;
+        $this->water = $rec['water'] ?? 0;
+        $this->gas = $rec['gas'] ?? 0;
+        $this->telephone = $rec['telephone'] ?? 0;
+        $this->decoration = $rec['decoration'] ?? 0;
+
+        $this->metraj_balkon = $rec["metraj_balkon"] ?? 0;
+        $this->tedad_dahane = $rec["tedad_dahane"] ?? 0;
+        $this->arze_dahane = $rec["arze_dahane"] ?? 0;
+        $this->ertefa_tejari = $rec["ertefa_tejari"] ?? 0;
+
+        $this->telephone_line_count = $rec['telephone_line_count'] ?? 0;
+        $this->garmayesh = $rec['garmayesh'];
+        $this->sarmayesh = $rec['sarmayesh'];
+        $this->divar = $rec['divar'];
+
         $this->fk_property_feature_id = $rec['fk_property_feature_id'] ?? 0;
         if (isset($rec["user_id"]))
             $this->user_id = $rec["user_id"];
     }
 
-    public function find_by_id($id,$init=true)
+    public function find_by_id($id, $init = true)
     {
         $db = $this->ci->db;
         //$res =  $this->ci->db->get_where("properties",array("id"=>$id))->result_array();
@@ -360,7 +430,7 @@ class PropertyLib
                 where properties.id = " . $id;
         $res = $this->ci->db->query($q)->result_array();
 //        $res = $db->get_where("properties", array("id" => $id))->result_array();
-        if($init)
+        if ($init)
             $this->init_from_db($res[0]);
         return $res[0];
     }
@@ -385,20 +455,17 @@ class PropertyLib
         $db->set($this->build_insert_array());
         $res = $db->update('properties');
 //        pr($res);
-        if($this->get_property_type() == "apartment" || $this->get_property_type() == "store"){
-            if(!$res) $this->dbg('error updating:',$db->error());
-
-//            pr($this->fk_property_feature_id);
-            pr("in update");
-            pre("in update propertylib",$this->build_features_array());
-            $db->where('property_feature_id',$this->fk_property_feature_id);
+        if ($this->get_property_type() == "apartment" || $this->get_property_type() == "store") {
+            if (!$res) $this->dbg('error updating:', $db->error());
+            $db->where('property_feature_id', $this->fk_property_feature_id);
             $db->set($this->build_features_array());
             $res_featuers = $db->update('property_features');
 
 //            pr($res_featuers);
-            if(!$res_featuers) $this->dbg('error updating features:',$db->error());
+            if (!$res_featuers) $this->dbg('error updating features:', $db->error());
         }
         $db->trans_complete();
+        $this->ci->Events_model->set('event_table', 'properties')->update_event();
         return $db->trans_status();
     }
 
@@ -423,14 +490,16 @@ class PropertyLib
         return $ret;
     }
 
-    private function dbg($tag,$value){
-        if(is_array($value) || is_object($value)){
-            $value = print_r($value,true);
+    private function dbg($tag, $value)
+    {
+        if (is_array($value) || is_object($value)) {
+            $value = print_r($value, true);
         }
         $this->dbg_str .= "$tag: $value";
     }
 
-    private function gdbg(){
+    private function gdbg()
+    {
         return $this->dbg_str;
     }
 }
