@@ -325,6 +325,10 @@ function pc($in){
 	global $handler;
 	$handler->debug($in);
 }
+function pce($in){
+    pc($in);
+    exit;
+}
 /////////////////////////////////////////////////////////////////////
 
 function perm_list(){

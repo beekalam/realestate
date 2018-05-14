@@ -49,6 +49,7 @@ class PropertyLib
     private $user_id;
     private $for_rent;
     private $for_rahn;
+    private $for_sale;
     //property features
     private $elevator;
     private $package;
@@ -71,12 +72,23 @@ class PropertyLib
     private $tedad_dahane;  // تعداد دهنه
     private $arze_dahane;  // عرض دهنه
     private $ertefa_tejari; // ارتفاع تجاری
-
     private $telephone_line_count;
     private $garmayesh;
     private $sarmayesh;
     private $divar;
     private $floor;
+    //apartment features
+    private $khab;
+    private $takhlie;
+    private $payane_kar;
+    private $tahvil_date;
+    private $source;
+    private $kabinet;
+    //land  and old house features
+    private $land_type;
+    private $house_entry;
+
+    public $validation_errors=array();
 
     public function __construct($params = array())
     {
@@ -178,6 +190,18 @@ class PropertyLib
         $this->divar = $p->post('divar');
         $this->floor = $p->post('floor');
 
+        //apartment features
+        $this->khab = $p->post('khab');
+        $this->takhlie = $p->post('takhlie');
+        $this->payane_kar = $p->post('payane_kar');
+        $this->tahvil_date = $p->post('tahvil_date');
+        $this->source = $p->post('source');
+        $this->kabinet = $p->post('kabinet');
+
+        //land and old house features
+        $this->land_type = $p->post('land_type');
+        $this->house_entry = $p->post('house_entry');
+
         $this->sanitize_inputs();
         if (isset($_POST["id"])) {
             $this->id = $p->post("id");
@@ -190,6 +214,8 @@ class PropertyLib
             $this->deal_type = $p->post("deal_type");
         if (isset($_POST["property_type"]))
             $this->property_type = $p->post("property_type");
+//        pre($_POST);
+        pc("in init from post");
     }
 
     public function set_validation_rules()
@@ -200,6 +226,11 @@ class PropertyLib
         $fv->set_rules('owner_family', 'نام خانوادگی', 'required', $err);
         $fv->set_rules('owner_tel', 'شماره تلفن', 'required', $err);
         $fv->set_rules('owner_mobile', 'موبایل', 'required', $err);
+        $fv->set_rules('tahvil_date','tahvil_date',array($this,'dealTypeSelected'));
+    }
+
+    public function is_valid()
+    {
         if ($this->property_type == 'apartment') {
 
         } else if ($this->property_type == 'land') {
@@ -207,10 +238,14 @@ class PropertyLib
         } else if ($this->property_type == 'store') {
 
         }
-    }
 
-    public function is_valid()
-    {
+        if($_POST['for_rahn']=='yes' || $_POST['for_rahn']=='yes' || $_POST['for_sale'] == 'yes') {
+        }else{
+            $this->validation_errors[] = "نوع معامله مشخص نشده است.";
+            return false;
+//            $this->ci->form_validation->set_message('', 'نوع معامله مشخص نشده است.(رهن اجاره یا فروش)');
+        }
+//        pre(".............");
         return $this->ci->form_validation->run();
     }
 
@@ -288,7 +323,20 @@ class PropertyLib
             "sona" => $this->sona,
             "jakozi" => $this->jakozi
         );
-
+        if ($this->get_property_type() == "apartment") {
+            $tmp = array("khab" => $this->khab,
+                "takhlie" => $this->takhlie,
+                "payane_kar" => $this->payane_kar,
+                "tahvil_date" => $this->tahvil_date,
+                "source" => $this->source,
+                "kabinet" => $this->kabinet);
+            $ret = array_merge($ret, $tmp);
+        }
+        if ($this->get_property_type() == "land") {
+            $tmp = array("land_type" => $this->land_type,
+                         "house_entry" => $this->house_entry);
+            $ret = array_merge($ret, $tmp);
+        }
         if ($this->property_type == "store") {
             $tmp = array(
                 "electricity" => $this->electricity,
@@ -309,6 +357,8 @@ class PropertyLib
         }
 //        if($this->fk_property_feature_id!=0)
 //            $ret["property_feature_id"] = $this->fk_property_feature_id;
+//        pr($this->get_property_type());
+//        pre($ret);
         return $ret;
     }
 
@@ -322,7 +372,9 @@ class PropertyLib
         $db->trans_start();
         //insert property
         $res = $db->insert("properties", $data);
-        if ($this->get_property_type() == "apartment" || $this->get_property_type() == "store") {
+        if ($this->get_property_type() == "apartment" ||
+            $this->get_property_type() == "store" ||
+            $this->get_property_type() == "land") {
             if (!$res) $this->dbg("db error:", $db->error());
 
             // insert proprty features
@@ -338,6 +390,7 @@ class PropertyLib
         }
         $db->trans_complete();
 
+        $this->ci->Events_model->set('event_table', 'properties')->add_event();
         return $db->trans_status();
     }
 
@@ -415,6 +468,16 @@ class PropertyLib
         $this->sarmayesh = $rec['sarmayesh'];
         $this->divar = $rec['divar'];
 
+        $this->khab = $rec["khab"];
+        $this->takhlie = $rec['takhlie'];
+        $this->payane_kar = $rec['payane_kar'];
+        $this->tahvil_date = $rec['tahvil_date'];
+        $this->source = $rec["source"];
+        $this->kabinet = $rec['kabinet'];
+
+        $this->land_type = $rec['land_type'];
+        $this->house_entry = $rec['house_entry'];
+
         $this->fk_property_feature_id = $rec['fk_property_feature_id'] ?? 0;
         if (isset($rec["user_id"]))
             $this->user_id = $rec["user_id"];
@@ -429,6 +492,7 @@ class PropertyLib
                 join property_features on properties.fk_property_feature_id = property_features.property_feature_id
                 where properties.id = " . $id;
         $res = $this->ci->db->query($q)->result_array();
+        pre($res);
 //        $res = $db->get_where("properties", array("id" => $id))->result_array();
         if ($init)
             $this->init_from_db($res[0]);
@@ -444,6 +508,7 @@ class PropertyLib
     {
         return $this->deal_type;
     }
+
 
     public function update()
     {

@@ -157,8 +157,38 @@
     <!--    </div>-->
     <!--    </div>-->
 
+    <!--    add client-->
+    <div class="col-xs-2">
+        <div class="portlet box blue-hoki">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-plus"></i>
+                    <span class="caption-subject bold uppercase">افزودن مشتری</span>
+                </div>
+                <div class="actions"></div>
+            </div>
+
+            <div class="portlet-body">
+
+                <div class="row">
+
+                    <?php if (can('add_customer')): ?>
+                        <div class="glyph">
+                            <div class="glyph-content">
+                                <a href='<?php echo base_url("/admin/add_client"); ?>'>
+                                    <img src="<?php echo base_url("assets/svg/customer.svg"); ?>"/>
+                                    <div class="footer">افزودن مشتری</div>
+                                </a>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
     <!--    rentals-->
-    <div class="col-xs-6">
+    <div class="col-xs-5">
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
@@ -169,21 +199,13 @@
             </div>
 
             <div class="portlet-body">
-                <div class="row">
 
-                    <div class="glyph">
-                        <div class="glyph-content">
-                            <a href='<?php echo base_url("/admin/add_client"); ?>'>
-                                <img src="<?php echo base_url("assets/svg/customer.svg"); ?>"/>
-                                <div class="footer">افزودن مشتری</div>
-                            </a>
-                        </div>
-                    </div>
+                <div class="row">
 
                     <?php if (can('rent_apartment')): ?>
                         <div class="glyph">
                             <div class="glyph-content">
-                                <a href='<?php echo base_url("/admin/add_property?pt=apartment&dt=none'"); ?>'>
+                                <a href='<?php echo base_url("/admin/add_property?pt=apartment&dt=rent'"); ?>'>
                                     <img src="<?php echo base_url("assets/svg/024-building-2.svg"); ?>"/>
                                     <div class="footer"> آپارتمان و پیش فروش</div>
                                 </a>
@@ -194,7 +216,7 @@
                     <?php if (can('sell_store')): ?>
                         <div class="glyph">
                             <div class="glyph-content">
-                                <a href='<?php echo base_url("/admin/add_property?pt=store&dt=none"); ?>'>
+                                <a href='<?php echo base_url("/admin/add_property?pt=store&dt=rent"); ?>'>
                                     <img src="<?php echo base_url("assets/svg/shop.svg"); ?>"/>
                                     <div class="footer"> مغازه</div>
                                 </a>
@@ -205,7 +227,7 @@
                     <?php if (can('sell_apartment')): ?>
                         <div class="glyph">
                             <div class="glyph-content">
-                                <a href='<?php echo base_url("/admin/add_property?pt=land&dt=none"); ?>'>
+                                <a href='<?php echo base_url("/admin/add_property?pt=land&dt=rent"); ?>'>
                                     <img src="<?php echo base_url("assets/svg/031-house-1.svg"); ?>"/>
                                     <div class="footer"> زمین</div>
                                 </a>
@@ -220,7 +242,7 @@
     </div>
 
     <!--     sales   -->
-    <div class="col-xs-6">
+    <div class="col-xs-5">
         <div class="portlet box blue-hoki">
             <div class="portlet-title">
                 <div class="caption">
@@ -233,16 +255,6 @@
             <div class="portlet-body">
                 <div class="row">
 
-                    <?php if (can('add_customer')): ?>
-                        <div class="glyph">
-                            <div class="glyph-content-sale">
-                                <a href='<?php echo base_url("/admin/add_client"); ?>'>
-                                    <img src="<?php echo base_url("assets/svg/customer.svg"); ?>"/>
-                                    <div class="footer-sale">افزودن مشتری</div>
-                                </a>
-                            </div>
-                        </div>
-                    <?php endif; ?>
 
                     <?php if (can('sell_apartment')): ?>
                         <div class="glyph">

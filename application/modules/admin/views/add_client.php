@@ -175,7 +175,7 @@
                         $("#last_name").val(random_family());
                         $("#tel").val(random_tel());
                         $("#mobile").val(random_mobile());
-                        $("#budget").val(rand(100000000, 200000000));
+                        $("#budget").val(random.rand(100000000, 200000000));
                         $("#date_submit").val(random_persian_date());
                     }
                 });

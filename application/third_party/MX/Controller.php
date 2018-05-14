@@ -118,6 +118,11 @@ class MX_Controller
 	public function set_title($page_title){
 		$this->$page_title = $page_title;
 	}
+
+    public function set_msg($msg, $type)
+    {
+        $this->session->set_userdata("msg",$msg."|".$type);
+    }
 	public function msg($msg){
 		$this->session->set_userdata("msg",$msg);
 	}
