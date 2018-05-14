@@ -9,7 +9,7 @@ class Task extends MX_Controller
         parent::__construct();
         $this->load->model("Settings_model");
         $this->load->helper("utils");
-        $this->load->helper(array('form', 'url'));
+        $this->load->helper(array('form', 'url','html'));
         $this->load->library('table');
         $this->checkAuth();
     }
@@ -24,6 +24,7 @@ class Task extends MX_Controller
             ->get()->result_array();
         foreach($tasks as &$task){
             $task['history'] = '<a href="'. base_url('task/task_history?id='.$task['id']) .'">'.$task['id'].'</a>';
+            $task['add_new'] = anchor(base_url('task/task_action?id='.$task['id']),'add_new');
         }
 //        pre($tasks);
         $template = array(
@@ -119,13 +120,21 @@ class Task extends MX_Controller
             )
         );
         return $res;
+
     }
 
     public function task_action()
     {
-        $task_id = 1;
-        $res = $this->add_task_action($task_id, "task description " . uniqid());
-        pre($res);
+        $task_id = $this->get('GET.id');
+//        $res = $this->add_task_action($task_id, "task description " . uniqid());
+//        pre($res);
+        if($this->is_get_request()) {
+            $this->view('task_action',array("task_id"=>$task_id));
+            return;
+        }
+
+        $res = $this->add_task_action($this->get('POST.task_id'),$this->get('POST.description'));
+        echo $res;
     }
 
     public function task_history()

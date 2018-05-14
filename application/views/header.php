@@ -323,6 +323,17 @@
                     </li>
                 <?php endif; ?>
 
+                <?php if(true): ?>
+                    <li class="nav-item start" id="m-manage-users">
+                        <a href="<?php echo base_url('task/index'); ?>" class="nav-link ">
+                            <i class="icon-user"></i>
+                            <span class="title">tasks</span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>
