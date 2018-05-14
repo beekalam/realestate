@@ -10,12 +10,12 @@ class Task extends MX_Controller
         $this->load->model("Settings_model");
         $this->load->helper("utils");
         $this->load->helper(array('form', 'url'));
+        $this->load->library('table');
         $this->checkAuth();
     }
 
     public function index()
     {
-        $this->load->library('table');
         $tasks = $this->db->select('tasks.*')
             ->select('users.user_name,users.first_name,users.last_name')
             ->from('tasks')
@@ -131,8 +131,26 @@ class Task extends MX_Controller
     public function task_history()
     {
         $task_id = $this->get('GET.id');
-        $res = $this->db->query("select task_history.* from task_history join users on users.id=task_history.user_id where task_history.task_id=" . $task_id)->result_array();
-//        pre($res);
+        $task_history = $this->db->query("select task_history.* from task_history join users on users.id=task_history.user_id where task_history.task_id=" . $task_id)->result_array();
+        $task_history = $this->db->select('task_history.*')
+            ->select('users.first_name,users.last_name')
+            ->from('task_history')
+            ->join('users','users.id=task_history.user_id')
+            ->where('task_history.task_id',$task_id)
+            ->order_by('updated_at','desc')
+            ->get()->result_array();
+//        pre($task_history);
+        foreach($task_history as &$task){
+//            $task['history'] = '<a href="'. base_url('task/task_history?id='.$task['id']) .'">'.$task['id'].'</a>';
+        }
+//        pre($tasks);
+        $template = array(
+            'table_open' => '<table border="1" cellpadding="2" cellspacing="1" class="table table-responsive table-bordered table-striped">'
+        );
+
+        $this->table->set_template($template);
+        $this->table->set_heading(array_keys($task_history[0]));
+        $this->set_data("task_history",$task_history)->view("task_history");
     }
 
 
