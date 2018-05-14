@@ -15,8 +15,26 @@ class Task extends MX_Controller
 
     public function index()
     {
-        $tasks = $this->db->get('tasks')->result_array();
-        pre($tasks);
+        $this->load->library('table');
+        $tasks = $this->db->select('tasks.*')
+            ->select('users.user_name,users.first_name,users.last_name')
+            ->from('tasks')
+            ->where('tasks.status', 'open')
+            ->join('users', 'users.id=tasks.assigned_user_id')
+            ->get()->result_array();
+        foreach($tasks as &$task){
+            $task['history'] = '<a href="'. base_url('task/task_history?id='.$task['id']) .'">'.$task['id'].'</a>';
+        }
+//        pre($tasks);
+        $template = array(
+            'table_open' => '<table border="1" cellpadding="2" cellspacing="1" class="table table-responsive table-bordered table-striped">'
+        );
+
+        $this->table->set_template($template);
+        $this->table->set_heading(array_keys($tasks[0]));
+//        pre($tasks);
+        $this->set_data("tasks", $tasks)
+            ->view('tasks');
     }
 
     private $errors = [];
@@ -112,9 +130,9 @@ class Task extends MX_Controller
 
     public function task_history()
     {
-        $task_id = 1;
+        $task_id = $this->get('GET.id');
         $res = $this->db->query("select task_history.* from task_history join users on users.id=task_history.user_id where task_history.task_id=" . $task_id)->result_array();
-        pre($res);
+//        pre($res);
     }
 
 
