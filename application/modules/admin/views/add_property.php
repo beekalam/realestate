@@ -29,6 +29,13 @@
                 ?>
             </span>
         </div>
+        <div class="actions">
+            <?php if (isset($id)): ?>
+                <a href="<?php echo base_url('admin/property_files?id=' . $id); ?>"
+                   class="btn btn-circle  btn-outline btn-sm">
+                    <i class="icon-cloud-upload"></i> تصاویر </a>
+            <?php endif; ?>
+        </div>
     </div>
     <div class="portlet-body form">
         <form role="form" method="POST" action="<?php echo $post_back; ?>">
@@ -54,7 +61,12 @@
                                                    value="<?php echo $owner_name ?? set_value('owner_name'); ?>">
                                         </div>
                                         <div class="col-md-2">
-                                            <div class="btn btn-default" onclick="loadModal('test')">جستجو</div>
+                                            <!--                                            <div class="btn btn-default" onclick="loadModal('test')">جستجو</div>-->
+                                            <div class="btn-group btn-group-devided" data-toggle="buttons">
+                                                <label class="btn btn-transparent blue-oleo btn-no-border btn-outline btn-circle btn-sm active"
+                                                       onclick="loadModal('test')">
+                                                    جستجو</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -110,6 +110,7 @@ class Admin extends MX_Controller
             $res["post_back"] = base_url("admin/edit_property");
             $res["pt"] = $this->propertylib->get_property_type();
             $res["dt"] = $this->propertylib->get_deal_type();
+            $res["id"] = $id;
             $this->view('add_property', $res);
             return;
         }
@@ -172,6 +173,63 @@ class Admin extends MX_Controller
             }
         }
     }
+
+    public function property_files()
+    {
+        $id = $this->get("GET.id");
+        $this->load->model('Properties_model');
+        $files = array_column($this->Properties_model->property_files($id), "file_name", "id");
+        array_walk($files, function (&$item, $key, $base) {
+            $item = $base . "/" . $item;
+        }, base_url(PROPERTY_FILES_PATH));
+
+        $this->set_data("files", $files)
+            ->set_data("property_id", $id)
+            ->view('property_files');
+    }
+
+    public function delete_property_file()
+    {
+        $id = $this->get("POST.id");
+        $this->load->model('Properties_model');
+        $property_id = $this->get("POST.property_id");
+//        pr("id:" . $id);
+//        pr("pid:" . $property_id);
+        if ($id && $property_id) {
+            $file_path = path_join(PROPERTY_FILES_REAL_PATH, $this->Properties_model->property_file($id)["file_name"]);
+            $res = unlink($file_path);
+            $res = $this->Properties_model->delete_file($id);
+        }
+        redirect('admin/property_files?id=' . $property_id);
+    }
+
+    public function upload_property_file()
+    {
+        $id = $this->get("POST.id");
+        $this->load->model('Properties_model');
+        $this->load->helper('file');
+        $property_id = $this->get("POST.property_id");
+        if (!$property_id) throw new Exception("Property id is not set.");
+
+        $config['upload_path'] = './' . PROPERTY_FILES_PATH;
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 2000;
+        $config['max_width'] = 1024;
+        $config['max_height'] = 768;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('property_file')) {
+            $this->set_msg("error", $this->upload->display_errors());
+            redirect('admin/property_files?id=' . $property_id);
+        } else {
+            $this->Properties_model->add_property_file($property_id,$this->upload->data()["file_name"]);
+            $this->success_msg();
+            redirect('admin/property_files?id=' . $property_id);
+        }
+
+    }
+
 
     public function properties()
     {

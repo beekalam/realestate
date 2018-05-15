@@ -88,7 +88,9 @@ class PropertyLib
     private $land_type;
     private $house_entry;
 
-    public $validation_errors=array();
+    private $property_images = array();
+
+    public $validation_errors = array();
 
     public function __construct($params = array())
     {
@@ -226,7 +228,7 @@ class PropertyLib
         $fv->set_rules('owner_family', 'نام خانوادگی', 'required', $err);
         $fv->set_rules('owner_tel', 'شماره تلفن', 'required', $err);
         $fv->set_rules('owner_mobile', 'موبایل', 'required', $err);
-        $fv->set_rules('tahvil_date','tahvil_date',array($this,'dealTypeSelected'));
+        $fv->set_rules('tahvil_date', 'tahvil_date', array($this, 'dealTypeSelected'));
     }
 
     public function is_valid()
@@ -239,8 +241,8 @@ class PropertyLib
 
         }
 
-        if($_POST['for_rahn']=='yes' || $_POST['for_rahn']=='yes' || $_POST['for_sale'] == 'yes') {
-        }else{
+        if ($_POST['for_rahn'] == 'yes' || $_POST['for_rahn'] == 'yes' || $_POST['for_sale'] == 'yes') {
+        } else {
             $this->validation_errors[] = "نوع معامله مشخص نشده است.";
             return false;
 //            $this->ci->form_validation->set_message('', 'نوع معامله مشخص نشده است.(رهن اجاره یا فروش)');
@@ -334,7 +336,7 @@ class PropertyLib
         }
         if ($this->get_property_type() == "land") {
             $tmp = array("land_type" => $this->land_type,
-                         "house_entry" => $this->house_entry);
+                "house_entry" => $this->house_entry);
             $ret = array_merge($ret, $tmp);
         }
         if ($this->property_type == "store") {
@@ -492,7 +494,7 @@ class PropertyLib
                 join property_features on properties.fk_property_feature_id = property_features.property_feature_id
                 where properties.id = " . $id;
         $res = $this->ci->db->query($q)->result_array();
-        pre($res);
+//        pre($res);
 //        $res = $db->get_where("properties", array("id" => $id))->result_array();
         if ($init)
             $this->init_from_db($res[0]);
@@ -508,7 +510,6 @@ class PropertyLib
     {
         return $this->deal_type;
     }
-
 
     public function update()
     {
@@ -553,6 +554,17 @@ class PropertyLib
         $ret["property_stats"] = $res;
         $ret["property_count"] = $this->ci->db->count_all("properties");
         return $ret;
+    }
+
+    public function property_images($id)
+    {
+
+        $res = $this->ci->db->get_where('property_files', array("property_id" => $id))->result_array();
+        if (!empty($res)) {
+            $this->property_files = array_column($res, "file_name");
+        }
+
+        return $this->property_files;
     }
 
     private function dbg($tag, $value)

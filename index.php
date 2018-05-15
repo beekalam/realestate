@@ -379,5 +379,6 @@ function can($name){
            $_SESSION['perms'][$name] == true;
 }
 /////////////////////////////////////////////////////////////////////
-require_once BASEPATH.'core/CodeIgniter.php';
+define("PROPERTY_FILES_PATH", "uploads/property_images");
+define("PROPERTY_FILES_REAL_PATH",FCPATH . "uploads".DIRECTORY_SEPARATOR."property_images");
 
