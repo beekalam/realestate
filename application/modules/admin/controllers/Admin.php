@@ -16,11 +16,24 @@ class Admin extends MX_Controller
 
     public function index()
     {
+        $task_stats = $this->db->select("count(tasks.id) as num_open_tasks")
+            ->select("assigned_user_id as user_id")
+            ->select("concat(users.first_name,' ',users.last_name) as name")
+            ->from('tasks')
+            ->join('users', 'users.id = tasks.assigned_user_id')
+            ->where('status', 'open')
+            ->group_by('assigned_user_id')
+//            ->get_compiled_select();
+            ->get()->result_array();
+//    pre($task_stats);
 //	    pc("in index");
         $this->load->library('PropertyLib');
-        $data = $this->propertylib->property_stats();
+        $property_stats = $this->propertylib->property_stats();
+
         $this->set_data("active_menu", "m-dashboard")
-            ->view('index', $data);
+            ->set_from_array($property_stats)
+            ->set_data("task_stats", $task_stats)
+            ->view('index', $property_stats);
 
 //        $this->view("index",$data);
     }
@@ -196,7 +209,7 @@ class Admin extends MX_Controller
         if (!$length) $length = 10;
         $total = count($this->db->get("clients")->result());
         $data = $this->db->get("clients", $length, $start)->result();
-        pc("start:$start, length:$length, total:$total,dataLength:" . count($data));
+//        pc("start:$start, length:$length, total:$total,dataLength:" . count($data));
         ejson(array("data" => $data,
             "recordsTotal" => $total,
             "draw" => $this->input->get("draw"),

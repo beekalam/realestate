@@ -1,6 +1,6 @@
 <?php
 //    $this->test_function();
-
+//pre(get_defined_vars());
 ?>
 <script src="<?php echo base_url('assets/js/mansouri.js'); ?>"></script>
 
@@ -101,6 +101,50 @@
 
         </div>
     </div>
+
+    <?php if (false): ?>
+        <!-- task stats -->
+        <div class="col-xs-6">
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption caption-md">
+                        <i class="icon-bar-chart font-dark hide"></i>
+                        <span class="caption-subject font-dark bold uppercase">Member Activity</span>
+                        <span class="caption-helper"></span>
+                    </div>
+                    <div class="actions"></div>
+                </div>
+                <div class="portlet-body">
+
+                    <div class="table-scrollable table-scrollable-borderless">
+                        <table class="table table-hover table-light">
+                            <thead>
+                            <tr class="uppercase">
+                                <th> نام</th>
+                                <th> تعداد کیس های باز</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($task_stats as $stat): ?>
+                                <tr>
+                                    <td>
+                                        <a href="javascript:;" class="primary-link">
+                                            <?php echo $stat["name"]; ?>
+                                        </a>
+                                    </td>
+                                    <td class="persian-number">
+                                        <?php echo $stat["num_open_tasks"]; ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
     <!--    rentals-->
     <!--    <div class="col-xs-6">-->
     <!--    <div class="portlet box blue-hoki">-->

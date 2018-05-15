@@ -186,6 +186,10 @@ class MX_Controller
         }
         return $this;
     }
+    protected  function set_from_array($arr){
+        $this->data = array_merge($this->data,$arr);
+        return $this;
+    }
 
     protected  function pr(){
         pr($this->data);
