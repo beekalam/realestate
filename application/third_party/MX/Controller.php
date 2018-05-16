@@ -252,6 +252,9 @@ class MX_Controller
         $map=[
             "inputmask"=>[
                 "js"=>[base_url('assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js')]
+            ],
+            "gmap"=>[
+                'js'=>[base_url('assets/global/plugins/gmaps/gmaps.min.js')]
             ]
         ];
         if($map[$name] && $map[$name]["js"]){

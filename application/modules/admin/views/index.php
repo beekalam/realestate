@@ -66,6 +66,7 @@
 
                 </div>
             </div>
+
             <?php foreach ($property_stats as $s): ?>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="dashboard-stat2">
@@ -257,7 +258,7 @@
                         </div>
                     <?php endif; ?>
 
-                    <?php if (can('sell_store')): ?>
+                    <?php if (can('rent_store')): ?>
                         <div class="glyph">
                             <div class="glyph-content">
                                 <a href='<?php echo base_url("/admin/add_property?pt=store&dt=rent"); ?>'>
@@ -267,17 +268,7 @@
                             </div>
                         </div>
                     <?php endif; ?>
-
-                    <?php if (can('sell_apartment')): ?>
-                        <div class="glyph">
-                            <div class="glyph-content">
-                                <a href='<?php echo base_url("/admin/add_property?pt=land&dt=rent"); ?>'>
-                                    <img src="<?php echo base_url("assets/svg/031-house-1.svg"); ?>"/>
-                                    <div class="footer"> زمین</div>
-                                </a>
-                            </div>
-                        </div>
-                    <?php endif; ?>
+                    
 
 
                 </div>

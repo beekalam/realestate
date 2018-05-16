@@ -192,3 +192,13 @@
         </form>
     </div>
 </div>
+<script>
+    $(document).ready(function()
+    {
+        $.fn.bootstrapSwitch.defaults.size = 'small';
+        $.fn.bootstrapSwitch.defaults.onColor = 'success';
+        $.fn.bootstrapSwitch.defaults.onText='<i class=\'fa fa-check\'></i>';
+        $.fn.bootstrapSwitch.defaults.offText='<i class=\'fa fa-times\'></i>';
+        $("input[name='exchange']").bootstrapSwitch();
+    });
+</script>
