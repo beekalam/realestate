@@ -1,3 +1,4 @@
+<?php $base_url = base_url(); ?>
 <!DOCTYPE html>
 <!--[if IE 8]>
 <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -7,7 +8,6 @@
 <html lang="en" dir="rtl">
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
-
 <head>
     <meta charset="utf-8"/>
     <title><?php echo isset($title) ? $title : ""; ?></title>
@@ -18,74 +18,77 @@
     <meta content="" name="author"/>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" /> -->
-    <link href="<?php echo base_url() ?>assets/fonts/fontiran/css/fontiran.css" rel="stylesheet" type="text/css"/>
-    <link href="<?php echo base_url() ?>assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+    <link href="<?php echo $base_url ;?>assets/fonts/fontiran/css/fontiran.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo $base_url; ?>assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"
           type="text/css"/>
-    <link href="<?php echo base_url() ?>assets/global/plugins/simple-line-icons/simple-line-icons.min.css"
+    <link href="<?php echo $base_url; ?>assets/global/plugins/simple-line-icons/simple-line-icons.min.css"
           rel="stylesheet" type="text/css"/>
-    <link href="<?php echo base_url() ?>assets/global/plugins/bootstrap/css/bootstrap-rtl.min.css" rel="stylesheet"
+    <link href="<?php echo $base_url; ?>assets/global/plugins/bootstrap/css/bootstrap-rtl.min.css" rel="stylesheet"
           type="text/css"/>
-    <link href="<?php echo base_url() ?>assets/global/plugins/bootstrap-switch/css/bootstrap-switch-rtl.min.css"
+    <link href="<?php echo $base_url; ?>assets/global/plugins/bootstrap-switch/css/bootstrap-switch-rtl.min.css"
           rel="stylesheet" type="text/css"/>
     <!-- END GLOBAL MANDATORY STYLES -->
 
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <link href="<?php echo base_url() ?>assets/global/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css"
+    <link href="<?php echo $base_url; ?>assets/global/plugins/bootstrap-multiselect/css/bootstrap-multiselect.css"
           rel="stylesheet" type="text/css"/>
-    <link href="<?php echo base_url() ?>assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css"
+    <link href="<?php echo $base_url; ?>assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css"
           rel="stylesheet" type="text/css"/>
-    <link href="<?php echo base_url() ?>assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css"/>
-    <link href="<?php echo base_url() ?>assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet"
+    <link href="<?php echo $base_url; ?>assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo $base_url; ?>assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet"
           type="text/css"/>
-    <!-- <link href="<?php echo base_url() ?>assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" /> -->
-    <link href="<?php echo base_url() ?>assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet"
-          type="text/css"/>
+    <!-- <link href="<?php echo $base_url; ?>assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" /> -->
+
+<!--    <link href="--><?php //echo base_url() ?><!--assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet"-->
+<!--          type="text/css"/>-->
+     <link href="<?php echo $base_url; ?>assets/global/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS -->
 
 
     <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="<?php echo base_url() ?>assets/global/css/components-rtl.min.css" rel="stylesheet" id="style_components"
+    <link href="<?php echo $base_url; ?>assets/global/css/components-rtl.min.css" rel="stylesheet" id="style_components"
           type="text/css"/>
-    <link href="<?php echo base_url() ?>assets/global/css/plugins-rtl.min.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo $base_url; ?>assets/global/css/plugins-rtl.min.css" rel="stylesheet" type="text/css"/>
     <!-- END THEME GLOBAL STYLES -->
-    <link href="<?php echo base_url() ?>assets/global/plugins/datatables/datatables.min.css" rel="stylesheet"
+    <link href="<?php echo $base_url; ?>assets/global/plugins/datatables/datatables.min.css" rel="stylesheet"
           type="text/css"/>
-    <link href="<?php echo base_url() ?>assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap-rtl.css"
+    <link href="<?php echo $base_url; ?>assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap-rtl.css"
           rel="stylesheet" type="text/css"/>
 
     <!-- BEGIN THEME LAYOUT STYLES -->
-    <link href="<?php echo base_url() ?>assets/layouts/layout2/css/layout-rtl.min.css" rel="stylesheet"
+    <link href="<?php echo $base_url; ?>assets/layouts/layout2/css/layout-rtl.min.css" rel="stylesheet"
           type="text/css"/>
     <?php if (!isset($theme)) $theme = 'default'; ?>
 
     <?php if ($theme == 'default'): ?>
-        <link href="<?php echo base_url() ?>assets/layouts/layout2/css/themes/default-rtl.min.css" rel="stylesheet"
+        <link href="<?php echo $base_url; ?>assets/layouts/layout2/css/themes/default-rtl.min.css" rel="stylesheet"
               type="text/css" id="style_color"/>
     <?php elseif ($theme == 'blue'): ?>
-        <link href="<?php echo base_url() ?>assets/layouts/layout2/css/themes/blue-rtl.min.css" rel="stylesheet"
+        <link href="<?php echo $base_url; ?>assets/layouts/layout2/css/themes/blue-rtl.min.css" rel="stylesheet"
               type="text/css" id="style_color"/>
     <?php elseif ($theme == 'dark'): ?>
-        <link href="<?php echo base_url() ?>assets/layouts/layout2/css/themes/dark-rtl.min.css" rel="stylesheet"
+        <link href="<?php echo $base_url; ?>assets/layouts/layout2/css/themes/dark-rtl.min.css" rel="stylesheet"
               type="text/css" id="style_color"/>
     <?php elseif ($theme == 'grey'): ?>
-        <link href="<?php echo base_url() ?>assets/layouts/layout2/css/themes/grey-rtl.min.css" rel="stylesheet"
+        <link href="<?php echo $base_url; ?>assets/layouts/layout2/css/themes/grey-rtl.min.css" rel="stylesheet"
               type="text/css" id="style_color"/>
     <?php elseif ($theme == 'light'): ?>
-        <link href="<?php echo base_url() ?>assets/layouts/layout2/css/themes/light-rtl.min.css" rel="stylesheet"
+        <link href="<?php echo $base_url; ?>assets/layouts/layout2/css/themes/light-rtl.min.css" rel="stylesheet"
               type="text/css" id="style_color"/>
     <?php endif; ?>
 
-    <link href="<?php echo base_url() ?>assets/layouts/layout2/css/custom-rtl.min.css" rel="stylesheet"
+    <link href="<?php echo $base_url; ?>assets/layouts/layout2/css/custom-rtl.min.css" rel="stylesheet"
           type="text/css"/>
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="favicon.ico"/>
-    <link href="<?php echo base_url() ?>assets/mansouri.css" rel="stylesheet" type="text/css"/>
-    <script src="<?php echo base_url() ?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url() ?>assets/js/handlebars-v4.0.11.js" type="text/javascript"></script>
-    <script src="<?php echo base_url() ?>assets/js/loadin-overlay.js" type="text/javascript"></script>
-    <script src="<?php echo base_url() ?>assets/js/mansouri.js" type="text/javascript"></script>
-    <script src="<?php echo base_url() ?>assets/js/kblayout.js" type="text/javascript"></script>
+    <link href="<?php echo $base_url; ?>assets/mansouri.css" rel="stylesheet" type="text/css"/>
+    <script src="<?php echo $base_url; ?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<!--    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+    <script src="<?php echo $base_url; ?>assets/js/handlebars-v4.0.11.js" type="text/javascript"></script>
+    <script src="<?php echo $base_url; ?>assets/js/loadin-overlay.js" type="text/javascript"></script>
+    <script src="<?php echo $base_url; ?>assets/js/mansouri.js" type="text/javascript"></script>
+    <script src="<?php echo $base_url; ?>assets/js/kblayout.js" type="text/javascript"></script>
 
 </head>
 <!-- END HEAD -->
@@ -98,7 +101,7 @@
         <!-- BEGIN LOGO -->
         <div class="page-logo">
             <a href="<?php echo base_url(); ?>">
-                <!--     <img src="<?php echo base_url() ?>assets/pages/media/pages/logo_azteca.jpg" alt="logo" class="logo-default"
+                <!--     <img src="<?php echo $base_url; ?>assets/pages/media/pages/logo_azteca.jpg" alt="logo" class="logo-default"
                                width="37px"  style="margin-top:19px;"/> -->
             </a>
             <div class="menu-toggler sidebar-toggler">

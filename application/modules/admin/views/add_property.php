@@ -33,7 +33,12 @@
             <?php if (isset($id)): ?>
                 <a href="<?php echo base_url('admin/property_files?id=' . $id); ?>"
                    class="btn btn-circle  btn-outline btn-sm">
-                    <i class="icon-cloud-upload"></i> تصاویر </a>
+                    <i class="icon-cloud-upload"></i> تصاویر
+                </a>
+                <a href="<?php echo base_url('admin/property_position?id=' . $id); ?>"
+                   class="btn btn-circle  btn-outline btn-sm">
+                    <i class="icon-cloud-upload"></i> موقعیت
+                </a>
             <?php endif; ?>
         </div>
     </div>
@@ -915,7 +920,7 @@
                                                         <input type="checkbox" id="for_rent" name="for_rent"
                                                                class="form-control input-sm"
                                                                value="yes"
-                                                               <?php if (isset($for_rent) && $for_rent == 'yes') echo 'checked="checked"'; else echo set_checkbox('for_rent'); ?>>
+                                                            <?php if (isset($for_rent) && $for_rent == 'yes') echo 'checked="checked"'; else echo set_checkbox('for_rent'); ?>>
                                                     </div>
                                                 </div>
                                             </div>
@@ -966,10 +971,10 @@
                                                         <input type="checkbox" id="for_rahn" name="for_rahn"
                                                                class="form-control input-sm"
                                                                value="yes"
-                                                               <?php if (isset($for_rahn) && $for_rahn == 'yes')
-                                                                   echo ' checked="checked"';
-                                                               else
-                                                                   echo set_checkbox('for_rahn'); ?>>
+                                                            <?php if (isset($for_rahn) && $for_rahn == 'yes')
+                                                                echo ' checked="checked"';
+                                                            else
+                                                                echo set_checkbox('for_rahn'); ?>>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1210,11 +1215,12 @@
         /// bootstrap switch
         $.fn.bootstrapSwitch.defaults.size = 'small';
         $.fn.bootstrapSwitch.defaults.onColor = 'success';
-        $.fn.bootstrapSwitch.defaults.onText='<i class=\'fa fa-check\'></i>';
-        $.fn.bootstrapSwitch.defaults.offText='<i class=\'fa fa-times\'></i>';
-        var bs = ['parking','anbari','elevator','package','iphone','shomine','parde','noor_pardazi','komod_divari'
-            ,'sona','jakozi','for_rent','for_rahn','parvane','electricity','water','gas','telephone','decoration','renovated'];
-        bs = bs.map(x => "[name='"+x+"']").join(',');
+        $.fn.bootstrapSwitch.defaults.onText = '<i class=\'fa fa-check\'></i>';
+        $.fn.bootstrapSwitch.defaults.offText = '<i class=\'fa fa-times\'></i>';
+        var bs = ['parking', 'anbari', 'elevator', 'package', 'iphone', 'shomine', 'parde', 'noor_pardazi', 'komod_divari'
+            , 'sona', 'jakozi', 'for_rent', 'for_rahn', 'parvane', 'electricity', 'water', 'gas', 'telephone', 'decoration', 'renovated'];
+
+        bs = bs.map(x => "[name='" + x + "']").join(',');
         $(bs).bootstrapSwitch();
     });
 </script>

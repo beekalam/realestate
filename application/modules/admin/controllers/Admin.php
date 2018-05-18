@@ -116,7 +116,7 @@ class Admin extends MX_Controller
         $this->load->library('PropertyLib', array("property_type" => '', "deal_type" => ''));
         $this->propertylib->set_validation_rules($this->form_validation);
         $property = $this->propertylib;
-        $id = $this->input->get_post("id");
+        $id       = $this->input->get_post("id");
         if (is_null($id)) throw new Exception("Property id is not set");
 
         //<editor-fold desc="handle get request">
@@ -217,9 +217,14 @@ class Admin extends MX_Controller
 
     public function set_property_location()
     {
-        $this->addcomponent("gmap");
+        include APPPATH . "modules/admin/libraries/Fa_Calendar.php";
 
+
+//        $this->addcomponent("gmap");
+//        $this->view('set_propety_location',array());
+//        $this->load->view('set_propety_location',array());
     }
+
     public function owner_name_check($str)
     {
         $this->form_validation->set_message('owner_name_check', 'owner_name');
@@ -236,15 +241,42 @@ class Admin extends MX_Controller
             $item = $base . "/" . $item;
         }, base_url(PROPERTY_FILES_PATH));
 
+
         $this->set_data("files", $files)
             ->set_data("property_id", $id)
             ->view('property_files');
     }
 
+    public function property_position()
+    {
+        $this->addcomponent("gmap");
+        $property_id = $this->get("GET.id");
+        $this->load->model('Properties_model');
+        $property = $this->Properties_model->find_by_id($property_id);
+        if (is_null($property)) throw new Exception("Wrong property id.");
+//        $this->load->view('property_position');
+//        return;
+        $this->view('property_position', compact("property_id", "property"));
+    }
+
+    public function update_property_pos()
+    {
+        /** @var $property_id string
+         * @var $lat string
+         * @var $lng string
+         */
+        extract($this->gpost('property_id', 'lat', 'lng'));
+        $this->load->model('Properties_model');
+        $property = $this->Properties_model->find_by_id($property_id);
+        if (is_null($property)) throw new Exception('wrong proeprty id or not set');
+        $this->Properties_model->set_property_position($property_id, $lat, $lng);
+        redirect("admin/property_position?id=" . $property_id);
+    }
+
     public function delete_property_file()
     {
-        $id = $this->get("POST.id");
         $this->load->model('Properties_model');
+        $id          = $this->get("POST.id");
         $property_id = $this->get("POST.property_id");
 //        pr("id:" . $id);
 //        pr("pid:" . $property_id);
@@ -282,7 +314,6 @@ class Admin extends MX_Controller
         }
 
     }
-
 
     public function properties()
     {
@@ -339,4 +370,126 @@ class Admin extends MX_Controller
         echo json_encode($res);
     }
 
+    public function map()
+    {
+        $this->addcomponent("gmap");
+        $res = $this->db->select("id,lat,lng")
+            ->from('properties')
+            ->where('(lat IS NOT NULL AND lng IS NOT NULL)')
+            ->get()
+            ->result_array();
+
+        $this->view("map", compact('res'));
+    }
+
+    public function property_summary()
+    {
+        $this->load->library('table');
+        $this->load->model('Properties_model');
+        $id       = $this->get('GET.id');
+        $table    = $this->table;
+        $p        = $this->Properties_model->find_with_features($id);
+        $template = array(
+            'table_open' => '<table border="1" cellpadding="2" cellspacing="1" class="table table-responsive table-bordered table-striped table-hover">'
+        );
+//        $template = array(
+//            'table_open' => '<table border="1" cellpadding="2" cellspacing="1" class="table table-responsive table-striped table-hover">'
+//        );
+
+        $table->set_heading(array('', ''));
+        $table->add_row("آدرس", $p["zone"] . $p["street"] . " " . $p["alley"]);
+        $table->add_row("نوع ملک", $this->property_type_persian($p["property_type"]));
+        if ($p["for_rent"] == 'yes') {
+            $table->add_row("مبلغ اجاره", $this->span_nf($p["rent_amount"]));
+        }
+
+        if ($p["for_rahn"] == 'yes') {
+            $table->add_row("مبلغ رهن", $this->span_nf($p["rahn_amount"]));
+        }
+
+        if ($p['for_sale'] == 'yes') {
+            $table->add_row("مبلغ فروش", $this->span_nf($p["price_total"]));
+            $table->add_row("مبلغ به متر مربع", $this->span_nf($p["price_per_square_meter"]));
+        }
+
+        $table->add_row('مالک', $p['owner_name'] . " " . $p["owner_family"]);
+        if ($p['anbari'] == 'yes') {
+            $str = 'دارد ';
+            $str .= 'تعداد ' . $p['anbari_count'];
+            $str .= ' مساحت ' . $p['anbari_area'];
+            $table->add_row('انباری', $str);
+        }
+
+        if ($p['parking'] == 'yes') {
+            $str = 'دارد ';
+            $str .= 'تعداد ' . $p['parking_count'];
+            $str .= ' مساحت ' . $p['parking_area'];
+            $table->add_row('پارکینگ', $str);
+        }
+        if (!empty($p['age'])) {
+            $table->add_row('سن بنا', $p['age']);
+        }
+
+        if ($p['property_type'] == 'store') {
+            if ($p['parvane'] == 'yes')
+                $table->add_row('پروانه', 'دارد');
+
+            $str = '';
+            foreach (array("electricity" => "برق",
+                           "water"       => "آب",
+                           "gas"         => "گاز",
+                           "telephone"   => "تلفن",
+                           "decoration"  => "دکوراسیون"
+                     ) as $k => $v) {
+                if ($p[$k] == '1') {
+                    $str .= "$v ";
+                }
+            }
+            $table->add_row('امکانات', $str);
+        }
+
+        if ($p['property_type'] == 'apartment') {
+            $str = '';
+            foreach (array("elevator"     => "آسانسور",
+                           "package"      => "پکیج",
+                           "iphone"       => "آیفون",
+                           "shomine"      => "شومینه",
+                           "parde"        => "پرده",
+                           "noor_pardazi" => "نور پردازی",
+                           "komod_divari" => "کمد دیواری",
+                           "sona"         => "سونا",
+                           "jakozi"       => "جکوزی") as $k => $v) {
+                if ($p[$k] == '1') {
+                    $str .= "$v ";
+                }
+            }
+            $table->add_row('امکانات', $str);
+        }
+
+//        foreach ($property as $k=>$v) {
+//            $table->add_row($k,$v);
+//        }
+        $table->set_template($template);
+        echo $table->generate();
+//        echo $this->load->view('property_summary',compact("property"));
+    }
+
+    public function property_type_persian($val)
+    {
+        switch ($val) {
+            case "apartment":
+                return "آپارتمان";
+            case"store":
+                return "مغازه";
+            case "land":
+                return "زمین یا خانه کلنگی";
+            default:
+                return $val;
+        }
+    }
+
+    private function span_nf($item)
+    {
+        return "<span class='persian-number'>" . number_format($item) . "</span>";
+    }
 }
