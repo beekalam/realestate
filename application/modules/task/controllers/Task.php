@@ -9,7 +9,7 @@ class Task extends MX_Controller
         parent::__construct();
         $this->load->model("Settings_model");
         $this->load->helper("utils");
-        $this->load->helper(array('form', 'url','html'));
+        $this->load->helper(array('form', 'url', 'html'));
         $this->load->library('table');
         $this->checkAuth();
     }
@@ -22,28 +22,29 @@ class Task extends MX_Controller
             ->where('tasks.status', 'open')
             ->join('users', 'users.id=tasks.assigned_user_id')
             ->get()->result_array();
-        foreach($tasks as &$task){
-            $task['history'] = '<a href="'. base_url('task/task_history?id='.$task['id']) .'">'.$task['id'].'</a>';
-            $task['add_new'] = anchor(base_url('task/task_action?id='.$task['id']),'add_new');
-        }
-//        pre($tasks);
+//        foreach($tasks as &$task){
+//             $task['history'] = '<a href="'. base_url('task/task_history?id='.$task['id']) .'">'.$task['id'].'</a>';
+//             $task['add_new'] = anchor(base_url('task/task_action?id='.$task['id']),'add_new');
+//         }
+// // //        pre($tasks);
         $template = array(
-            'table_open' => '<table border="1" cellpadding="2" cellspacing="1" class="table table-responsive table-bordered table-striped">'
-        );
+          'table_open' => '<table border="1" class="table table-responsive table-bordered table-striped">'
+       );
 
         $this->table->set_template($template);
         $this->table->set_heading(array_keys($tasks[0]));
 //        pre($tasks);
-        $this->set_data("tasks", $tasks)
-            ->view('tasks');
+        $this->set_data("active_menu", "m-manage-users")
+            ->set_data("tasks", $tasks)
+            ->view('tasks', []);
     }
 
     private $errors = [];
 
     public function assign_to_user_($user_name, $property_id, $client_id)
     {
-        $users = $this->db->get_where('users', ['user_name' => $user_name])->row(0, 'array');
-        $clients = $this->db->get_where('clients', ['id' => $property_id])->row(0, 'array');
+        $users      = $this->db->get_where('users', ['user_name' => $user_name])->row(0, 'array');
+        $clients    = $this->db->get_where('clients', ['id' => $property_id])->row(0, 'array');
         $properties = $this->db->get_where('properties', ['id' => $client_id])->row(0, 'array');
         if (is_null($users)) throw new Exception('User does not exist');
         if (is_null($clients)) throw new Exception('Client does not exist.');
@@ -51,7 +52,7 @@ class Task extends MX_Controller
 
         $assigned = $this->db->get_where('tasks',
             array('assigned_user_id' => $users['id'],
-                "property_id" => $properties['id']
+                  "property_id"      => $properties['id']
             )
         )->result_array();
 
@@ -61,9 +62,9 @@ class Task extends MX_Controller
 
         $res = $this->db->insert("tasks",
             array(
-                'property_id' => $properties['id'],
+                'property_id'      => $properties['id'],
                 'assigned_user_id' => $users['id'],
-                'status' => 'open'
+                'status'           => 'open'
             )
         );
 
@@ -71,7 +72,7 @@ class Task extends MX_Controller
 
     public function task_by_id($id)
     {
-        $res = $this->db->query("select tasks.* from tasks join properties on properties.id = tasks.property_id where tasks.id=" . $id)->row(0, 'array');
+        $res = $this->db->query("select tasks.* from tasks join users on users.id = tasks.assigned_user_id where tasks.id=" . $id)->row(0, 'array');
         return $res;
     }
 
@@ -114,8 +115,8 @@ class Task extends MX_Controller
         // pre($task);
         $res = $this->db->insert('task_history',
             array(
-                "task_id" => $task_id,
-                "user_id" => $task['assigned_user_id'],
+                "task_id"     => $task_id,
+                "user_id"     => $task['assigned_user_id'],
                 'description' => $description
             )
         );
@@ -128,28 +129,28 @@ class Task extends MX_Controller
         $task_id = $this->get('GET.id');
 //        $res = $this->add_task_action($task_id, "task description " . uniqid());
 //        pre($res);
-        if($this->is_get_request()) {
-            $this->view('task_action',array("task_id"=>$task_id));
+        if ($this->is_get_request()) {
+            $this->view('task_action', array("task_id" => $task_id));
             return;
         }
 
-        $res = $this->add_task_action($this->get('POST.task_id'),$this->get('POST.description'));
-        echo $res;
+        $res = $this->add_task_action($this->get('POST.task_id'), $this->get('POST.description'));
+        redirect('task');
     }
 
     public function task_history()
     {
-        $task_id = $this->get('GET.id');
+        $task_id      = $this->get('GET.id');
         $task_history = $this->db->query("select task_history.* from task_history join users on users.id=task_history.user_id where task_history.task_id=" . $task_id)->result_array();
         $task_history = $this->db->select('task_history.*')
             ->select('users.first_name,users.last_name')
             ->from('task_history')
-            ->join('users','users.id=task_history.user_id')
-            ->where('task_history.task_id',$task_id)
-            ->order_by('updated_at','desc')
+            ->join('users', 'users.id=task_history.user_id')
+            ->where('task_history.task_id', $task_id)
+            ->order_by('updated_at', 'desc')
             ->get()->result_array();
 //        pre($task_history);
-        foreach($task_history as &$task){
+        foreach ($task_history as &$task) {
 //            $task['history'] = '<a href="'. base_url('task/task_history?id='.$task['id']) .'">'.$task['id'].'</a>';
         }
 //        pre($tasks);
@@ -159,7 +160,7 @@ class Task extends MX_Controller
 
         $this->table->set_template($template);
         $this->table->set_heading(array_keys($task_history[0]));
-        $this->set_data("task_history",$task_history)->view("task_history");
+        $this->set_data("task_history", $task_history)->view("task_history");
     }
 
 

@@ -1,5 +1,12 @@
 <div class="page-bar"></div>
+<?php
+$pt = array(
+    "apartment" => base_url('assets/yellow_MarkerA.png'),
+    'store'     => base_url('assets/green_MarkerM.png'),
+    'land'      => base_url('assets/blue_MarkerZ.png')
+);
 
+?>
 <div class="portlet light portlet-fit ">
     <div class="portlet-title">
         <div class="caption">
@@ -7,15 +14,22 @@
             <span class="caption-subject font-blue bold uppercase">Markers</span>
         </div>
         <div class="actions">
-            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                <i class="icon-cloud-upload"></i>
-            </a>
-            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                <i class="icon-wrench"></i>
-            </a>
-            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-                <i class="icon-trash"></i>
-            </a>
+            <?php foreach ($pt as $k=>$v): ?>
+                <a class="btn btn-circle  btn-default" href="javascript:;">
+                    <img src="<?php echo $v; ?>" data-toggle="tooltip" title="<?php echo property_type_persian($k); ?>" />
+                </a>
+            <?php endforeach; ?>
+
+            <!--            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">-->
+            <!--                <i class="icon-cloud-upload"></i>-->
+            <!--            </a>-->
+            <!--            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">-->
+            <!--                <i class="icon-wrench"></i>-->
+            <!--            </a>-->
+            <!--            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">-->
+            <!--                <i class="icon-trash"></i>-->
+            <!--            </a>-->
+            <!--            -->
         </div>
     </div>
     <div class="portlet-body">
@@ -24,9 +38,16 @@
     </div>
 </div>
 
+<style>
+    .swal2-container {
+        z-index: 9999 !important;
+    }
+</style>
+
 <script>
     var map;
     $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
 
         map = new GMaps({
             div: '#map',
@@ -35,13 +56,19 @@
         });
 
         <?php foreach($res as $property): ?>
+        <?php
+
+        $icon_path = @$pt[$property["property_type"]];
+
+        ?>
         map.addMarker({
             lat: "<?php echo $property['lat']; ?>",
             lng: "<?php echo $property['lng']; ?>",
+            icon: "<?php echo $icon_path; ?>",
             click: function (e) {
                 App.blockUI();
                 var get_property_info = new Promise((resolve) => {
-                    $.get('<?php echo base_url("admin/property_summary?id={$property['id']}"); ?>', function (data) {
+                    $.get('<?php echo base_url("property/property_summary?id={$property['id']}"); ?>', function (data) {
                         resolve(data);
                     });
                 });
@@ -49,13 +76,13 @@
                     App.unblockUI();
                     swal({
                         title: '',
-                        type: 'info',
+//                        type: 'info',
                         html: data,
                         width: "800px",
                         showCloseButton: true,
-                        showCancelButton: true,
+                        showCancelButton: false,
                         focusConfirm: false,
-                        confirmButtonText: 'ok',
+                        confirmButtonText: 'بستن',
                         target: document.getElementById('rtl-container')
                     });
 

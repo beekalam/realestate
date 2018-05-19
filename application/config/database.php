@@ -95,5 +95,27 @@ $db['default'] = array(
     'failover' => array(),
     'save_queries' => TRUE
 );
-
-
+//
+//
+//$db['default'] = array(
+//    'dsn'	=> '',
+//    'hostname' => 'sql301.ihostfull.com',
+//    'username' => 'uoolo_21811360',
+//    'password' => '098098',
+//    'database' => 'uoolo_21811360_realestate',
+//    'dbdriver' => 'mysqli',
+//    'dbprefix' => '',
+//    'pconnect' => FALSE,
+//    'db_debug' => (ENVIRONMENT !== 'production'),
+//    'cache_on' => FALSE,
+//    'cachedir' => '',
+//    'char_set' => 'utf8',
+//    'dbcollat' => 'utf8_general_ci',
+//    'swap_pre' => '',
+//    'encrypt' => FALSE,
+//    'compress' => FALSE,
+//    'stricton' => FALSE,
+//    'failover' => array(),
+//    'save_queries' => TRUE
+//);
+//

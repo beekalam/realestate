@@ -41,6 +41,7 @@
     }
 
 </style>
+
 <div class="row">
     <!--    short stats-->
     <div class="col-xs-12">
@@ -173,7 +174,8 @@
     <!--                    <div class="glyph-content">-->
     <!--                        <a href='-->
     <?php //echo base_url("/admin/add_property?pt=apartment&dt=none'"); ?><!--'>-->
-    <!--                            <img src="--><?php //echo base_url("assets/svg/024-building-2.svg"); ?><!--"/>-->
+    <!--                            <img src="-->
+    <?php //echo base_url("assets/svg/024-building-2.svg"); ?><!--"/>-->
     <!--                           <div> آپارتمان و پیش فروش</div>-->
     <!--                        </a>-->
     <!--                    </div>-->
@@ -181,7 +183,8 @@
     <!---->
     <!--                <div class="glyph">-->
     <!--                    <div class="glyph-content">-->
-    <!--                        <a href='--><?php //echo base_url("/admin/add_property?pt=store&dt=none"); ?><!--'>-->
+    <!--                        <a href='-->
+    <?php //echo base_url("/admin/add_property?pt=store&dt=none"); ?><!--'>-->
     <!--                            <img src="--><?php //echo base_url("assets/svg/shop.svg"); ?><!--"/>-->
     <!--                            <div> مغازه</div>-->
     <!--                        </a>-->
@@ -190,7 +193,8 @@
     <!---->
     <!--                <div class="glyph">-->
     <!--                    <div class="glyph-content">-->
-    <!--                        <a href='--><?php //echo base_url("/admin/add_property?pt=land&dt=none"); ?><!--'>-->
+    <!--                        <a href='-->
+    <?php //echo base_url("/admin/add_property?pt=land&dt=none"); ?><!--'>-->
     <!--                            <img src="--><?php //echo base_url("assets/svg/031-house-1.svg"); ?><!--"/>-->
     <!--                            <div>  زمین</div>-->
     <!--                        </a>-->
@@ -202,6 +206,7 @@
     <!--    </div>-->
     <!--    </div>-->
 
+    <?php if(can('add_customer')): ?>
     <!--    add client-->
     <div class="col-xs-2">
         <div class="portlet box blue-hoki">
@@ -232,6 +237,7 @@
             </div>
         </div>
     </div>
+    <?php endif; ?>
     <!--    rentals-->
     <div class="col-xs-5">
         <div class="portlet box blue-hoki">
@@ -268,7 +274,6 @@
                             </div>
                         </div>
                     <?php endif; ?>
-                    
 
 
                 </div>

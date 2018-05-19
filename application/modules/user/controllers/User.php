@@ -26,7 +26,7 @@ class User extends MX_Controller {
     public function roles(){
         $this->set_data("active_menu","m-manage-users")
             ->set_data('roles',$this->db->get('roles')->result_array())
-            ->set_data("roles_descriptions",$this->perm_descriptions())
+            ->set_data("roles_descriptions",perm_descriptions())
             ->view('roles',[]);
     }
 
@@ -41,7 +41,7 @@ class User extends MX_Controller {
             if(count($res)!=0){
                 $msg = "این نام دسته قبلا استفاده شده";
             }else{
-                $res = $this->db->insert('roles',array('name'=>$role_name,'permissions'=>json_encode($this->perm_list())));
+                $res = $this->db->insert('roles',array('name'=>$role_name,'permissions'=>json_encode(perm_list())));
                 if(!$res){
                     $msg = "خطا در ذخیره سازی رول";
                 }
@@ -197,7 +197,7 @@ class User extends MX_Controller {
 
     public function update_role() {
 //        pre($_POST);
-        $p = $this->perm_list();
+        $p = perm_list();
 
         foreach($p as $k=>&$v){
             $v = false;

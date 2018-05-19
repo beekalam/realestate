@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2018 at 06:00 PM
+-- Generation Time: May 18, 2018 at 05:25 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -205,7 +205,34 @@ INSERT INTO `events` (`event_id`, `event_table`, `old_value`, `new_value`, `date
 (27, 'properties', NULL, NULL, '2018-05-13 14:45:33', 2, '', 'add', NULL),
 (28, 'properties', NULL, NULL, '2018-05-13 14:45:39', 2, '', 'add', NULL),
 (29, 'properties', NULL, NULL, '2018-05-13 14:46:04', 2, '', 'add', NULL),
-(30, 'properties', NULL, NULL, '2018-05-13 14:46:44', 2, '', 'add', NULL);
+(30, 'properties', NULL, NULL, '2018-05-13 14:46:44', 2, '', 'add', NULL),
+(31, 'properties', NULL, NULL, '2018-05-14 18:13:00', 2, '', 'add', NULL),
+(32, 'properties', NULL, NULL, '2018-05-16 10:50:14', 2, '', 'update', NULL),
+(33, 'properties', NULL, NULL, '2018-05-16 10:50:27', 2, '', 'update', NULL),
+(34, 'properties', NULL, NULL, '2018-05-16 10:50:36', 2, '', 'update', NULL),
+(35, 'properties', NULL, NULL, '2018-05-16 10:51:33', 2, '', 'update', NULL),
+(36, 'properties', NULL, NULL, '2018-05-16 10:53:01', 2, '', 'update', NULL),
+(37, 'properties', NULL, NULL, '2018-05-16 10:53:10', 2, '', 'update', NULL),
+(38, 'properties', NULL, NULL, '2018-05-16 10:53:17', 2, '', 'update', NULL),
+(39, 'properties', NULL, NULL, '2018-05-16 10:53:23', 2, '', 'update', NULL),
+(40, 'properties', NULL, NULL, '2018-05-16 10:53:35', 2, '', 'update', NULL),
+(41, 'properties', NULL, NULL, '2018-05-16 10:54:03', 2, '', 'update', NULL),
+(42, 'properties', NULL, NULL, '2018-05-16 10:54:13', 2, '', 'update', NULL),
+(43, 'properties', NULL, NULL, '2018-05-16 10:54:28', 2, '', 'update', NULL),
+(44, 'properties', NULL, NULL, '2018-05-16 10:54:36', 2, '', 'update', NULL),
+(45, 'properties', NULL, NULL, '2018-05-16 10:55:49', 2, '', 'update', NULL),
+(46, 'properties', NULL, NULL, '2018-05-16 11:12:57', 2, '', 'update', NULL),
+(47, 'properties', NULL, NULL, '2018-05-16 11:16:03', 2, '', 'update', NULL),
+(48, 'properties', NULL, NULL, '2018-05-16 11:16:12', 2, '', 'update', NULL),
+(49, 'properties', NULL, NULL, '2018-05-16 11:16:19', 2, '', 'update', NULL),
+(50, 'properties', NULL, NULL, '2018-05-16 11:42:20', 2, '', 'add', NULL),
+(51, 'properties', NULL, NULL, '2018-05-16 11:51:02', 2, '', 'update', NULL),
+(52, 'properties', NULL, NULL, '2018-05-16 12:20:12', 2, '', 'add', NULL),
+(53, 'properties', NULL, NULL, '2018-05-16 13:48:13', 2, '', 'add', NULL),
+(54, 'properties', NULL, NULL, '2018-05-16 13:54:03', 2, '', 'add', NULL),
+(55, 'properties', NULL, NULL, '2018-05-16 14:26:14', 2, '', 'update', NULL),
+(56, 'properties', NULL, NULL, '2018-05-16 14:34:56', 2, '', 'add', NULL),
+(57, 'properties', NULL, NULL, '2018-05-16 14:35:14', 2, '', 'update', NULL);
 
 -- --------------------------------------------------------
 
@@ -303,6 +330,8 @@ CREATE TABLE `properties` (
   `for_rahn` enum('yes','no') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'no',
   `for_sale` enum('yes','no') COLLATE utf8_unicode_ci DEFAULT 'no',
   `fk_property_feature_id` int(11) DEFAULT NULL,
+  `lat` decimal(10,8) DEFAULT NULL,
+  `lng` decimal(10,8) DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` datetime DEFAULT NULL
@@ -312,17 +341,13 @@ CREATE TABLE `properties` (
 -- Dumping data for table `properties`
 --
 
-INSERT INTO `properties` (`id`, `property_name`, `property_description`, `owner_name`, `owner_family`, `owner_tel`, `owner_mobile`, `room_count`, `parking`, `parking_count`, `anbari`, `anbari_count`, `zone`, `street`, `alley`, `property_type`, `date_on_market`, `age`, `num_stories`, `unit_per_story`, `parking_area`, `anbari_area`, `rent_amount`, `rahn_amount`, `rent_preconditions`, `rahn_preconditions`, `pardakht_method`, `parvane`, `parvane_description`, `deal_type`, `area`, `renovated`, `renovation_age`, `price_per_square_meter`, `price_total`, `sanad_type`, `user_id`, `for_rent`, `for_rahn`, `for_sale`, `fk_property_feature_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(200, '', '', 'رضا', 'ادیب', '8206778', '09359012233', 2, 'no', 2, 'no', 2, 'عادل آباد', 'سراچ', 'کوچه 2', 'apartment', '', 7, 5, 5, 64, 50, 1323970, 0, 'شرایط اجاره', '', '', 'yes', '', 'rahn', 187, 'yes', 0, 0, 0, 'melki', 2, 'no', 'no', 'no', 40, '2018-05-13 14:08:12', '2018-05-13 14:08:12', NULL),
-(201, '', '', 'حسن', 'غفوری', '8206778', '09359012233', 1, 'no', 6, 'no', 1, 'تاچارا', 'زند', 'کوچه اول', 'apartment', '', 2, 5, 3, 62, 50, 756695, 0, 'شرایط اجاره', '', '', 'yes', '', 'rahn', 300, 'yes', 0, 0, 0, 'melki', 2, 'no', 'no', 'no', 41, '2018-05-13 14:19:43', '2018-05-13 14:19:43', NULL),
-(202, '', '', 'مهران', 'غفوری', '8769089', '093590122', 1, 'no', 4, 'no', 1, 'اطلسی', 'پیروزی', 'کوچه 5', 'apartment', '', 7, 1, 2, 57, 50, 884534, 0, 'شرایط اجاره', '', '', 'yes', '', 'rahn', 224, 'yes', 0, 0, 0, 'melki', 2, 'no', 'no', 'no', 42, '2018-05-13 14:31:21', '2018-05-13 14:31:21', NULL),
-(203, '', '', 'اردلان', 'دهقانی', '8206778', '09359012244', 6, 'no', 5, 'no', 1, 'عادل آباد', 'سپاسی', 'کوچه 5', 'apartment', '', 4, 8, 2, 91, 50, 1226290, 0, 'شرایط اجاره', '', '', 'yes', '', 'rahn', 307, 'yes', 0, 0, 0, 'melki', 2, 'no', 'no', 'no', 43, '2018-05-13 14:31:30', '2018-05-13 14:31:30', NULL),
-(204, '', '', 'اردلان', 'غفوری', '8769089', '09359012233', 2, 'no', 5, 'no', 2, 'ارتش', 'پیروزی', 'کوچه 1', 'apartment', '', 3, 4, 1, 91, 50, 545247, 0, 'شرایط اجاره', '', '', 'yes', '', 'rahn', 266, 'yes', 0, 0, 0, 'melki', 2, 'no', 'no', 'no', 44, '2018-05-13 14:32:03', '2018-05-13 14:32:03', NULL),
-(205, '', '', 'قاسم', 'خلیلی', '8769089', '093590122', 3, 'no', 3, 'no', 1, 'عادل آباد', 'سراچ', 'کوچه 4', 'apartment', '', 1, 9, 4, 93, 50, 1335589, 0, 'شرایط اجاره', '', '', 'yes', '', 'rahn', 115, 'yes', 0, 0, 0, 'melki', 2, 'no', 'no', 'no', 45, '2018-05-13 14:35:59', '2018-05-13 14:35:59', NULL),
-(206, '', '', 'مریم', 'دهقانی', '8206778', '09359012233', 6, 'no', 2, 'no', 2, 'اطلسی', 'ولیعسر', 'کوچه 5', 'apartment', '', 1, 10, 2, 52, 50, 1174560, 0, 'شرایط اجاره', '', '', 'yes', '', 'rahn', 341, 'yes', 0, 0, 0, 'melki', 2, 'no', 'no', 'no', 46, '2018-05-13 14:45:33', '2018-05-13 14:45:33', NULL),
-(207, '', '', 'رضا', 'ایمانی', '8769089', '09359012244', 4, 'no', 3, 'no', 1, 'معالی آباد', 'اردیبهشت', 'کوچه 4', 'apartment', '', 5, 1, 4, 103, 50, 1039806, 0, 'شرایط اجاره', '', '', 'yes', '', 'rahn', 275, 'yes', 0, 0, 0, 'melki', 2, 'no', 'no', 'no', 47, '2018-05-13 14:45:39', '2018-05-13 14:45:39', NULL),
-(208, '', '', 'سیروس', 'مدیری', '8769089', '09359012233', 1, 'no', 2, 'no', 1, 'تاچارا', 'سپاسی', 'کوچه اول', 'apartment', '', 7, 9, 5, 95, 50, 947869, 0, 'شرایط اجاره', '', '', 'yes', '', 'rahn', 254, 'yes', 0, 0, 0, 'melki', 2, 'no', 'no', 'no', 48, '2018-05-13 14:46:04', '2018-05-13 14:46:04', NULL),
-(209, '', '', 'فاطمه', 'رهبر', '8769089', '09359012244', 6, 'no', 5, 'no', 2, 'ارتش', 'داریوش', 'کوچه 3', 'apartment', '', 3, 5, 3, 108, 50, 1339589, 0, 'شرایط اجاره', '', '', 'yes', '', 'rahn', 329, 'yes', 0, 0, 0, 'melki', 2, 'no', 'no', 'no', 49, '2018-05-13 14:46:43', '2018-05-13 14:46:43', NULL);
+INSERT INTO `properties` (`id`, `property_name`, `property_description`, `owner_name`, `owner_family`, `owner_tel`, `owner_mobile`, `room_count`, `parking`, `parking_count`, `anbari`, `anbari_count`, `zone`, `street`, `alley`, `property_type`, `date_on_market`, `age`, `num_stories`, `unit_per_story`, `parking_area`, `anbari_area`, `rent_amount`, `rahn_amount`, `rent_preconditions`, `rahn_preconditions`, `pardakht_method`, `parvane`, `parvane_description`, `deal_type`, `area`, `renovated`, `renovation_age`, `price_per_square_meter`, `price_total`, `sanad_type`, `user_id`, `for_rent`, `for_rahn`, `for_sale`, `fk_property_feature_id`, `lat`, `lng`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(200, '', '', 'سیروس', 'ادیب', '8206778', '093590122', 3, 'yes', 1, 'no', 1, 'عادل آباد', 'ولیعسر', 'کوچه اول', 'apartment', '', 9, 6, 3, 85, 50, 693112, 323195416, 'شرایط اجاره', 'شرایط رهن', '', 'yes', '', 'rahn', 158, 'yes', 0, 0, 0, 'melki', 2, 'yes', 'yes', 'no', 40, '29.64032163', '52.49742068', '2018-05-13 14:08:12', '2018-05-17 14:32:20', NULL),
+(211, '', '', 'ddd', 'dd', '434234324', '343423', NULL, 'no', NULL, 'no', NULL, '', '', '', 'store', '', 0, 0, 0, 0, 0, 0, 0, '', '', '', 'yes', '', 'rahn', 0, 'yes', 0, 0, 0, 'melki', 2, 'no', 'no', 'no', 51, '29.58736411', '52.57017987', '2018-05-16 11:42:20', '2018-05-17 14:49:10', NULL),
+(212, '', '', '', '', '', '', NULL, 'no', NULL, 'no', NULL, '', '', '', 'store', '', 0, 0, 0, 0, 0, 0, 0, '', '', '', 'yes', '', 'rahn', 0, 'yes', 0, 0, 0, 'melki', 2, 'no', 'no', 'no', 52, NULL, NULL, '2018-05-16 12:20:12', '2018-05-16 12:20:12', NULL),
+(213, '', '', 'dd', 'ddd', 'ddd', 'ddd', 0, 'no', 0, 'no', 0, '', '', '', 'apartment', '', 0, 0, 0, 0, 0, 0, 0, '', '', '', 'yes', '', 'rahn', 0, 'yes', 0, 0, 0, 'melki', 2, 'no', 'no', 'no', 53, NULL, NULL, '2018-05-16 13:48:12', '2018-05-16 13:48:12', NULL),
+(214, '', '', 'ddd', 'ddd', 'assd', 'asd', 0, 'no', 0, 'no', 0, '', '', '', 'apartment', '', 0, 0, 0, 0, 0, 0, 0, '', '', '', 'yes', '', 'rahn', 0, 'yes', 0, 0, 0, 'melki', 2, 'yes', 'no', 'no', 54, NULL, NULL, '2018-05-16 13:54:02', '2018-05-16 13:54:02', NULL),
+(215, '', '', 'ddd', 'ddd', 'ddd', 'ddd', 0, 'no', 0, 'no', 0, '', '', '', 'apartment', '', 0, 0, 0, 0, 0, 0, 0, '', '', '', 'yes', '', 'rahn', 0, 'yes', 0, 0, 0, 'melki', 2, 'yes', 'no', 'no', 55, '29.59158111', '52.55962269', '2018-05-16 14:34:56', '2018-05-17 14:49:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -378,7 +403,7 @@ INSERT INTO `property_features` (`property_feature_id`, `elevator`, `package`, `
 (37, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (38, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'باغ', NULL),
 (39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'منزل ویلایی', ''),
-(40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, '1 خواب', '', '', '', '', '', NULL, NULL),
+(40, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, '1 خواب', '', '', '', '', '', NULL, NULL),
 (41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, '1 خواب', '', '', '', '', '', NULL, NULL),
 (42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, '1 خواب', '', '', '', '', '', NULL, NULL),
 (43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, '1 خواب', '', '', '', '', '', NULL, NULL),
@@ -387,7 +412,34 @@ INSERT INTO `property_features` (`property_feature_id`, `elevator`, `package`, `
 (46, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, '1 خواب', '', '', '', '', '', NULL, NULL),
 (47, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, '1 خواب', '', '', '', '', '', NULL, NULL),
 (48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, '1 خواب', '', '', '', '', '', NULL, NULL),
-(49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, '1 خواب', '', '', '', '', '', NULL, NULL);
+(49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, '1 خواب', '', '', '', '', '', NULL, NULL),
+(50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, '1 خواب', 'یسییسیس', 'یسیسیس', '', 'بیی', '', NULL, NULL),
+(51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(52, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(53, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, '1 خواب', '', '', '', '', '', NULL, NULL),
+(54, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, '1 خواب', '', '', '', '', '', NULL, NULL),
+(55, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, '1 خواب', '', '', '', '', '', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `property_files`
+--
+
+CREATE TABLE `property_files` (
+  `id` int(11) NOT NULL,
+  `property_id` int(11) NOT NULL,
+  `file_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `property_files`
+--
+
+INSERT INTO `property_files` (`id`, `property_id`, `file_name`) VALUES
+(5, 200, 'coffee.png'),
+(10, 201, 'coffee1.png'),
+(12, 215, 'coffee2.png');
 
 -- --------------------------------------------------------
 
@@ -449,6 +501,70 @@ CREATE TABLE `settings` (
 
 INSERT INTO `settings` (`id`, `key`, `value`) VALUES
 (1, 'title', 'site title');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tasks`
+--
+
+CREATE TABLE `tasks` (
+  `id` int(11) NOT NULL,
+  `assigned_user_id` int(11) NOT NULL,
+  `property_id` int(11) NOT NULL,
+  `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `start_date` datetime DEFAULT NULL,
+  `start_date_fa` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `assigned_user_id`, `property_id`, `status`, `start_date`, `start_date_fa`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 8, 200, 'open', NULL, NULL, '2018-05-14 10:10:17', '2018-05-14 10:10:17', NULL),
+(2, 4, 201, 'open', NULL, NULL, '2018-05-14 14:17:40', '2018-05-14 14:17:40', NULL),
+(3, 4, 202, 'open', '2018-05-14 14:20:28', NULL, '2018-05-14 14:18:37', '2018-05-14 14:20:30', '2018-05-14 14:20:30'),
+(4, 4, 203, 'open', '2018-05-14 14:20:33', NULL, '2018-05-14 14:18:44', '2018-05-14 14:20:35', '2018-05-14 14:20:34');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `task_history`
+--
+
+CREATE TABLE `task_history` (
+  `id` int(11) NOT NULL,
+  `task_id` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL,
+  `client_id` int(11) DEFAULT NULL,
+  `description` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `date_report` datetime DEFAULT NULL,
+  `date_report_fa` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `task_history`
+--
+
+INSERT INTO `task_history` (`id`, `task_id`, `user_id`, `client_id`, `description`, `date_report`, `date_report_fa`, `created_at`, `updated_at`) VALUES
+(1, 1, 8, NULL, 'task description 5af9cb2290a70', NULL, NULL, '2018-05-14 10:45:06', '2018-05-14 10:45:06'),
+(2, 1, 8, NULL, 'task description 5af9cb243debb', NULL, NULL, '2018-05-14 10:45:08', '2018-05-14 10:45:08'),
+(3, 1, 8, NULL, 'task description 5af9cb2a632c7', NULL, NULL, '2018-05-14 10:45:14', '2018-05-14 10:45:14'),
+(4, 1, 8, NULL, 'task description 5af9cb2aa32f0', NULL, NULL, '2018-05-14 10:45:14', '2018-05-14 10:45:14'),
+(5, 1, 8, NULL, 'task description 5af9cb2ad41d5', NULL, NULL, '2018-05-14 10:45:14', '2018-05-14 10:45:14'),
+(6, 1, 8, NULL, 'task description 5af9cb2aedf9b', NULL, NULL, '2018-05-14 10:45:14', '2018-05-14 10:45:14'),
+(7, 1, 8, NULL, 'task description 5af9cb6163f86', NULL, NULL, '2018-05-14 10:46:09', '2018-05-14 10:46:09'),
+(8, 1, 8, NULL, 'task description 5af9d65917c99', NULL, NULL, '2018-05-14 11:32:57', '2018-05-14 11:32:57'),
+(9, 1, 8, NULL, 'task description 5af9d859409eb', NULL, NULL, '2018-05-14 11:41:29', '2018-05-14 11:41:29'),
+(10, 1, 8, NULL, 'task description 5af9d8605bce9', NULL, NULL, '2018-05-14 11:41:36', '2018-05-14 11:41:36'),
+(11, 1, 8, NULL, 'tesfd', NULL, NULL, '2018-05-14 11:51:11', '2018-05-14 11:51:11'),
+(12, 1, 8, NULL, 'tesfd', NULL, NULL, '2018-05-14 11:51:21', '2018-05-14 11:51:21');
 
 -- --------------------------------------------------------
 
@@ -538,6 +654,12 @@ ALTER TABLE `property_features`
   ADD PRIMARY KEY (`property_feature_id`);
 
 --
+-- Indexes for table `property_files`
+--
+ALTER TABLE `property_files`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `property_types`
 --
 ALTER TABLE `property_types`
@@ -559,6 +681,18 @@ ALTER TABLE `roles`
 -- Indexes for table `settings`
 --
 ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tasks`
+--
+ALTER TABLE `tasks`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `task_history`
+--
+ALTER TABLE `task_history`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -599,7 +733,7 @@ ALTER TABLE `client_service_contracts`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `features`
@@ -617,13 +751,19 @@ ALTER TABLE `locations`
 -- AUTO_INCREMENT for table `properties`
 --
 ALTER TABLE `properties`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=210;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=216;
 
 --
 -- AUTO_INCREMENT for table `property_features`
 --
 ALTER TABLE `property_features`
-  MODIFY `property_feature_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `property_feature_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+
+--
+-- AUTO_INCREMENT for table `property_files`
+--
+ALTER TABLE `property_files`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `property_types`
@@ -648,6 +788,18 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tasks`
+--
+ALTER TABLE `tasks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `task_history`
+--
+ALTER TABLE `task_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`

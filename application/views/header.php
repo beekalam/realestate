@@ -18,7 +18,7 @@
     <meta content="" name="author"/>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" /> -->
-    <link href="<?php echo $base_url ;?>assets/fonts/fontiran/css/fontiran.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo $base_url; ?>assets/fonts/fontiran/css/fontiran.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo $base_url; ?>assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"
           type="text/css"/>
     <link href="<?php echo $base_url; ?>assets/global/plugins/simple-line-icons/simple-line-icons.min.css"
@@ -40,9 +40,11 @@
           type="text/css"/>
     <!-- <link href="<?php echo $base_url; ?>assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" /> -->
 
-<!--    <link href="--><?php //echo base_url() ?><!--assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet"-->
-<!--          type="text/css"/>-->
-     <link href="<?php echo $base_url; ?>assets/global/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <!--    <link href="-->
+    <?php //echo base_url() ?><!--assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet"-->
+    <!--          type="text/css"/>-->
+    <link href="<?php echo $base_url; ?>assets/global/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet"
+          type="text/css"/>
     <!-- END PAGE LEVEL PLUGINS -->
 
 
@@ -84,7 +86,7 @@
     <link rel="shortcut icon" href="favicon.ico"/>
     <link href="<?php echo $base_url; ?>assets/mansouri.css" rel="stylesheet" type="text/css"/>
     <script src="<?php echo $base_url; ?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-<!--    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+    <!--    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
     <script src="<?php echo $base_url; ?>assets/js/handlebars-v4.0.11.js" type="text/javascript"></script>
     <script src="<?php echo $base_url; ?>assets/js/loadin-overlay.js" type="text/javascript"></script>
     <script src="<?php echo $base_url; ?>assets/js/mansouri.js" type="text/javascript"></script>
@@ -286,7 +288,7 @@
                 <?php endif; ?>
 
 
-                <?php if(check_perm('view_users')): ?>
+                <?php if (check_perm('view_users')): ?>
                     <li class="nav-item start" id="m-add-apartment">
                         <a href="<?php echo base_url('admin/add_property?pt=apartment&dt=none'); ?>" class="nav-link ">
                             <i class="fa fa-building"></i>
@@ -296,7 +298,7 @@
                     </li>
                 <?php endif; ?>
 
-                <?php if(check_perm('view_users')): ?>
+                <?php if (check_perm('view_users')): ?>
                     <li class="nav-item start" id="m-manage-users">
                         <a href="<?php echo base_url('admin/add_property?pt=store&dt=none'); ?>" class="nav-link ">
                             <i class="fa fa-hospital-o"></i>
@@ -306,7 +308,7 @@
                     </li>
                 <?php endif; ?>
 
-                <?php if(check_perm('view_users')): ?>
+                <?php if (check_perm('view_users')): ?>
                     <li class="nav-item start" id="m-manage-users">
                         <a href="<?php echo base_url('admin/add_property?pt=land&dt=none'); ?>" class="nav-link ">
                             <i class="fa fa-trello"></i>
@@ -316,7 +318,7 @@
                     </li>
                 <?php endif; ?>
 
-                <?php if(check_perm('view_users')): ?>
+                <?php if (check_perm('view_users')): ?>
                     <li class="nav-item start" id="m-manage-users">
                         <a href="<?php echo base_url('user/users'); ?>" class="nav-link ">
                             <i class="icon-user"></i>
@@ -326,11 +328,21 @@
                     </li>
                 <?php endif; ?>
 
-                <?php if(true): ?>
+                <?php if (true): ?>
                     <li class="nav-item start" id="m-manage-users">
                         <a href="<?php echo base_url('task/index'); ?>" class="nav-link ">
                             <i class="icon-user"></i>
                             <span class="title">tasks</span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if (true): ?>
+                    <li class="nav-item start" id="m-manage-users">
+                        <a href="<?php echo base_url('property/map'); ?>" class="nav-link ">
+                            <i class="icon-user"></i>
+                            <span class="title">map</span>
                             <span class="selected"></span>
                         </a>
                     </li>

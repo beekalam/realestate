@@ -324,7 +324,10 @@ function perm_list()
         'sell_store'           => false,
         'edit_sell_store'      => false,
         'sell_land'            => false,
-        'edit_sell_land'       => false
+        'edit_sell_land'       => false,
+        'add_task'             => false,
+        'close_task'           => false,
+        'refer_task'           => false
     );
     return $perms;
 }
@@ -341,7 +344,10 @@ function perm_descriptions()
         'rent_store'           => 'اجاره مغازه',
         'sell_apartment'       => 'فروش آپارتمان',
         'sell_store'           => 'اجاره مغازه',
-        'sell_land'            => 'اجاره زمین'
+        'sell_land'            => 'اجاره زمین',
+        'add_task'             => 'افزودن تسک',
+        'close_task'           => 'بست تسک',
+        'refer_task'           => 'رفر تسک'
     );
     return $perms_descriptions;
 }

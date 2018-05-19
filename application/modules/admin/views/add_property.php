@@ -1209,7 +1209,7 @@
 
         var test_mode = true;
         if (test_mode) {
-//            set_test_values();
+            set_test_values();
         }
 
         /// bootstrap switch
