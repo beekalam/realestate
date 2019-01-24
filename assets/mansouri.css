@@ -1,0 +1,109 @@
+.ltr{ direction: ltr !important; }
+.rtl{ direction: rtl !important; }
+.persian-number{
+	font-family: IranSans !important;
+}
+.pf-11{
+	font-family: IranSans !important;
+	font-size: 11px !important;
+}
+.pf-11-bold{
+	font-family: IranSans !important;
+	font-size: 11px !important;
+	font-weight: bold;
+}
+.pf-12{
+	font-family: IranSans !important;
+	font-size: 12px !important;
+}
+.pf-12-bold{
+	font-family: IranSans !important;
+	font-size: 12px !important;
+	font-weight: bold;
+}
+.pf-13{
+	font-family: IranSans !important;
+	font-size: 13px !important;
+}
+.pf-13-bold{
+	font-family: IranSans !important;
+	font-size: 13px !important;
+	font-weight: bold;
+}
+.dataTables_info{
+	font-family: IranSans !important;
+}
+.border-radius-5px{
+	border-radius: 5px !important;
+}
+.border-radius-10px{
+	border-radius: 10px !important;
+}
+.bor3px{
+	border-radius: 3px !important;
+}
+.bor5px{
+	border-radius: 5px !important;
+}
+.bor10px{
+	border-radius: 10px !important;
+}
+.persian-font{
+	font-family: IranSans !important;
+}
+/* ********************************** */
+/* for sweetalert */
+div.sweet-alert{
+	border-radius: 10px !important;
+}
+button.confirm{
+	border-radius: 5px !important;
+}
+.sweet-overlay{
+	z-index: 15000 !important
+}
+.sweet-alert{
+	z-index: 16000 !important;
+}
+.sa-button-container button{
+	border-radius: 5px !important;
+}
+/* ********************************** */
+.theme-box{
+	width: 30px;
+	height: 30px;
+	float:right;
+	margin:2px;
+	/*display: inline-block;*/
+	display: inline;
+	border-radius: 5px !important;
+}
+.bos{
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.15);
+}
+
+.bor10px{
+	border-radius: 5px !important;
+}
+.bor10px{
+	border-radius: 10px !important;
+}
+bor3px{
+	border-radius: 3px !important;
+}
+
+
+/* ------------------- site map ---------------------------- */
+.page-bar{
+	background-color: lightgray !important;;
+}
+/* ------------------- site map ---------------------------- */
+/* ------------------- site map ---------------------------- */
+/* ------------------- site map ---------------------------- */
+/* ------------------- site map ---------------------------- */
+/* ------------------- site map ---------------------------- */
+/* ------------------- site map ---------------------------- */
+/* ------------------- site map ---------------------------- */
+/* ------------------- site map ---------------------------- */
+/* ------------------- site map ---------------------------- */
+/* ------------------- site map ---------------------------- */

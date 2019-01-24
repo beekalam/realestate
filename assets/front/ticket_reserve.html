@@ -1,0 +1,754 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ticket_sell_gr</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/bootstrap-select.css">
+<link rel="stylesheet" href="animate.css">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body class="back_gray">
+
+<div id="reg_lg_modal" class="modal fade" role="dialog">
+             <div class="modal-dialog">
+			<div class="modal-content" style="">
+			  <div class="modal-header md_lg_ti txt_white">
+				<button type="button" class="close txt_white cls_but" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title  txt_white"> ورود به سایت </h4>
+			  </div>
+			  <div class="modal-body">
+				<div class=" card-login">
+					<div class="plogin-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<form id="login-form" action="" method="post" role="form" style="display: block;">
+                                       <div class="form-group col-12 col-md-12">
+												        <label for="email">ایمیل :</label>
+													      <div class="input-group input-group-sm">
+														  <span class="input-group-addon span_cus" id="sizing-addon8">
+														  <i class="fa fa-envelope"></i>
+															  </span>
+														  <input id="email" type="email" class="form-control input_cus"  aria-describedby="sizing-addon8">
+														   </div>
+														</div>
+														  <div class="form-group col-12 col-md-12">
+												        <label for="email">کلمه عبور :</label>
+													      <div class="input-group input-group-sm">
+														  <span class="input-group-addon span_cus" id="sizing-addon8">
+														  <i class="fa fa-lock"></i>
+															  </span>
+														  <input id="password" type="password" class="form-control input_cus"  aria-describedby="sizing-addon8">
+														   </div>
+														</div>
+														<div class="checkbox-inline col-12 col-md-12 ">
+															<label class="checkbox-inline txt_smoke log_check"><input type="checkbox" value=""> مرا بخاطر بسپار </label>
+								                   
+									                    </div>
+																<div class="col-12 col-md-12 mg">
+																	
+																		<a href="#" class="a_style3 forgot-password txt_purple_middle">رمز خود را فراموش کرده اید ؟</a>
+																	
+																</div>
+														<div class="col-md-6 mg">
+																	<div >
+																	<a type="sumbit"  href="user_profile.html" class="btn btn-raised btn_cuscyan btn-sm btn_full"> ورود</a>
+																	</div>
+																</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			  </div>
+			</div>
+				 </div>
+
+		  </div>
+	
+		  
+<section class="menu_sec_tr">
+ <div class="container-fluid info_menu fixed-top2">
+			<div class="row info_menu_row">
+                <div class="col-6 col-md-1 tell_col lang_col">
+                <a href="#"><span class="txt_white text-center"> EN </span></a>
+                <span class="txt_white text-center"> | </span>
+                <a href="#"><span class="txt_white text-center"> FA </span></a>
+                </div>
+                 <div class="col-6 col-md-2 but_col_me">
+                    <a class="txt_white cursp" data-toggle="modal" data-target="#reg_lg_modal">
+                    <i class="fa fa-user fa-fw"></i>
+                    ورود / 
+                    </a>
+                    <a class="txt_white" href="register.html">
+                    	عضویت در سایت
+                    </a>
+                </div>
+               <div class="col-12 col-md-2 tell_col">
+                 <a href="purchase_tracking.html" class="txt_white" ><i class="fa fa-ticket fa-fw"></i> پیگیری خرید </a>
+                </div>
+                <div class="co-12 col-md-7 social_top_col">
+                	<div class="row social_top_row">
+                		<div class="col-1 col-md-1 tell_col">
+						  <a class=" txt_white" href="#"><img class="si_ico_menu" src="img/instagram.png"></a>
+						</div>
+						 <div class="col-1 col-md-1 tell_col">
+						  <a class=" txt_white" href="#"><img class="si_ico_menu" src="img/telegram.png"></a>
+						</div>
+					  <div class="col-1 col-md-1 tell_col">
+						  <a class=" txt_white" href="#"><img class="si_ico_menu" src="img/linkedin.png"></a>
+						</div>
+					  <div class="col-1 col-md-1 tell_col">
+						  <a class=" txt_white" href="#"><img class="si_ico_menu" src="img/facebook-logo-button.png"></a>
+						</div>
+						<div class="col-6 col-md-3 tell_col supp_tell">
+                           <a href="#" class="txt_white" > پشتیبانی : 0713627577 <i class="fa fa-phone fa-fw"></i></a>
+                         </div>
+                         <div class="col-12 col-md-4 tell_col">
+							 <a href="#" class="txt_white" >
+							 	<span class="sn">info@gardeshgaran.com</span> : ایمیل <i class="fa fa-envelope fa-fw"></i> 
+							  </a>
+							</div>
+                	</div>
+                </div>
+         </div>
+		</div>
+<nav class="navbar navbar-expand-md navbar-dark menu menu--adsila fixed-top2">
+  <button class="navbar-toggler txt_purple_dark" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="fa fa-bars txt_purple_dark"></span>
+  </button>
+  <a class="navbar-brand d-block d-sm-none" href="#"><img class="nav_mob_img" src="img/shadleen-logo-fa.png"></a>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav ul_no_pad">
+      <li class="nav-item active ">
+        <a class="nav-link txt_gray" href="index.html">خانه</a>
+      </li>
+      <!--<li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle txt_gray" href="#" data-toggle="dropdown">تفریحات</a>
+        	<div class="dropdown-menu">
+				<a class="dropdown-item" href="et_page.html">تفریحات روز </a>
+				<a class="dropdown-item" href="et_page.html">تفریحات عصر </a>
+      		</div>
+      </li>-->
+      <li class="nav-item  ">
+        <a class="nav-link   txt_gray" href="ticket_search_result.html">بلیت هواپیما</a>
+      </li>    
+      <li class="nav-item  ">
+        <a class="nav-link   txt_gray" href="#"> بلیت قطار </a>
+      </li>    
+      <li class="nav-item  ">
+        <a class="nav-link   txt_gray" href="#">تور</a>
+      </li>
+      <li class="nav-item  ">
+        <a class="nav-link txt_gray" href="#">رزرو هتل</a>
+      </li>
+      <li class="nav-item  ">
+        <a class="nav-link   txt_gray" href="notify_form_page.html">اطلاع رسانی</a>
+      </li>
+       <li class="nav-item  ">
+        <a class="nav-link   txt_gray" href="#">تماس با ما</a>
+      </li>
+       <li class="nav-item  ">
+        <a class="nav-link   txt_gray" href="#">درباره ما</a>
+      </li> 
+    </ul>
+  </div>  
+</nav>
+</section>
+<section class="main">
+		    <div class="container ticket_cont">
+		 				<div class="row">
+		 				<div class="col-12 col-md-7">
+							<div class="clock" style="margin:4em;"></div>
+	                        <div class="message"></div>
+	                        </div>
+						</div>
+						<div class="row">
+						<div class="col-12 col-md-12 clock_info_col">
+							<h6 class="txt_smoke">* رزرو موقت شما در مدت زمان نمایش داده شده به پایان می رسد. بدیهی است در صورت پایان زمان و عدم ثبت اطلاعات، عملیات جستجو باید از ابتدا انجام شود</h6>
+						</div> 
+							<div class="row reserve_steps_row">
+								<div class="col-12 col-md-12 reserve_wiz">
+									  <div class="card ticket_info_card">
+										<div class="card-header">
+										  <h4 class="card-title">
+											<a class="txt_black_bor" >
+											اطلاعات تفریح انتخاب شده</a>
+										  </h4>
+										</div>
+										<div  class="ticket_sec">
+										  <div class="card-body collapse_cart">
+										  <div class="row ticket_info_row">
+											   <div class="col-md-9 table-responsive">
+											  	<table class="table final_reserv_table_takeoff ">
+															<tbody>
+														     <tr class="" >
+														  	    <td >
+													  	    		<span class="Flight_from sp_d2">
+													  	    		<i class="fa fa-plane"></i> پرواز رفت </span>
+														  	    </td>
+														  	    <td>شیراز ← تهران</td>
+														  	    <td>
+													  	        <span class="Flight_to sp_d2"> دوشنبه</span>
+														  	        <span class="FlightDate sp_d2 rtl"> 20 تیر </span></td>
+														     </tr>
+															  <tr class="divider_tr_res">
+                                                              <td>خط هوایی</td>
+                                                              <td>شماره پرواز</td>
+                                                              <td>فرودگاه مبدا</td>
+                                                              <td>زمان حرکت</td>
+                                                              <td>مدت پرواز</td>
+                                                              <td>فرودگاه مقصد</td>
+                                                              <td>زمان ورود</td>
+																</tr>
+                                                              <tr>
+                                                               <td>
+																	<img class="air_line_img" src="img/5da3c62db1c3e971ea01c54afbc83bd3_XL.png">
+																</td>					
+														      <td>
+															      <span class="FlightNumber sp_d">W5-1088</span>
+																  <span class="Flightclass sp_d">اکونومی</span>
+																</td>
+																<td >
+																	<span class="airport_na sp_d">فرودگاه دستغیب شیراز</span>
+																</td>
+																<td>
+																	<span class="Flighttime_takeoff sp_d2">18:30</span>
+																 <span class="city_id sp_d2">SHR</span>
+														  	        <span class="FlightDate sp_d rtl"> 15 تیر </span>
+																</td>
+																<td>
+																	<span class="Flight_day sp_d">چهارشنبه</span>
+																	<span class="Flight_day sp_d"><i class=" icon-time"></i></span>
+																	<span class="Flight_time sp_d">1h.20 m</span>
+																</td>
+																<td>
+																	<span class="airport_na sp_d">فرودگاه مهرآباد</span>
+																</td>
+															  <td>
+															  	 <span class="Flighttime_landing sp_d2">19:50</span>
+																 <span class="city_id sp_d2">THR</span>
+														  	        <span class="FlightDate sp_d rtl"> 15 تیر </span>
+															  </td>
+
+															  </tr>
+															</tbody>
+														  </table> 
+														  	<table class="table final_reserv_table_landing ">
+															<tbody>
+														     <tr class="" >
+														  	    <td >
+													  	    		<span class="Flight_from sp_d2">
+													  	    		 پرواز برگشت 
+													  	    		 <i class="fa fa-plane"></i></span>
+														  	    </td>
+														  	   <td>تهران ← شیراز</td>
+														  	    <td>
+													  	        <span class="Flight_to sp_d2"> شنبه</span>
+														  	        <span class="FlightDate sp_d2 rtl"> 20 تیر </span></td>
+														     </tr>
+															  <tr class="divider_tr_res">
+                                                              <td>خط هوایی</td>
+                                                              <td>شماره پرواز</td>
+                                                              <td>فرودگاه مبدا</td>
+                                                              <td>زمان حرکت</td>
+                                                              <td>مدت پرواز</td>
+                                                              <td>فرودگاه مقصد</td>
+                                                              <td>زمان ورود</td>
+																</tr>
+                                                              <tr>
+                                                               <td>
+																	<img class="air_line_img" src="img/5da3c62db1c3e971ea01c54afbc83bd3_XL.png">
+																</td>					
+														      <td>
+															      <span class="FlightNumber sp_d">W5-1086</span>
+																  <span class="Flightclass sp_d">اکونومی</span>
+																</td>
+																<td >
+																	<span class="airport_na sp_d">فرودگاه مهرآباد</span>
+																</td>
+																<td>
+																	<span class="Flighttime_takeoff sp_d2">18:30</span>
+																 <span class="city_id sp_d2">THR</span>
+														  	        <span class="FlightDate sp_d rtl"> 20 تیر </span>
+																</td>
+																<td>
+																	<span class="Flight_day sp_d">شنبه</span>
+																	<span class="Flight_day sp_d"><i class=" icon-time"></i></span>
+																	<span class="Flight_time sp_d">1h.20 m</span>
+																</td>
+																<td>
+																<span class="airport_na sp_d">فرودگاه دستغیب شیراز</span>
+																	
+																</td>
+															  <td>
+															  	 <span class="Flighttime_landing sp_d2">19:50</span>
+																 <span class="city_id sp_d2">SHR</span>
+														  	        <span class="FlightDate sp_d rtl"> 20 تیر </span>
+															  </td>
+
+															  </tr>
+															</tbody>
+														  </table>
+											  </div>
+											  <div class="col-md-3 res_bill_col">
+											  	<div class="row res_bill_row res_bill_head_row">
+													  		<div class="col-md-12 res_bill_head">
+													  			<p class="text-center res_bill_row_p">محاسبه قیمت( ریال)</p>
+													  		</div>
+														</div>	
+													  	<div class="row pay_info_row">
+													  		<div class="col-md-6">
+													  			<p class="text-right">بهای بلیت :</p>
+													  		</div>
+													  		<div class="col-md-6">
+													  			<p class="text-left">2,950,000</p>
+													  		</div>
+													  	</div>	
+													  	<div class="row pay_info_row">
+													  		<div class="col-md-6">
+													  			<p class="text-right">مالیات ها :</p>
+													  		</div>
+													  		<div class="col-md-6">
+													  			<p class="text-left">330,000</p>
+													  		</div>
+													  	</div>	
+													  	<div class="row pay_info_row">
+													  		<div class="col-md-6">
+													  			<p class="text-right">قیمت کل :</p>
+													  		</div>
+													  		<div class="col-md-6">
+													  			<p class="text-left">3,280,000 </p>
+													  		</div>
+													  	</div>	
+													  	<div class="row">
+													  		<div class="col-md-6">
+													  			<p class="text-right ">مجموع</p>
+													  		</div>
+													  		<div class="col-md-6">
+													  			<p class="text-left">4,380,000</p>
+													  		</div>
+													  	</div>
+													  	<div class="row best_price_row">
+													  		<div class="col-md-8 offset-md-4">
+													  			<img class="best_price_pic" src="img/check.png">
+													  		</div>
+													  		<div class="col-md-12 be_pr_p">
+													  			<p class="text-center ">گارانتی بهترین قیمت</p>
+													  		</div>
+													  	</div>
+													  	<div class="row but_row_info">
+															<div class="col-md-10 offset-md-1 ">
+														 <button type="button" class="btn btn-info btn_cuscyan btn-sm ">قوانین و مقررات
+														  <i class="fa fa-ticket"></i></button>
+															</div>
+														</div>	
+											  </div>
+											  <div class="col-12 col-md-12 but_col_steps">
+											  <div class="row but_row_steps pb-4">
+														<div class="col-12 col-md-6 ">
+															<button type="button" class="btn btn_cuscyan btn-sm wi-40" >بازگشت</button>
+															</div>
+											</div>
+											  </div>
+										  </div>
+									     		<div class="ticket-collapse back_gray pb-4 mb-4">
+											  <div class="card-body collapse_cart">
+												    <div class="col-12 col-md-12 title_col pb-3">
+										  <h6 class="txt_gray">
+											مشخصات خریدار
+										  </h6>
+										</div>
+											   <div class="row sign_up_row">
+												<div class="col-md-12 sign_up_col">
+													<div class="row sign_up_row">
+														<div class=" col-12 col-md-6">
+																	<div class="input-group input-group-sm">
+																	  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-mobile font16"></i></span>
+																	  <input type="tel" class="form-control" placeholder="شماره موبایل" aria-label="Username" aria-describedby="basic-addon1">
+																	</div>	
+																 </div>
+														<div class="col-12 col-md-6">
+																		<div class="input-group input-group-sm">
+																	  <span class="input-group-addon" id="basic-addon2"><i class="fa fa-envelope font16"></i></span>
+																	  <input type="text" class="form-control" placeholder="ایمیل" aria-label="Username" aria-describedby="basic-addon2">
+																	</div>					
+															</div> 
+														
+												</div>
+											   </div>
+											</div>
+										  </div>
+									    </div>  	
+										    <div class="ticket-collapse back_gray pb-4 mb-4">
+										  <div class="card-body collapse_cart">
+											   <div class="col-12 col-md-12 title_col pb-3">
+										  <h6 class="txt_gray">
+											مشخصات مسافران
+										  </h6>
+										</div>
+										  	 <div class="row pas_row">
+                                               <div class="col-md-12 passenger_num_age_col  ">
+												 	<span class="label label-default purple cyan pass_num badge badge-secondary"> 1. 
+												 	 بزرگسال 1</span>
+												 </div>				
+												 <div class="col-md-12 sign_up_col">
+													 <div class="row pas_form_row">
+														<div class="form-group col-12 col-md-2 col_input2">
+															<select class="selectpicker form-control " name="entrm_kind" id="entrm_kind" 
+															data-style="btn btn-default dropdown-toggle filt_but txt_black">
+																<option   class="disabled selected" >
+																	 جنسیت </option>
+																<option  >زن</option>
+																<option  >مرد</option>
+															</select>
+														</div>
+														<div class="form-group col-md-3">
+												        <label for="en_name">نام به انگلیسی</label>
+													      <div class="input-group input-group-sm">
+														  <span class="input-group-addon span_cus" id="sizing-addon3">
+														  	<i class="fa fa-user"></i>
+														  </span>
+														  <input type="text" class="form-control input_cus"  aria-describedby="sizing-addon3">
+														   </div>
+														</div>
+											           <div class="form-group col-md-3">
+												        <label for="lastname">نام خانوادگی به انگلیسی :</label>
+													      <div class="input-group input-group-sm">
+														  <span class="input-group-addon span_cus" id="sizing-addon4">
+														  <i class="fa fa-user"></i>
+															  </span>
+														  <input type="text" class="form-control input_cus"  aria-describedby="sizing-addon4">
+														   </div>
+														</div>
+														<div class="form-group col-md-2">
+												        <label for="birth_date">تاریخ تولد :</label>
+													      <div class="input-group input-group-sm">
+														  <span class="input-group-addon span_cus" id="sizing-addon7">
+														  <i class="fa fa-calendar"></i>
+															  </span>
+														  <input type="text" class="form-control input_cus" id="birth_date" placeholder="mm/dd/yyyy"  aria-describedby="sizing-addon7">
+														   </div>
+														</div>
+											        <div class="form-group col-md-2">
+												        <label for="nation_code">کد ملی :</label>
+													      <div class="input-group input-group-sm">
+														  <span class="input-group-addon span_cus" id="sizing-addon8">
+														  <i class="fa fa-user"></i>
+															  </span>
+														  <input  type="text" class="form-control input_cus"  aria-describedby="sizing-addon8">
+														   </div>
+														</div>
+													 </div>
+														
+										   	</div>
+										   </div>
+										  </div>
+										</div>
+									        		<div class="ticket-collapse back_gray pb-4 mb-4" id="accordion">
+											  <div class="card-body collapse_cart">
+												    <div class="col-12 col-md-12 title_col pb-3">
+										  <h4 class="txt_gray">
+											<i class="fa fa-warning txt_org fa-fw"></i> قوانین پرواز
+										  </h4>
+										</div>
+											   <div class="row sign_up_row">
+													<div class="row sign_up_row">
+														<div class=" col-12 col-md-12">
+														  <p class="txt_black font13">
+														  	صدور و دریافت بليت اينترنتي در صورت تاييد قطعي پرداخت از جانب بانك امكان پذير است. 
+كليه عمليات خريد بليت در اين سايت مشمول قوانين جاري تجارت الكترونيك بوده و هر گونه تخلف تحت پيگرد قانوني قرار خواهد گرفت .خریدار بدینوسیله اظهار می نماید که از کلیه قوانین و مقررات خرید بلیت آگاهی کامل دارد. 
+خريدار در كليه مراحل خريد و يا استرداد بليت موظف به ثبت اطلاعات کامل در سايت  میباشد. 
+
+														  </p>			
+																 </div>
+												   	<div class="col-md-12 info_title">
+												   	  <label class="checkbo "><input type="checkbox" value=""> اینجانب 
+														  <a href="#"> قوانین و مقررات </a>
+												   	    این قرارداد را بطور کامل مطالعه نموده و شرایط آن را قبول دارم که تایید آن بصورت انتخاب این قسمت انجام می شود</label>
+												   </div>
+												   <div class="col-md-2 offset-md-10">
+														<a data-toggle="collapse" data-parent="#accordion" href="#bill_collapse" type="sumbit" class="btn btn-raised btn_cuscyan btn-sm btn_full">
+														تایید </a>
+													</div>
+												</div>
+											</div>
+										  </div>
+									    </div>  	
+										    <div class="ticket-collapse back_gray pb-4 mb-4  collapse" id="bill_collapse">
+										  <div class="card-body collapse_cart">
+											   <div class="col-12 col-md-12 title_col pb-3">
+										  <h6 class="txt_gray">
+											پیش فاکتور نهایی
+										  </h6>
+										</div>		
+											<div class="row row_final_reserve_table">
+											  <div class="col-md-12 pas_row">
+												   <div class="row bill_num_row txt_gray">
+													   <div class="col-md-6 bill_num_col">
+													   	<span class="pass_num"><i class="fa fa-clipboard"></i></span>
+													   	شماره پیش فاکتور
+														   <span class=""> 8976567</span>
+													   </div>
+													   <div class="col-md-2 offset-md-4 bill_num_col">
+													   	<a type="sumbit"  href="user_profile.html" class="btn btn-raised btn_cusorg btn-sm w-50"><i class="fa fa-print"></i></a>
+													   </div>
+												   </div>
+												   <div class="row buyer_info_row ">
+												   	<div class="col-md-12 info_title pb-2">
+												   	مشخصات خریدار
+												   </div>
+												   <div class="col-md-12 buyer_details txt_smoke">
+													   <div class="row">  
+												   	<div class="col-md-3 buyer_name"> خریدار:ساینا سفر</div>
+												   	<div class="col-md-3 buyer_mob">موبایل:07136361900</div>
+												   	<div class="col-md-3 buyer_tell">تلفن ثابت :07136266287</div>
+												   	<div class="col-md-3 buyer_email">
+												   	ایمیل :saynasafar@info.com</div>
+													   </div>
+												   </div>
+											   </div>
+											   	<div class="row buyer_info_row ">
+												   	<div class="col-md-12 info_title">
+												   	مشخصات مسافران
+												   </div>
+											     <div class="col-md-12 txt_smoke table-responsive">
+												     <table class="table passengers_info txt_smoke">
+															<tbody>
+															  <tr class="divider_tr_res">
+                                                              <td>#</td>
+                                                              <td>نام</td>
+                                                              <td>جنسیت</td>
+                                                              <td>رده سنی</td>
+                                                              <td>تاریخ تولد</td>
+                                                              <td>شماره پاسپورت</td>
+                                                              <td>انقضاء پاسپورت</td>
+                                                              <td>ملیت</td>
+															</tr>
+                                                              <tr>
+                                                               <td>
+																	1
+																</td>					
+														      <td class="cap">
+															    sayna safar
+																</td>
+																<td >
+																زن
+																</td>
+																<td>
+																	بزرگسال
+																</td>
+																<td>
+																<span class="ltr">
+																	1993 jan 28
+																</span>
+																</td>
+																<td>
+																	2281342567
+																</td>
+															  <td>
+															  	<span class="ltr">2019 jan 28</span>
+															  </td>
+															  <td> ایرانی</td>
+															  
+
+															  </tr>
+															</tbody>
+														  </table> 
+												  </div>
+												  <div class="col-md-12 info_title">
+												   	اطلاعات پرواز
+												   </div>
+											     <div class="col-md-12 txt_smoke table-responsive">	  
+												   <table class="table final_reserv_table_takeoff ">
+															<tbody>
+															  <tr class="divider_tr_res">
+                                                              <td>#</td>
+                                                              <td>فرودگاه مبدا</td>
+                                                              <td>فرودگاه مقصد</td>
+                                                              <td>تاریخ</td>
+                                                              <td>زمان خروج</td>
+                                                              <td>زمان ورود</td>
+                                                              <td>شماره</td>
+                                                              <td>کلاس پروازی</td>
+                                                              <td>خط هوایی</td>
+																</tr>
+                                                              <tr>
+                                                               <td>
+																	1
+																</td>					
+														      <td>
+															     <span class="airport_na sp_d">فرودگاه دستغیب شیراز</span>
+																</td>
+																<td >
+																	<span class="airport_na sp_d">فرودگاه مهرآباد</span>
+																</td>
+																<td>
+																	<span class="FlightDate sp_d rtl">
+																	1396/05/22 </span>
+																</td>
+																<td>
+																	 <span class="Flighttime_landing sp_d2">19:50</span>
+																</td>
+																<td>
+																	 <span class="Flighttime_landing sp_d2">21:30</span>
+																</td>
+															  <td>
+															  	1634
+															  </td>
+															  <td class="cap">
+															  	economi
+															  </td> 
+															  <td class="cap">
+															  	iran air
+															  </td>
+
+															  </tr>
+															</tbody>
+														  </table> 
+											   </div>
+												   </div>
+											    <div class="row buyer_info_row ">
+												   	<div class="col-md-12 info_title pb-3">
+												   	محاسبه قیمت :
+												   </div>
+												   <div class="col-md-12 buyer_details pt txt_smoke">
+													   <div class="row">
+												   	<div class="col-md-6 final_price">قیمت کل :</div>
+												   	<div class="col-md-2 offset-md-4 cash">4,356,000 ریال</div>
+													   </div>
+											   </div> 
+											   	<div class="col-md-12 buyer_details pt2 final_price_pay_col">
+													<div class="row">
+												   	<div class="col-md-6 final_price_pay txt_cyan">مبلغ قابل پرداخت</div>
+												   	<div class="col-md-2 offset-md-4 cash txt_cyan">4,356,000 ریال</div>
+													</div>
+											   </div>
+													</div>
+											   	<div class="row buyer_info_row ">
+												   	<div class="col-md-2 offset-md-10">
+														<a type="sumbit"  href="user_profile.html" class="btn btn-raised btn_cuscyan btn-sm btn_full">پرداخت و ثبت رزرو</a>
+													</div>
+											   
+											  </div>
+	
+										</div>
+									  </div>
+									</div>
+											</div>
+											  </div>
+								</div>  
+											  
+											  
+										  </div>
+												  </div>
+										  </div>
+									
+									</div>
+											
+								</div>
+							
+						</div>
+											  
+											
+			 </div>
+		</div>
+</section>		
+<footer>
+	<div class="container-fluid footer_cont">
+		<div class="row footer_row">
+			<div class="col-12 col-md-4 txt_gray">
+				<div class="col-12 txt_gray col-md-12">
+					<h5 class="txt_gray"> رزرواسیون آنلاین بلیت </h5>
+				</div>
+				<div class="col-12 txt_gray col-md-12">
+					<ul class="list-unstyled txt_gray ul_pa">
+						<li><a href="#" class="txt_gray  "> <i class="fa fa-phone txt_purple_middle"></i> شماره تلفن : 0713627577</a></li>
+						<li><a href="#" class="txt_gray  "> <i class="fa fa-phone txt_purple_middle"></i> فکس : 071345678 </a></li>
+						<li><a href="#" class="txt_gray  "> <i class="fa fa-map txt_purple_middle"></i> آدرس : شیراز ، خیابان اردیبهشت شرقی، برج IT ، طبقه هفتم ، واحد 73</a></li>
+						<li></li>
+					</ul>
+				</div>
+				<div class="co-12 col-md-12 social_footer_col">
+                	<div class="row social_footer_row">
+                		<div class="col-1 col-md-1 tell_col">
+						  <a class=" txt_white" href="#"><img class="si_ico_menu" src="img/instagram_w.png"></a>
+						</div>
+						 <div class="col-1 col-md-1 tell_col">
+						  <a class=" txt_white" href="#"><img class="si_ico_menu" src="img/telegramg.png"></a>
+						</div>
+					  <div class="col-1 col-md-1 tell_col">
+						  <a class=" txt_white" href="#"><img class="si_ico_menu" src="img/linkeding.png"></a>
+						</div>
+					  <div class="col-1 col-md-1 tell_col">
+						  <a class=" txt_white" href="#"><img class="si_ico_menu" src="img/facebookg-org.png"></a>
+						</div>
+                	</div>
+                </div>
+			</div>
+			<div class="col-12 col-md-4 txt_gray">
+				<div class="col-12 txt_gray col-md-12">
+					<h4 class="txt_gray">پربازدیدترین مقاصد</h4>
+				</div>
+				<div class="col-12 txt_gray col-md-12">
+					<ul class="list-unstyled txt_gray ul_pa">
+						<li><a href="#" class="txt_gray  "><i class="fa fa-map-marker txt_purple_middle"></i> دبی</a></li>
+						<li><a href="#" class="txt_gray  "><i class="fa fa-map-marker txt_purple_middle"></i> کیش</a></li>
+						<li><a href="#" class="txt_gray  "><i class="fa fa-map-marker txt_purple_middle"></i> شیراز</a></li>
+						<li><a href="#" class="txt_gray  "><i class="fa fa-map-marker txt_purple_middle"></i> یزد</a></li>
+						<li><a href="#" class="txt_gray  "><i class="fa fa-map-marker txt_purple_middle"></i> کرمان</a></li>
+						<li><a href="#" class="txt_gray  "><i class="fa fa-map-marker txt_purple_middle "></i> شمال</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-12 col-md-4  text-center namads_col">
+					<div class="row">
+						<div class="col-6 col-md-6 enamad_col">
+							<img src="img/namad1.png" class="namad_img">
+						</div>
+						<div class="col-6 col-md-6  enamad_col">
+							<img src="img/samandehi.png" class="namad_img">
+						</div>
+							
+					</div>
+						
+			 </div>
+		</div>
+		<div  class="row back_blue">
+       <div class="col-md-12 text-center txt_white">
+           کلیه ی حقوق این سایت برای مرکز رزرواسیون بلیت محفوظ می باشد   </div>
+       <div class="col-md-12 text-center txt_white">
+        Powered by <a title="" class="txt_white" href="http://fanacmp.ir/">FANA</a></div>
+     </div>
+	</div>
+</footer>
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-select.js"></script>
+<script src="js/main_js.js"></script>
+<script src="js/flipclock.js"></script>
+	<script type="text/javascript">
+		var clock;
+		
+		$(document).ready(function() {
+
+			clock = $('.clock').FlipClock(900, {
+		        clockFace: 'MinuteCounter',
+		        countdown: true,
+		        callbacks: {
+		        	stop: function() {
+		        		$('.message').html('The clock has stopped!');
+		        	}
+		        }
+		    });
+
+		});
+		
+</script>
+</body>
+</html>
